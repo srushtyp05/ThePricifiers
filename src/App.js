@@ -6,6 +6,7 @@ import './App.css';
 function App() {
   const [customStyles, setCustomStyles] = useState([
     {
+      id: '1',
       fontSize: '20px',
       fontColor: '#ffffff',
       templateSize: '300px',
@@ -16,6 +17,7 @@ function App() {
       features: ['10 GB Space', '3 Domain Names', '20 Email Address', 'No Live Support']
     },
     {
+      id: '2',
       fontSize: '18px',
       fontColor: '#ffffff',
       templateSize: '300px',
@@ -26,6 +28,7 @@ function App() {
       features: ['15 GB Space', '5 Domain Names', '30 Email Address', '24/7 Live Support']
     },
     {
+      id: '3',
       fontSize: '22px',
       fontColor: '#ffffff',
       templateSize: '300px',
@@ -60,6 +63,7 @@ function App() {
                     key={index}
                     index={index}
                     {...style}
+                    id= {style.id}
                     features={style.features} // Pass features as a prop
                     fontColor={style.fontColor}
                     fontSize={style.fontSize}
