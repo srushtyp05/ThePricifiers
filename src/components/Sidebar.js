@@ -12,7 +12,7 @@ const Sidebar = ({ updateCustomStyle, customStyles }) => {
   return (
     <Menu className="sidebar">
       {customStyles.map((style, index) => (
-        <div key={index} className="template">
+        <div key={index} className="template border border-dark">
           <p>CSS Styles for Card {style.id}</p>
           <hr/>
           {/* <div>
