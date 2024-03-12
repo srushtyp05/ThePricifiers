@@ -1,11 +1,18 @@
-// export default Sidebar;
 import React, { useState } from "react";
 import "../styles/temp1.css";
 import { slide as Menu } from "react-burger-menu";
 
-const Sidebar = ({ updateCustomStyle, customStyles, addCard, deleteCard }) => {
+const Sidebar = ({
+  updateCustomStyle,
+  customStyles,
+  addCard,
+  deleteCard,
+  updateOrderButtonProperties,
+  orderButtonProperties,
+}) => {
   const [showFontSizeSettings, setShowFontSizeSettings] = useState(false);
   const [showFontStyleSettings, setShowFontStyleSettings] = useState(false);
+  const [showOrderButtonSettings, setShowOrderButtonSettings] = useState(false);
 
   const handleChange = (index, key, value) => {
     const updatedStyle = { ...customStyles[index], [key]: value };
@@ -15,6 +22,15 @@ const Sidebar = ({ updateCustomStyle, customStyles, addCard, deleteCard }) => {
   const handleDoneClick = () => {
     // You can perform any actions needed when "Done" button is clicked
     console.log("Done button clicked");
+  };
+
+  const handleOrderButtonClick = () => {
+    setShowOrderButtonSettings(!showOrderButtonSettings);
+  };
+
+  const handleOrderButtonPropertyChange = (key, value) => {
+    const updatedProperties = { ...orderButtonProperties, [key]: value };
+    updateOrderButtonProperties(updatedProperties);
   };
 
   return (
@@ -97,6 +113,55 @@ const Sidebar = ({ updateCustomStyle, customStyles, addCard, deleteCard }) => {
           <br />
         </div>
       ))}
+      {/* New order button settings */}
+      <div>
+        <button className="toggle-button" onClick={handleOrderButtonClick}>
+          <span>
+            {showOrderButtonSettings ? "Done" : "Order Button Settings"}
+          </span>
+        </button>
+        {showOrderButtonSettings && (
+          <div>
+            <label>Order Button Shape:</label>
+            <select
+              value={orderButtonProperties.shape}
+              onChange={(e) =>
+                handleOrderButtonPropertyChange("shape", e.target.value)
+              }
+            >
+              <option value="square">Square</option>
+              <option value="round">Round</option>
+            </select>
+            <br />
+            <label>Order Button Color:</label>
+            <input
+              type="color"
+              value={orderButtonProperties.color}
+              onChange={(e) =>
+                handleOrderButtonPropertyChange("color", e.target.value)
+              }
+            />
+            <br />
+            <label>Order Button Text Color:</label>
+            <input
+              type="color"
+              value={orderButtonProperties.textColor}
+              onChange={(e) =>
+                handleOrderButtonPropertyChange("textColor", e.target.value)
+              }
+            />
+            <br />
+            <label>Order Button Text:</label>
+            <input
+              type="text"
+              value={orderButtonProperties.text}
+              onChange={(e) =>
+                handleOrderButtonPropertyChange("text", e.target.value)
+              }
+            />
+          </div>
+        )}
+      </div>
       {/* "Done" Button */}
       <button className="done-button" onClick={handleDoneClick}>
         <span>Done</span>

@@ -11,12 +11,20 @@ const PricingCard = ({
   fontStyle,
   templateSize,
   templateColor,
+  orderButtonProperties, // New prop for order button customization
 }) => {
   const cardContentStyle = {
     color: fontColor,
     fontSize: `${fontSize}px`, // Apply the font size to the whole card content
     fontFamily: fontFamily,
     fontStyle: fontStyle,
+  };
+
+  const orderButtonStyle = {
+    borderRadius: orderButtonProperties.shape === "round" ? "50px" : "0", // Apply roundness based on shape property
+    background: orderButtonProperties.color,
+    color: orderButtonProperties.textColor,
+    fontSize: `${fontSize}px`,
   };
 
   return (
@@ -59,8 +67,8 @@ const PricingCard = ({
               ))}
             </ul>
           </div>
-          <a href="#" style={{ fontSize: `${fontSize}px`, color: "black" }}>
-            Order Now
+          <a href="#" style={orderButtonStyle}>
+            {orderButtonProperties.text}
           </a>{" "}
           {/* Apply font size to link */}
         </div>

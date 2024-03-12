@@ -1,3 +1,4 @@
+// export default App;
 import React, { useState } from "react";
 import Sidebar from "../src/components/Sidebar";
 import PricingCard from "../src/components/PricingCard";
@@ -55,6 +56,13 @@ function App() {
     },
   ]);
 
+  const [orderButtonProperties, setOrderButtonProperties] = useState({
+    shape: "square",
+    color: "#ffffff",
+    textColor: "#000000",
+    text: "Order Now",
+  });
+
   const updateCustomStyle = (updatedIndex, updatedStyle) => {
     setCustomStyles((prevStyles) => {
       const newStyles = [...prevStyles];
@@ -94,6 +102,10 @@ function App() {
     });
   };
 
+  const updateOrderButtonProperties = (updatedProperties) => {
+    setOrderButtonProperties(updatedProperties);
+  };
+
   return (
     <section>
       <div className="container-fluid">
@@ -106,6 +118,8 @@ function App() {
                   customStyles={customStyles}
                   addCard={addCard}
                   deleteCard={deleteCard}
+                  updateOrderButtonProperties={updateOrderButtonProperties}
+                  orderButtonProperties={orderButtonProperties}
                 />
               </div>
               <div className="col-sm-7 d-flex justify-content-center">
@@ -123,6 +137,7 @@ function App() {
                     templateSize={style.templateSize}
                     templateColor={style.templateColor}
                     updateCustomStyle={updateCustomStyle} // Pass update function to PricingCard
+                    orderButtonProperties={orderButtonProperties} // Pass order button properties as a prop
                   />
                 ))}
               </div>
