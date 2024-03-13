@@ -62,4 +62,4 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
   );
 };
 
-export default PricingCard;
+export default PricingCard;

@@ -25,5 +25,5 @@
 
 .pricing-card input:focus, .pricing-card input:target  {
     border: none;
-    outline: none;
+    outline: none;
 }
