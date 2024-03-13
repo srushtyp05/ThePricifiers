@@ -94,9 +94,9 @@ function App() {
         <h1 className="navbar-brand">Pricifiers</h1>
         <nav>
           <ul className="nav">
-            <li className="nav-item" onClick={() => handleOptionSelect('Basic')}>Basic</li>
-            <li className="nav-item" onClick={() => handleOptionSelect('Advance')}>Advance</li>
-            <li className="nav-item" onClick={() => handleOptionSelect('Premium')}>Premium</li>
+            <li className={`nav-item ${selectedOption === 'Basic' ? 'active' : ''}`} onClick={() => handleOptionSelect('Basic')}>Basic</li>
+            <li className={`nav-item ${selectedOption === 'Advance' ? 'active' : ''}`} onClick={() => handleOptionSelect('Advance')}>Advance</li>
+            <li className={`nav-item ${selectedOption === 'Premium' ? 'active' : ''}`} onClick={() => handleOptionSelect('Premium')}>Premium</li>
           </ul>
         </nav>
       </header>
