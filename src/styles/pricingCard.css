@@ -1,0 +1,29 @@
+/* Define styles for the pricing card */
+
+.pricing-card {
+    margin-right: 35px;
+    border: 2px solid #9c9a9a;
+    width: 300px;
+    text-align: center;
+    align-items: center;
+    transform: scale(1);
+    transition: transform 0.6s;
+    border-radius: 20px 20px 20px 20px !important; /* Adjusted border radius */
+}
+
+/* Define styles for the pricing card when hovered over */
+.pricing-card:hover {
+    transform: scale(1.1);
+}
+
+.pricing-card input{
+    outline: none !important;
+    border: none !important;
+    background-color: #f6f6f6;
+    
+}
+
+.pricing-card input:focus, .pricing-card input:target  {
+    border: none;
+    outline: none;
+}
