@@ -51,9 +51,16 @@ function App() {
 
   // Function to handle selection of an option
   const handleOptionSelect = (option) => {
-    setSelectedOption(option);
-    setShowContentButtons(option === 'Basic'); // Show content buttons only when Basic is selected
-    setShowTitleOptions(false); // Hide title options initially
+    if (option === 'Add New Template') {
+      const newTemplate = { ...customStyles.find(template => template.title === 'PREMIUM') };
+      newTemplate.id = (parseInt(customStyles[customStyles.length - 1].id) + 1).toString();
+      newTemplate.title = 'New Template';
+      setCustomStyles(prevStyles => [...prevStyles, newTemplate]);
+    } else {
+      setSelectedOption(option);
+      setShowContentButtons(option === 'Basic'); // Show content buttons only when Basic is selected
+      setShowTitleOptions(false); // Hide title options initially
+    }
   };
 
   // Function to handle title button click
@@ -62,9 +69,9 @@ function App() {
   };
 
   // Function to handle font size change
-  const handleFontSizeChange = (e) => {
-    setFontSize(e.target.value);
-    updateCustomStyle('1', { titleFontSize: e.target.value }); // Update font style for Basic template only
+  const handleFontSizeChange = (value) => {
+    setFontSize(value);
+    updateCustomStyle('1', { titleFontSize: value }); // Update font style for Basic template only
   };
 
   // Function to handle font style change
@@ -103,6 +110,10 @@ function App() {
             <li className="nav-item" onClick={() => handleOptionSelect('Premium')}>PREMIUM</li>
           </ul>
         </nav>
+        <nav>
+          <ul className="nav1"></ul>
+          <li className="nav-item" onClick={() => handleOptionSelect('Add New Template')}>Add New Template</li>
+        </nav>
       </header>
       <div className="subheader">
         {/* Render content buttons only when Basic is selected */}
@@ -115,26 +126,17 @@ function App() {
             {showTitleOptions && (
               <div>
                 <label htmlFor="fontSize">Font Size: </label>
-                <select id="fontSize" value={fontSize} onChange={handleFontSizeChange} style={{marginLeft:'16px'}}>
-                  <option value="10px">10px</option>
-                  <option value="12px">12px</option>
-                  <option value="14px">14px</option>
-                  <option value="16px">16px</option>
-                  <option value="18px">18px</option>
-                  <option value="20px">20px</option>
-                  <option value="22px">22px</option>
-                  <option value="24px">24px</option>
-                  <option value="26px">26px</option>
-                  <option value="28px">28px</option>
-                  <option value="30px">30px</option>
-                  <option value="32px">32px</option>
-                  <option value="34px">34px</option>
-                  <option value="36px">36px</option>
-                  <option value="38px">38px</option>
-                  <option value="40px">40px</option>
-
-                  {/* Add more options as needed */}
-                </select>
+                <input 
+                  type="range" 
+                  id="fontSize" 
+                  min="10" 
+                  max="40" 
+                  step="2" 
+                  value={fontSize.replace('px', '')} 
+                  onChange={(e) => handleFontSizeChange(e.target.value + 'px')} 
+                  style={{marginLeft:'16px'}}
+                />
+                <span>{fontSize}</span>
                 <br />
                 <label htmlFor="fontStyle">Font Style: </label>
                 <select id="fontStyle" value={fontStyle} onChange={handleFontStyleChange} style={{marginLeft:'12px'}}>
@@ -167,6 +169,7 @@ function App() {
                       key={style.id}
                       {...style}
                       updateCustomStyle={(style) => updateCustomStyle('1', style)} // Pass the ID of the Basic template
+                      imageUrl="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?w=1060&t=st=1710317931~exp=1710318531~hmac=ab0111dadc71484ae748827ad12df06cc63f944c5583db11b001423b06ebac89"
                     />
                   ))}
                 </div>
