@@ -41,7 +41,7 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
   return (
     <div className="pricing-card" style={{ ...style }}>
       <h2 style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor, fontStyle: titleFontStyle }}>
-        <input type="text" value={editedTitle} style={{ textAlign: 'center', fontSize: '1.5rem' }} onChange={handleTitleChange} />
+        <input type="text" value={editedTitle} style={{ textAlign: 'center', fontSize: titleFontSize }} onChange={handleTitleChange} />
       </h2>
       <h3>
         $<input type="text" style={{ width: "20%", fontSize: "25px" }} value={editedPrice} onChange={handlePriceChange} /> /month
@@ -60,6 +60,7 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );
+
 };
 
 export default PricingCard;

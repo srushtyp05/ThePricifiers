@@ -7,7 +7,7 @@ function App() {
   const [showContentButtons, setShowContentButtons] = useState(false);
   const [showTitleOptions, setShowTitleOptions] = useState(false); // State to track if title button is clicked
   const [selectedOption, setSelectedOption] = useState(null);
-  const [fontSize, setFontSize] = useState(16); // Default font size
+  const [fontSize, setFontSize] = useState('16px'); // Default font size
   const [fontStyle, setFontStyle] = useState('normal'); // Default font style
   const [fontColor, setFontColor] = useState('#000000'); // Default font color
   const [customStyles, setCustomStyles] = useState([
@@ -64,26 +64,30 @@ function App() {
   // Function to handle font size change
   const handleFontSizeChange = (e) => {
     setFontSize(e.target.value);
-    updateCustomStyle({ titleFontSize: e.target.value, titleFontColor: fontColor, titleFontStyle: fontStyle }); // Update font size for all templates
+    updateCustomStyle('1', { titleFontSize: e.target.value }); // Update font style for Basic template only
   };
 
   // Function to handle font style change
   const handleFontStyleChange = (e) => {
     setFontStyle(e.target.value);
-    updateCustomStyle({ titleFontSize: fontSize, titleFontColor: fontColor, titleFontStyle: e.target.value }); // Update font style for all templates
+    updateCustomStyle('1', { titleFontStyle: e.target.value }); // Update font style for Basic template only
   };
 
   // Function to handle font color change
   const handleFontColorChange = (e) => {
     setFontColor(e.target.value);
-    updateCustomStyle({ titleFontSize: fontSize, titleFontColor: e.target.value, titleFontStyle: fontStyle }); // Update font color for all templates
+    updateCustomStyle('1', { titleFontColor: e.target.value }); // Update font color for Basic template only
   };
 
-  // Function to update custom style
-  const updateCustomStyle = (style) => {
+  // Function to update custom style for a specific template
+  const updateCustomStyle = (templateId, style) => {
     setCustomStyles(prevStyles => {
       return prevStyles.map(template => {
-        return { ...template, ...style };
+        if (template.id === templateId) {
+          return { ...template, ...style };
+        } else {
+          return template;
+        }
       });
     });
   };
@@ -110,13 +114,27 @@ function App() {
             {/* Render title options when title button is clicked */}
             {showTitleOptions && (
               <div>
-                {/* <label htmlFor="fontSize">Font Size (px): </label>
-                <input 
-                  type="number" 
-                  id="fontSize" 
-                  value={fontSize} 
-                  onChange={handleFontSizeChange} 
-                /> */}
+                <label htmlFor="fontSize">Font Size: </label>
+                <select id="fontSize" value={fontSize} onChange={handleFontSizeChange}>
+                  <option value="10px">10px</option>
+                  <option value="12px">12px</option>
+                  <option value="14px">14px</option>
+                  <option value="16px">16px</option>
+                  <option value="18px">18px</option>
+                  <option value="20px">20px</option>
+                  <option value="22px">22px</option>
+                  <option value="24px">24px</option>
+                  <option value="26px">26px</option>
+                  <option value="28px">28px</option>
+                  <option value="30px">30px</option>
+                  <option value="32px">32px</option>
+                  <option value="34px">34px</option>
+                  <option value="36px">36px</option>
+                  <option value="38px">38px</option>
+                  <option value="40px">40px</option>
+
+                  {/* Add more options as needed */}
+                </select>
                 <br />
                 <label htmlFor="fontStyle">Font Style: </label>
                 <select id="fontStyle" value={fontStyle} onChange={handleFontStyleChange}>
@@ -125,13 +143,13 @@ function App() {
                   <option value="oblique">Oblique</option>
                 </select>
                 <br />
-                {/* <label htmlFor="fontColor">Font Color: </label>
+                <label htmlFor="fontColor">Font Color: </label>
                 <input 
                   type="color" 
                   id="fontColor" 
                   value={fontColor} 
                   onChange={handleFontColorChange} 
-                /> */}
+                />
               </div>
             )}
           </div>
@@ -143,24 +161,12 @@ function App() {
             <div className="container">
               <div className="row">
                 <div className='menu col-sm-12 d-flex justify-content-center'>
-                  {customStyles.map((style, index) => (
+                  {customStyles.map((style) => (
                     <PricingCard 
                       className="card" 
-                      key={index}
-                      index={index}
+                      key={style.id}
                       {...style}
-                      id= {style.id}
-                      features={style.features}
-                      color={style.color}
-                      fontSize={style.fontSize}
-                      fontFamily={style.fontFamily}
-                      fontStyle={style.fontStyle}
-                      templateSize={style.templateSize}
-                      templateColor={style.templateColor}
-                      titleFontSize={style.titleFontSize} 
-                      titleFontColor={style.titleFontColor}
-                      titleFontStyle={style.titleFontStyle}
-                      updateCustomStyle={updateCustomStyle} 
+                      updateCustomStyle={(style) => updateCustomStyle('1', style)} // Pass the ID of the Basic template
                     />
                   ))}
                 </div>
