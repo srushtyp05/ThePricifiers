@@ -29,6 +29,10 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
     updateCustomStyle(id - 1, { features: updatedFeatures });
   };
 
+  const addNewFeature = () => {
+    setEditedFeatures([...editedFeatures, '']);
+  };
+
   const handleSubmit = () => {
     // Perform any actions needed when the submit button is clicked
     console.log('Submit button clicked');
@@ -48,10 +52,14 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
             <input type="text" value={feature} onChange={(e) => handleFeatureChange(e, index)} />
           </li>
         ))}
+
+        <li>
+          <button onClick={addNewFeature}>+</button>
+        </li>
       </ul>
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 };
 
-export default PricingCard;
+export default PricingCard;
