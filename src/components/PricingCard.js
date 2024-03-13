@@ -4,6 +4,8 @@ import '../styles/pricingCard.css';
 const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, titleFontFamily, updateCustomStyle, removeImage, imageUrl, templateSize, ...style }) => {
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedPrice, setEditedPrice] = useState(price);
+  const [editedCurrency, setEditedCurrency] = useState("$");
+  const [editedMonth, setEditedMonth] = useState("month");
   const [editedFeatures, setEditedFeatures] = useState(features);
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
@@ -18,11 +20,21 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
     updateCustomStyle(id - 1, { title: newTitle });
   };
 
-  const handlePriceChange = (e) => {
-    const newPrice = e.target.value;
-    setEditedPrice(newPrice);
-    updateCustomStyle(id - 1, { price: newPrice });
+  const handleCurrencyChange = (e) => {
+    const newCurrency = e.target.value;
+    setEditedCurrency(newCurrency);
   };
+  const handlePriceChange = (e) => {
+    const newValue = e.target.value;
+    setEditedPrice(newValue);
+    updateCustomStyle(id - 1, { price: newValue });
+  };
+
+  const handleMonthChange = (e) => {
+    const newMonth = e.target.value;
+    setEditedMonth(newMonth);
+  };
+
 
   const handleFeatureChange = (e, index) => {
     const updatedFeatures = [...editedFeatures];
@@ -62,48 +74,50 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
   };
 
   return (
-    <div className="pricing-card" style={{ ...style, width: templateSize }}>
+    <div className="pricing-card" style={{ ...style, width: '300px' }}>
       {selectedImage && (
-        <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
-          <img src={selectedImage} alt="Selected Image" className="template-image" style={{ width: '88%', height: '85%' }} />
+        <div className="image-container" style={{ width: '250px', height: '300px', textAlign: 'left' }}>
+          <img src={selectedImage} alt="Selected Image" className="template-image" style={{ width: '100%', height: '50%' }} />
           <button onClick={handleRemoveImage} className="remove-image-button">Remove Image</button>
         </div>
       )}
 
-      {!selectedImage && imageUrl && (
-
-        <div className='d-flex flex-column'>
-          <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
-            <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '88%', height: '85%' }} />
-            <button onClick={handleRemoveImage} className="remove-image-button mt-2">Remove Image</button>
+      {imageUrl && !selectedImage && (
+        <div className='d-flex flex-column position-relative'>
+          <div className="image-container" style={{ width: '250px', height: 'auto', textAlign: 'left'}}>
+            <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '100%', height: '50%' }} />
+            <button onClick={handleRemoveImage} className="remove-image-button mt-2" style={{width:'auto', marginRight:'10%', fontSize: '10px'}}>Remove Image</button>
           </div>
-          <div style={{ position: 'absolute', top: '40%', right: '10px' }}>
+          <div style={{ position: 'absolute', top: '51.5%', left: '72%' }}>
             <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
-            <button className="add-image-button" onClick={handleAddImageButtonClick}>Add Image</button>
+            <button className="add-image-button" onClick={handleAddImageButtonClick} style={{width:'auto', fontSize: '10px'}}>Add Image</button>
           </div>
         </div>
-
-
       )}
 
-      <h2 style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor, fontStyle: titleFontStyle, fontFamily: titleFontFamily, marginTop: '2px' }}>
-        <input type="text" value={editedTitle} style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor }} onChange={handleTitleChange} />
-      </h2>
-      <h3>
-        $<input type="text" style={{ width: "20%", fontSize: "25px" }} value={editedPrice} onChange={handlePriceChange} /> /month
-      </h3>
-      <ul>
-        {editedFeatures.map((feature, index) => (
-          <li key={index}>
-            <input type="text" value={feature} onChange={(e) => handleFeatureChange(e, index)} />
-          </li>
-        ))}
+      <div className='' style={{fontSize: '10px'}}>
+        <h2 style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor, fontStyle: titleFontStyle, fontFamily: titleFontFamily, marginTop: '0px' }}>
+          <input type="text" value={editedTitle} style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor }} onChange={handleTitleChange} />
+        </h2>
+        <h3 style={{fontSize: "1.2rem"}}>
+          <input type="text" style={{ width: "20%", fontSize: "1.2rem", textAlign:'center' }} value={editedCurrency} onChange={handleCurrencyChange} />
+          <input type="text" style={{ width: "25%", fontSize: "1.2rem", textAlign:'center' }} value={editedPrice} onChange={handlePriceChange} />
+          <input type="text" style={{ width: "45%", fontSize: "1.2rem", marginLeft:'5%', textAlign:'center' }} value={editedMonth} onChange={handleMonthChange} />
+        </h3>
+        <ul>
+          {editedFeatures.map((feature, index) => (
+            <li key={index}>
+              <input type="text" value={feature} onChange={(e) => handleFeatureChange(e, index)} />
+            </li>
+          ))}
 
-        <li>
-          <button onClick={addNewFeature}>+</button>
-        </li>
-      </ul>
-      <button onClick={handleSubmit}>Submit</button>
+          <li>
+            <button onClick={addNewFeature}>+</button>
+          </li>
+        </ul>
+        <button onClick={handleSubmit}>Submit</button>
+      </div>
+      
     </div>
   );
 };

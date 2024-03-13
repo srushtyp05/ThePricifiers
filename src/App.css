@@ -119,8 +119,9 @@ body {
 /* App.css */
 .navbar-brand {
  font-size: 30px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: white;
+  margin-left: 20px;
 }
 
 .navbar nav{
@@ -154,8 +155,9 @@ body {
 
 .nav-item {
   margin-bottom: 10px;
-  padding: 5px; /* Add padding between navbar items */
-  margin-left: 10px;
+  padding: 10px; /* Add padding between navbar items */
+  margin-right: 15px;
+
 }
 
 
@@ -225,7 +227,7 @@ body {
 .pricing-card button {
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 5px 10px;
   background-color: rgb(52, 54, 180);
   color: #fff;
   font-size: 16px;

@@ -6,6 +6,7 @@ import '../src/styles/sidebar.css';
 function App() {
   const [showContentButtons, setShowContentButtons] = useState(false);
   const [showTitleOptions, setShowTitleOptions] = useState(false); // State to track if title button is clicked
+
   const [selectedOption, setSelectedOption] = useState(null);
   const [fontSize, setFontSize] = useState('16px'); // Default font size
   const [fontStyle, setFontStyle] = useState('normal'); // Default font style
@@ -23,7 +24,7 @@ function App() {
       iconClass: 'fa-paper-plane',
       title: 'BASIC',
       price: '25',
-      features: ['5 GB Space', '2 Domain Names', '5 Email Address', 'No Live Support'],
+      features: ['5 GB Space', '5 Email Address', 'No Live Support'],
       imageUrl: 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?w=1060&t=st=1710317931~exp=1710318531~hmac=ab0111dadc71484ae748827ad12df06cc63f944c5583db11b001423b06ebac89'
     },
     {
@@ -37,7 +38,7 @@ function App() {
       iconClass: 'fa-car',
       title: 'ADVANCE',
       price: '30',
-      features: ['10 GB Space', '5 Domain Names', '10 Email Address', 'Email Support Only'],
+      features: ['10 GB Space', '10 Email Address', 'Email Support Only'],
       imageUrl: 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?w=1060&t=st=1710317931~exp=1710318531~hmac=ab0111dadc71484ae748827ad12df06cc63f944c5583db11b001423b06ebac89'
     },
     {
@@ -67,6 +68,7 @@ function App() {
   const handleTitleButtonClick = () => {
     setShowTitleOptions(true); // Show title options when title button is clicked
   };
+
 
   // Function to handle font size change
   const handleFontSizeChange = (value) => {
@@ -118,23 +120,62 @@ function App() {
     });
   };
 
+  // Function to delete the last template
+  const deleteLastTemplate = () => {
+    setCustomStyles(prevStyles => prevStyles.slice(0, -1));
+  };
+
   // Function to delete a template
   const deleteTemplate = () => {
-    const indexOfNewTemplate = customStyles.findIndex(template => template.title === 'New Template');
-    const indexOfPremium = customStyles.findIndex(template => template.title === 'PREMIUM');
-    const indexOfAdvance = customStyles.findIndex(template => template.title === 'ADVANCE');
-    const indexOfBasic = customStyles.findIndex(template => template.title === 'BASIC');
-
-    if (indexOfNewTemplate !== -1) {
-      setCustomStyles(prevStyles => prevStyles.filter(template => template.title !== 'New Template'));
-    } else if (indexOfPremium !== -1) {
-      setCustomStyles(prevStyles => prevStyles.filter(template => template.title !== 'PREMIUM'));
-    } else if (indexOfAdvance !== -1) {
-      setCustomStyles(prevStyles => prevStyles.filter(template => template.title !== 'ADVANCE'));
-    } else if (indexOfBasic !== -1) {
-      setCustomStyles(prevStyles => prevStyles.filter(template => template.title !== 'BASIC'));
+    const lastTemplate = customStyles[customStyles.length - 1];
+    if (lastTemplate) {
+      setCustomStyles(prevStyles => prevStyles.filter(template => template.id !== lastTemplate.id));
     }
   };
+
+  // Function to add a new template
+const addNewTemplate = () => {
+  const lastTemplate = customStyles[customStyles.length - 1];
+  const newTemplateId = customStyles.length + 1;
+  
+  if (lastTemplate) {
+    const newTemplate = {
+      id: newTemplateId.toString(),
+      fontSize: lastTemplate.fontSize,
+      color: lastTemplate.color,
+      fontStyle: lastTemplate.fontStyle,
+      fontFamily: lastTemplate.fontFamily,
+      templateSize: lastTemplate.templateSize,
+      templateColor: lastTemplate.templateColor,
+      iconClass: lastTemplate.iconClass,
+      title: 'New Template',
+      price: '0',
+      features: lastTemplate.features.map(feature => feature), // Copy features array
+      imageUrl: lastTemplate.imageUrl
+    };
+
+    setCustomStyles([...customStyles, newTemplate]);
+  } else {
+    // If there's no last template, create a default one
+    const newTemplate = {
+      id: newTemplateId.toString(),
+      fontSize: '16px',
+      color: '#ffffff',
+      fontStyle: 'normal',
+      fontFamily: 'Arial, sans-serif',
+      templateSize: '350px',
+      templateColor: 'linear-gradient(-45deg,#35546d,#35546d)',
+      iconClass: 'fa-new-template', // Change this to a suitable icon class
+      title: 'New Template',
+      price: '0',
+      features: ['Feature 1', 'Feature 2', 'Feature 3'],
+      imageUrl: null
+    };
+
+    setCustomStyles([...customStyles, newTemplate]);
+  }
+};
+
 
   return (
     <div>
@@ -145,8 +186,8 @@ function App() {
             <li className="nav-item" onClick={() => handleOptionSelect('Basic')}>BASIC</li>
             <li className="nav-item" onClick={() => handleOptionSelect('Advance')}>ADVANCE</li>
             <li className="nav-item" onClick={() => handleOptionSelect('Premium')}>PREMIUM</li>
-            <li className="nav-item" onClick={() => handleOptionSelect('Add New Template')}>Add New Template</li>
-            <li className="nav-item" onClick={deleteTemplate}>Delete Template</li>
+            <li className="nav-item" onClick={addNewTemplate}>ADD TEMPLATE</li>
+            <li className="nav-item" onClick={deleteLastTemplate}>DELETE TEMPLATE</li>
           </ul>
         </nav>
       </header>
