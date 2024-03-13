@@ -76,7 +76,7 @@ function App() {
   // Function to handle font color change
   const handleFontColorChange = (e) => {
     setFontColor(e.target.value);
-    updateCustomStyle('1', { titleFontColor: e.target.value }); // Update font color for Basic template only
+    updateCustomStyle('1', { titleFontColor: e.target.value }); // Update font style for Basic template only
   };
 
   // Function to update custom style for a specific template
@@ -98,9 +98,9 @@ function App() {
         <h1 className="navbar-brand">Pricifiers</h1>
         <nav>
           <ul className="nav">
-            <li className="nav-item" onClick={() => handleOptionSelect('Basic')}>Basic</li>
-            <li className="nav-item" onClick={() => handleOptionSelect('Advance')}>Advance</li>
-            <li className="nav-item" onClick={() => handleOptionSelect('Premium')}>Premium</li>
+            <li className="nav-item" onClick={() => handleOptionSelect('Basic')}>BASIC</li>
+            <li className="nav-item" onClick={() => handleOptionSelect('Advance')}>ADVANCE</li>
+            <li className="nav-item" onClick={() => handleOptionSelect('Premium')}>PREMIUM</li>
           </ul>
         </nav>
       </header>
@@ -115,7 +115,7 @@ function App() {
             {showTitleOptions && (
               <div>
                 <label htmlFor="fontSize">Font Size: </label>
-                <select id="fontSize" value={fontSize} onChange={handleFontSizeChange}>
+                <select id="fontSize" value={fontSize} onChange={handleFontSizeChange} style={{marginLeft:'16px'}}>
                   <option value="10px">10px</option>
                   <option value="12px">12px</option>
                   <option value="14px">14px</option>
@@ -137,7 +137,7 @@ function App() {
                 </select>
                 <br />
                 <label htmlFor="fontStyle">Font Style: </label>
-                <select id="fontStyle" value={fontStyle} onChange={handleFontStyleChange}>
+                <select id="fontStyle" value={fontStyle} onChange={handleFontStyleChange} style={{marginLeft:'12px'}}>
                   <option value="normal">Normal</option>
                   <option value="italic">Italic</option>
                   <option value="oblique">Oblique</option>
@@ -148,7 +148,7 @@ function App() {
                   type="color" 
                   id="fontColor" 
                   value={fontColor} 
-                  onChange={handleFontColorChange} 
+                  onChange={handleFontColorChange} style={{marginLeft:'10px'}}
                 />
               </div>
             )}
