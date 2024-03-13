@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/pricingCard.css';
 
-const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, updateCustomStyle, imageUrl, templateSize, ...style }) => {
+const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, updateCustomStyle, removeImage, imageUrl, templateSize, ...style }) => {
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedPrice, setEditedPrice] = useState(price);
   const [editedFeatures, setEditedFeatures] = useState(features);
@@ -38,11 +38,18 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
     console.log('Submit button clicked');
   };
 
+  const handleRemoveImage = () => {
+    removeImage(); // Call the function to remove the image
+  };
+
   return (
     <div className="pricing-card" style={{ ...style, width: templateSize }}>
-      <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
-        <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '80%', height: '85%' }} />
-      </div>
+      {imageUrl && ( // Render image only if imageUrl exists
+        <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
+          <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '80%', height: '85%' }} />
+          <button onClick={handleRemoveImage} className="remove-image-button">Remove Image</button> {/* Add button to remove image */}
+        </div>
+      )}
       <h2 style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor, fontStyle: titleFontStyle, marginTop: '2px' }}>
         <input type="text" value={editedTitle} style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor }} onChange={handleTitleChange} />
       </h2>
@@ -65,4 +72,4 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
   );
 };
 
-export default PricingCard;
+export default PricingCard;

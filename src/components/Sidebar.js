@@ -40,4 +40,4 @@ const Sidebar = ({ handleTitleClick }) => {
   );
 };
 
-export default Sidebar;
+export default Sidebar;

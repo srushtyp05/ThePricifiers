@@ -21,7 +21,8 @@ function App() {
       iconClass: 'fa-paper-plane',
       title: 'BASIC',
       price: '25',
-      features: ['5 GB Space', '2 Domain Names', '5 Email Address', 'No Live Support']
+      features: ['5 GB Space', '2 Domain Names', '5 Email Address', 'No Live Support'],
+      imageUrl: 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?w=1060&t=st=1710317931~exp=1710318531~hmac=ab0111dadc71484ae748827ad12df06cc63f944c5583db11b001423b06ebac89'
     },
     {
       id: '2',
@@ -33,7 +34,8 @@ function App() {
       iconClass: 'fa-car',
       title: 'ADVANCE',
       price: '30',
-      features: ['10 GB Space', '5 Domain Names', '10 Email Address', 'Email Support Only']
+      features: ['10 GB Space', '5 Domain Names', '10 Email Address', 'Email Support Only'],
+      imageUrl: 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?w=1060&t=st=1710317931~exp=1710318531~hmac=ab0111dadc71484ae748827ad12df06cc63f944c5583db11b001423b06ebac89'
     },
     {
       id: '3',
@@ -45,16 +47,27 @@ function App() {
       iconClass: 'fa-bicycle',
       title: 'PREMIUM',
       price: '20',
-      features: ['15 GB Space', '10 Domain Name', '20 Email Address', '24/7 Live Support']
+      features: ['15 GB Space', '10 Domain Name', '20 Email Address', '24/7 Live Support'],
+      imageUrl: 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?w=1060&t=st=1710317931~exp=1710318531~hmac=ab0111dadc71484ae748827ad12df06cc63f944c5583db11b001423b06ebac89'
     }
   ]);
 
   // Function to handle selection of an option
   const handleOptionSelect = (option) => {
     if (option === 'Add New Template') {
-      const newTemplate = { ...customStyles.find(template => template.title === 'PREMIUM') };
-      newTemplate.id = (parseInt(customStyles[customStyles.length - 1].id) + 1).toString();
-      newTemplate.title = 'New Template';
+      const premiumTemplate = customStyles.find(template => template.title === 'PREMIUM');
+      let newTemplate;
+      if (premiumTemplate) {
+        newTemplate = { ...premiumTemplate, id: (parseInt(customStyles[customStyles.length - 1].id) + 1).toString(), title: 'New Template' };
+      } else {
+        const advancedTemplate = customStyles.find(template => template.title === 'ADVANCED');
+        if (advancedTemplate) {
+          newTemplate = { ...advancedTemplate, id: (parseInt(customStyles[customStyles.length - 1].id) + 1).toString(), title: 'New Template' };
+        } else {
+          const basicTemplate = customStyles.find(template => template.title === 'BASIC');
+          newTemplate = { ...basicTemplate, id: (parseInt(customStyles[customStyles.length - 1].id) + 1).toString(), title: 'New Template' };
+        }
+      }
       setCustomStyles(prevStyles => [...prevStyles, newTemplate]);
     } else {
       setSelectedOption(option);
@@ -99,6 +112,39 @@ function App() {
     });
   };
 
+  // Function to remove image of a template
+const removeImage = (id) => {
+  setCustomStyles(prevStyles => {
+    return prevStyles.map(template => {
+      if (template.id === id) {
+        return { ...template, imageUrl: '' };
+      } else {
+        return template;
+      }
+    });
+  });
+};
+
+
+
+  // Function to delete a template
+  const deleteTemplate = () => {
+    const indexOfNewTemplate = customStyles.findIndex(template => template.title === 'New Template');
+    const indexOfPremium = customStyles.findIndex(template => template.title === 'PREMIUM');
+    const indexOfAdvance = customStyles.findIndex(template => template.title === 'ADVANCE');
+    const indexOfBasic = customStyles.findIndex(template => template.title === 'BASIC');
+
+    if (indexOfNewTemplate !== -1) {
+      setCustomStyles(prevStyles => prevStyles.filter(template => template.title !== 'New Template'));
+    } else if (indexOfPremium !== -1) {
+      setCustomStyles(prevStyles => prevStyles.filter(template => template.title !== 'PREMIUM'));
+    } else if (indexOfAdvance !== -1) {
+      setCustomStyles(prevStyles => prevStyles.filter(template => template.title !== 'ADVANCE'));
+    } else if (indexOfBasic !== -1) {
+      setCustomStyles(prevStyles => prevStyles.filter(template => template.title !== 'BASIC'));
+    }
+  };
+
   return (
     <div>
       <header className="navbar">
@@ -113,6 +159,7 @@ function App() {
         <nav>
           <ul className="nav1"></ul>
           <li className="nav-item" onClick={() => handleOptionSelect('Add New Template')}>Add New Template</li>
+          <li className="nav-item" onClick={deleteTemplate}>Delete Template</li>
         </nav>
       </header>
       <div className="subheader">
@@ -169,7 +216,7 @@ function App() {
                       key={style.id}
                       {...style}
                       updateCustomStyle={(style) => updateCustomStyle('1', style)} // Pass the ID of the Basic template
-                      imageUrl="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?w=1060&t=st=1710317931~exp=1710318531~hmac=ab0111dadc71484ae748827ad12df06cc63f944c5583db11b001423b06ebac89"
+                      removeImage={() => removeImage(style.id)} // Pass the removeImage function
                     />
                   ))}
                 </div>
@@ -185,4 +232,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;
