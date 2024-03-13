@@ -102,38 +102,11 @@ function App() {
       </header>
       <div className="subheader">
         {/* Render content buttons only when Basic is selected */}
-        {showContentButtons && (
+        {showContentButtons && !showTitleOptions && (
           <div className="subheader-options">
             <button className="content-button" onClick={handleTitleButtonClick}>Title</button>
             <button className="content-button">Price</button>
             <button className="content-button">Features</button> <br/> <br/>
-            {/* Render title options when title button is clicked */}
-            {showTitleOptions && (
-              <div>
-                <label htmlFor="fontSize">Font Size (px): </label>
-                <input 
-                  type="number" 
-                  id="fontSize" 
-                  value={fontSize} 
-                  onChange={handleFontSizeChange} 
-                />
-                <br />
-                <label htmlFor="fontStyle">Font Style: </label>
-                <select id="fontStyle" value={fontStyle} onChange={handleFontStyleChange}>
-                  <option value="normal">Normal</option>
-                  <option value="italic">Italic</option>
-                  <option value="oblique">Oblique</option>
-                </select>
-                <br />
-                <label htmlFor="fontColor">Font Color: </label>
-                <input 
-                  type="color" 
-                  id="fontColor" 
-                  value={fontColor} 
-                  onChange={handleFontColorChange} 
-                />
-              </div>
-            )}
           </div>
         )}
       </div>
@@ -176,4 +149,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;

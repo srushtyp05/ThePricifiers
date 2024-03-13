@@ -9,6 +9,12 @@ body {
   font-family: 'Roboto', sans-serif !important;
 }
 
+/* Header styles */
+.navbar {
+  background-color: #3f51b5; /* Choose your desired background color */
+  padding: 10px; /* Adjust padding as needed */
+}
+
 /* Card section styles */
 section {
   width: 100%;
