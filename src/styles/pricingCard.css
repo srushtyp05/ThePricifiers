@@ -9,7 +9,11 @@
     transform: scale(1);
     transition: transform 0.6s;
     border-radius: 20px 20px 20px 20px !important; /* Adjusted border radius */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
+
 
 /* Define styles for the pricing card when hovered over */
 .pricing-card:hover {
@@ -27,4 +31,3 @@
     border: none;
     outline: none;
 }
-    

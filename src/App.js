@@ -10,13 +10,15 @@ function App() {
   const [fontSize, setFontSize] = useState('16px'); // Default font size
   const [fontStyle, setFontStyle] = useState('normal'); // Default font style
   const [fontColor, setFontColor] = useState('#000000'); // Default font color
+  const [fontFamily, setFontFamily] = useState('Arial, sans-serif'); // Default font family
   const [customStyles, setCustomStyles] = useState([
     {
       id: '1',
       fontSize: '20px',
       color: '#ffffff',
       fontStyle: 'normal',
-      templateSize: '300px',
+      fontFamily: 'Arial, sans-serif',
+      templateSize: '350px',
       templateColor: 'linear-gradient(-45deg,#35546d,#35546d)',
       iconClass: 'fa-paper-plane',
       title: 'BASIC',
@@ -28,7 +30,8 @@ function App() {
       id: '2',
       fontSize: '18px',
       color: '#ffffff',
-      templateSize: '300px',
+      fontFamily: 'Arial, sans-serif',
+      templateSize: '350px',
       fontStyle: 'normal',
       templateColor: 'linear-gradient(-45deg,#773143,#773143)',
       iconClass: 'fa-car',
@@ -41,7 +44,8 @@ function App() {
       id: '3',
       fontSize: '22px',
       color: '#ffffff',
-      templateSize: '300px',
+      fontFamily: 'Arial, sans-serif',
+      templateSize: '350px',
       fontStyle: 'normal',
       templateColor: 'linear-gradient(-45deg,#7b4874,#7b4874)',
       iconClass: 'fa-bicycle',
@@ -54,26 +58,9 @@ function App() {
 
   // Function to handle selection of an option
   const handleOptionSelect = (option) => {
-    if (option === 'Add New Template') {
-      const premiumTemplate = customStyles.find(template => template.title === 'PREMIUM');
-      let newTemplate;
-      if (premiumTemplate) {
-        newTemplate = { ...premiumTemplate, id: (parseInt(customStyles[customStyles.length - 1].id) + 1).toString(), title: 'New Template' };
-      } else {
-        const advancedTemplate = customStyles.find(template => template.title === 'ADVANCED');
-        if (advancedTemplate) {
-          newTemplate = { ...advancedTemplate, id: (parseInt(customStyles[customStyles.length - 1].id) + 1).toString(), title: 'New Template' };
-        } else {
-          const basicTemplate = customStyles.find(template => template.title === 'BASIC');
-          newTemplate = { ...basicTemplate, id: (parseInt(customStyles[customStyles.length - 1].id) + 1).toString(), title: 'New Template' };
-        }
-      }
-      setCustomStyles(prevStyles => [...prevStyles, newTemplate]);
-    } else {
-      setSelectedOption(option);
-      setShowContentButtons(option === 'Basic'); // Show content buttons only when Basic is selected
-      setShowTitleOptions(false); // Hide title options initially
-    }
+    setSelectedOption(option);
+    setShowContentButtons(option !== 'Add New Template'); // Hide content buttons when 'Add New Template' is selected
+    setShowTitleOptions(option === 'Title'); // Show title options only when 'Title' is selected
   };
 
   // Function to handle title button click
@@ -97,6 +84,12 @@ function App() {
   const handleFontColorChange = (e) => {
     setFontColor(e.target.value);
     updateCustomStyle('1', { titleFontColor: e.target.value }); // Update font style for Basic template only
+  };
+
+  // Function to handle font family change
+  const handleFontFamilyChange = (e) => {
+    setFontFamily(e.target.value);
+    updateCustomStyle('1', { titleFontFamily: e.target.value }); // Update font family for Basic template only
   };
 
   // Function to update custom style for a specific template
@@ -152,22 +145,19 @@ function App() {
             <li className="nav-item" onClick={() => handleOptionSelect('Basic')}>BASIC</li>
             <li className="nav-item" onClick={() => handleOptionSelect('Advance')}>ADVANCE</li>
             <li className="nav-item" onClick={() => handleOptionSelect('Premium')}>PREMIUM</li>
+            <li className="nav-item" onClick={() => handleOptionSelect('Add New Template')}>Add New Template</li>
+            <li className="nav-item" onClick={deleteTemplate}>Delete Template</li>
           </ul>
-        </nav>
-        <nav>
-          <ul className="nav1"></ul>
-          <li className="nav-item" onClick={() => handleOptionSelect('Add New Template')}>Add New Template</li>
-          <li className="nav-item" onClick={deleteTemplate}>Delete Template</li>
         </nav>
       </header>
       <div className="subheader">
-        {/* Render content buttons only when Basic is selected */}
+        {/* Render content buttons */}
         {showContentButtons && (
           <div className="subheader-options">
             <button className="content-button" onClick={handleTitleButtonClick}>Title</button>
             <button className="content-button">Price</button>
             <button className="content-button">Features</button> <br/> <br/>
-            {/* Render title options when title button is clicked */}
+            {/* Render title options */}
             {showTitleOptions && (
               <div>
                 <label htmlFor="fontSize">Font Size: </label>
@@ -197,6 +187,15 @@ function App() {
                   value={fontColor} 
                   onChange={handleFontColorChange} style={{marginLeft:'10px'}}
                 />
+                <br />
+                <label htmlFor="fontFamily">Font Family: </label>
+                <select id="fontFamily" value={fontFamily} onChange={handleFontFamilyChange} style={{marginLeft:'5px'}}>
+                  <option value="Arial, sans-serif">Arial</option>
+                  <option value="Times New Roman, serif">Times New Roman</option>
+                  <option value="Courier New, monospace">Courier New</option>
+                  <option value="Georgia, serif">Georgia</option>
+                  <option value="Verdana, sans-serif">Verdana</option>
+                </select>
               </div>
             )}
           </div>
@@ -213,8 +212,8 @@ function App() {
                       className="card" 
                       key={style.id}
                       {...style}
-                      updateCustomStyle={(style) => updateCustomStyle('1', style)} // Pass the ID of the Basic template
-                      removeImage={() => removeImage(style.id)} // Pass the removeImage function
+                      updateCustomStyle={(style) => updateCustomStyle(style.id, style)}
+                      removeImage={() => removeImage(style.id)}
                     />
                   ))}
                 </div>

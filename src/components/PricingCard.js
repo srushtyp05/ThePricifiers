@@ -1,9 +1,7 @@
-// Inside PricingCard.js
-
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/pricingCard.css';
 
-const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, updateCustomStyle, removeImage, imageUrl, templateSize, ...style }) => {
+const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, titleFontFamily, updateCustomStyle, removeImage, imageUrl, templateSize, ...style }) => {
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedPrice, setEditedPrice] = useState(price);
   const [editedFeatures, setEditedFeatures] = useState(features);
@@ -55,33 +53,40 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
   };
 
   const handleRemoveImage = () => {
-    removeImage(id); // Call the function to remove the image with the id of the template
-    setSelectedImage(null); // Clear the selected image
+    removeImage(id);
+    setSelectedImage(null);
   };
 
   const handleAddImageButtonClick = () => {
-    fileInputRef.current.click(); // Trigger click on file input when "Add Image" button is clicked
+    fileInputRef.current.click();
   };
 
   return (
     <div className="pricing-card" style={{ ...style, width: templateSize }}>
       {selectedImage && (
         <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
-          <img src={selectedImage} alt="Selected Image" className="template-image" style={{ width: '80%', height: '85%' }} />
+          <img src={selectedImage} alt="Selected Image" className="template-image" style={{ width: '88%', height: '85%' }} />
           <button onClick={handleRemoveImage} className="remove-image-button">Remove Image</button>
         </div>
       )}
+
       {!selectedImage && imageUrl && (
-        <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
-          <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '80%', height: '85%' }} />
-          <button onClick={handleRemoveImage} className="remove-image-button">Remove Image</button>
+
+        <div className='d-flex flex-column'>
+          <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
+            <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '88%', height: '85%' }} />
+            <button onClick={handleRemoveImage} className="remove-image-button mt-2">Remove Image</button>
+          </div>
+          <div style={{ position: 'absolute', top: '40%', right: '10px' }}>
+            <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
+            <button className="add-image-button" onClick={handleAddImageButtonClick}>Add Image</button>
+          </div>
         </div>
+
+
       )}
-      <div>
-        <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
-        <button className="add-image-button" onClick={handleAddImageButtonClick}>Add Image</button>
-      </div>
-      <h2 style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor, fontStyle: titleFontStyle, marginTop: '2px' }}>
+
+      <h2 style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor, fontStyle: titleFontStyle, fontFamily: titleFontFamily, marginTop: '2px' }}>
         <input type="text" value={editedTitle} style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor }} onChange={handleTitleChange} />
       </h2>
       <h3>
