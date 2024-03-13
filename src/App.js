@@ -96,11 +96,11 @@ function App() {
   // Function to handle font color change
   const handleFontColorChange = (e) => {
     setFontColor(e.target.value);
-    const updateCustomStyle = (templateId, style) => {
     updateCustomStyle('1', { titleFontColor: e.target.value }); // Update font style for Basic template only
   };
 
   // Function to update custom style for a specific template
+  const updateCustomStyle = (templateId, style) => {
     setCustomStyles(prevStyles => {
       return prevStyles.map(template => {
         if (template.id === templateId) {
@@ -112,20 +112,18 @@ function App() {
     });
   };
 
-  // Function to remove image of a template
-const removeImage = (id) => {
-  setCustomStyles(prevStyles => {
-    return prevStyles.map(template => {
-      if (template.id === id) {
-        return { ...template, imageUrl: '' };
-      } else {
-        return template;
-      }
+  // Function to remove image from the Basic template
+  const removeImage = (templateId) => {
+    setCustomStyles(prevStyles => {
+      return prevStyles.map(template => {
+        if (template.id === templateId) {
+          return { ...template, imageUrl: null };
+        } else {
+          return template;
+        }
+      });
     });
-  });
-};
-
-
+  };
 
   // Function to delete a template
   const deleteTemplate = () => {
@@ -157,6 +155,7 @@ const removeImage = (id) => {
           </ul>
         </nav>
         <nav>
+          <ul className="nav1"></ul>
           <li className="nav-item" onClick={() => handleOptionSelect('Add New Template')}>Add New Template</li>
           <li className="nav-item" onClick={deleteTemplate}>Delete Template</li>
         </nav>
