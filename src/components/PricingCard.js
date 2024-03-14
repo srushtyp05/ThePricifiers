@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/pricingCard.css';
 
-const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, titleFontFamily, updateCustomStyle, removeImage, imageUrl, templateSize, ...style }) => {
+const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, titleFontFamily, priceFontSize, priceFontColor, priceFontStyle, priceFontFamily, updateCustomStyle, removeImage, imageUrl, templateSize, ...style }) => {
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedPrice, setEditedPrice] = useState(price);
-  const [editedCurrency, setEditedCurrency] = useState("$");
+  const [editedCurrency, setEditedCurrency] = useState("CAD ");
   const [editedMonth, setEditedMonth] = useState("month");
   const [editedFeatures, setEditedFeatures] = useState(features);
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
-
+  console.log(id);
   useEffect(() => {
     setEditedFeatures(features);
   }, [features]);
@@ -20,19 +20,25 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
     updateCustomStyle(id - 1, { title: newTitle });
   };
 
+  const handlePriceChange = (e) => {
+    const newPrice = e.target.value;
+    setEditedPrice(newPrice);
+    updateCustomStyle(id - 1, { price: newPrice });
+  };
+  
+
   const handleCurrencyChange = (e) => {
     const newCurrency = e.target.value;
     setEditedCurrency(newCurrency);
-  };
-  const handlePriceChange = (e) => {
-    const newValue = e.target.value;
-    setEditedPrice(newValue);
-    updateCustomStyle(id - 1, { price: newValue });
+    updateCustomStyle(id - 1, { price: newCurrency });
   };
 
+
+  
   const handleMonthChange = (e) => {
     const newMonth = e.target.value;
     setEditedMonth(newMonth);
+    updateCustomStyle(id - 1, { price: newMonth });
   };
 
 
@@ -75,6 +81,7 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
 
   return (
     <div className="pricing-card" style={{ ...style, width: '300px' }}>
+
       {selectedImage && (
         <div className="image-container" style={{ width: '250px', height: '300px', textAlign: 'left' }}>
           <img src={selectedImage} alt="Selected Image" className="template-image" style={{ width: '100%', height: '50%' }} />
@@ -99,10 +106,34 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
         <h2 style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor, fontStyle: titleFontStyle, fontFamily: titleFontFamily, marginTop: '0px' }}>
           <input type="text" value={editedTitle} style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor }} onChange={handleTitleChange} />
         </h2>
-        <h3 style={{fontSize: "1.2rem"}}>
-          <input type="text" style={{ width: "20%", fontSize: "1.2rem", textAlign:'center' }} value={editedCurrency} onChange={handleCurrencyChange} />
-          <input type="text" style={{ width: "25%", fontSize: "1.2rem", textAlign:'center' }} value={editedPrice} onChange={handlePriceChange} />
-          <input type="text" style={{ width: "45%", fontSize: "1.2rem", marginLeft:'5%', textAlign:'center' }} value={editedMonth} onChange={handleMonthChange} />
+        <h3 style={{fontSize: titleFontSize, color: titleFontColor, fontStyle: titleFontStyle, fontFamily: titleFontFamily, marginTop: '0px'}}>
+          <input type="text" style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor }} value={editedCurrency} onChange={handleCurrencyChange} />
+          <input type="text" style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor }} value={editedPrice} onChange={handlePriceChange} />
+          <input type="text" style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor }} value={editedMonth} onChange={handleMonthChange} />
+        </h3>
+        <ul>
+          {editedFeatures.map((feature, index) => (
+            <li key={index}>
+              <input type="text" value={feature} onChange={(e) => handleFeatureChange(e, index)} />
+            </li>
+          ))}
+
+          <li>
+            <button onClick={addNewFeature}>+</button>
+          </li>
+        </ul>
+        <button onClick={handleSubmit}>Submit</button>
+      </div>
+
+
+      <div className='1' style={{fontSize: '10px'}}>
+        <h2 style={{ textAlign: 'center', fontSize: priceFontSize, color: priceFontColor, fontStyle: priceFontStyle, fontFamily: priceFontFamily, marginTop: '0px' }}>
+          <input type="text" value={editedPrice} style={{ textAlign: 'center', fontSize: priceFontSize, color: priceFontColor }} onChange={handlePriceChange} />
+        </h2>
+        <h3 style={{fontSize: priceFontSize, color: priceFontColor, fontStyle: priceFontStyle, fontFamily: priceFontFamily, marginTop: '0px'}}>
+          <input type="text" style={{ textAlign: 'center', fontSize: priceFontSize, color: priceFontColor }} value={editedCurrency} onChange={handleCurrencyChange} />
+          <input type="text" style={{ textAlign: 'center', fontSize: priceFontSize, color: priceFontColor }} value={editedPrice} onChange={handlePriceChange} />
+          <input type="text" style={{ textAlign: 'center', fontSize: priceFontSize, color: priceFontColor }} value={editedMonth} onChange={handleMonthChange} />
         </h3>
         <ul>
           {editedFeatures.map((feature, index) => (
@@ -122,4 +153,5 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
   );
 };
 
-export default PricingCard;
+
+export default PricingCard;
