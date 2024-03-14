@@ -83,29 +83,33 @@ function App() {
 
 
   // Function to handle font size change
-  const handleFontSizeChange = (value) => {
-    setFontSize(value);
-    updateCustomStyle('1', { titleFontSize: value }); // Update font style for Basic template only
-  };
+  // Function to handle font size change
+// Function to handle font size change
+const handleFontSizeChange = (value) => {
+  setFontSize(value);
+  updateCustomStyle(selectedOption === 'Basic' ? '1' : selectedOption === 'Advance' ? '2' : '3', { titleFontSize: value });
+};
 
+// Function to handle font style change
+const handleFontStyleChange = (e) => {
+  const style = e.target.value;
+  setFontStyle(style);
+  updateCustomStyle(selectedOption === 'Basic' ? '1' : selectedOption === 'Advance' ? '2' : '3', { titleFontStyle: style });
+};
 
-  // Function to handle font style change
-  const handleFontStyleChange = (e) => {
-    setFontStyle(e.target.value);
-    updateCustomStyle('1', { titleFontStyle: e.target.value }); // Update font style for Basic template only
-  };
+// Function to handle font color change
+const handleFontColorChange = (e) => {
+  const color = e.target.value;
+  setFontColor(color);
+  updateCustomStyle(selectedOption === 'Basic' ? '1' : selectedOption === 'Advance' ? '2' : '3', { titleFontColor: color });
+};
 
-  // Function to handle font color change
-  const handleFontColorChange = (e) => {
-    setFontColor(e.target.value);
-    updateCustomStyle('1', { titleFontColor: e.target.value }); // Update font style for Basic template only
-  };
-
-  // Function to handle font family change
-  const handleFontFamilyChange = (e) => {
-    setFontFamily(e.target.value);
-    updateCustomStyle('1', { titleFontFamily: e.target.value }); // Update font family for Basic template only
-  };
+// Function to handle font family change
+const handleFontFamilyChange = (e) => {
+  const family = e.target.value;
+  setFontFamily(family);
+  updateCustomStyle(selectedOption === 'Basic' ? '1' : selectedOption === 'Advance' ? '2' : '3', { titleFontFamily: family });
+};
 
   // Function to update custom style for a specific template
   const updateCustomStyle = (templateId, style) => {
