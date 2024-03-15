@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/pricingCard.css';
 
-const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, titleFontFamily, priceFontSize, priceFontColor, priceFontStyle, priceFontFamily, featuresFontSize, featuresFontColor, featuresFontStyle, featuresFontFamily, updateCustomStyle, removeImage, imageUrl, templateSize, ...style }) => {
+const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, titleFontFamily, priceFontSize, priceFontColor, priceFontStyle, priceFontFamily, featuresFontSize, featuresFontColor, featuresFontStyle, featuresFontFamily, templateSize, templateColor, updateCustomStyle, removeImage, imageUrl, ...style }) => {
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedPrice, setEditedPrice] = useState(price);
   const [editedFeatures, setEditedFeatures] = useState(features);
@@ -62,7 +62,7 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
   };
 
   return (
-    <div className="pricing-card" style={{ ...style, width: templateSize }}>
+    <div className="pricing-card" style={{ ...style, width: templateSize, background: templateColor  }}>
       {selectedImage && (
         <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
           <img src={selectedImage} alt="Selected Image" className="template-image" style={{ width: '88%', height: '85%' }} />

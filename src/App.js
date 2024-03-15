@@ -14,6 +14,7 @@ function App() {
   const [fontStyle, setFontStyle] = useState('normal'); // Default font style
   const [fontColor, setFontColor] = useState('#000000'); // Default font color
   const [fontFamily, setFontFamily] = useState('Arial, sans-serif'); // Default font family
+  const [backgroundColor, setBackgroundColor] = useState('#ffffff');
   const [customStyles, setCustomStyles] = useState([
     {
       id: '1',
@@ -60,6 +61,20 @@ function App() {
   ]);
   
   
+
+  // Function to handle background color change
+const handleBackgroundColorChange = (color) => {
+  setBackgroundColor(color);
+};
+
+// Function to update custom style for background color
+const updateBackgroundColor = (color) => {
+  setCustomStyles(prevStyles => {
+    return prevStyles.map(template => {
+      return { ...template, templateColor: color };
+    });
+  });
+};
 
   // Function to handle selection of an option
   const handleOptionSelect = (option) => {
@@ -288,6 +303,18 @@ const addNewTemplate = () => {
                 </select>
               </div>
             )}
+
+
+<label htmlFor="backgroundColor">Background Color: </label>
+<input 
+  type="color" 
+  id="backgroundColor" 
+  value={backgroundColor} 
+  onChange={(e) => {
+    setBackgroundColor(e.target.value);
+    updateBackgroundColor(e.target.value);
+  }} 
+/>
             
             {showPriceOptions && (
               <div>
