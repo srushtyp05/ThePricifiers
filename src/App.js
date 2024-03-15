@@ -8,6 +8,7 @@ function App() {
   const [showContentButtons1, setShowContentButtons1] = useState(false);
   const [showTitleOptions, setShowTitleOptions] = useState(false); // State to track if title button is clicked
   const [showPriceOptions, setShowPriceOptions] = useState(false);
+  const [showFeaturesOptions, setShowFeaturesOptions] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [fontSize, setFontSize] = useState('16px'); // Default font size
   const [fontStyle, setFontStyle] = useState('normal'); // Default font style
@@ -64,7 +65,8 @@ function App() {
     setShowContentButtons(option !== 'Add New Template'); // Hide content buttons when 'Add New Template' is selected
     setShowContentButtons1(option !== 'Add New Template');
     setShowTitleOptions(option === 'Title'); // Show title options only when 'Title' is selected
-    setShowPriceOptions(option === 'Price'); 
+    setShowPriceOptions(option === 'Price');
+    setShowFeaturesOptions(option === 'Features'); 
   };
 
   // Function to handle title button click
@@ -72,18 +74,23 @@ function App() {
     setShowContentButtons(true);
     setShowTitleOptions(true);
     setShowPriceOptions(false); // Hide price options when title button is clicked
+    setShowFeaturesOptions(false);
   };
 
   const handlePriceButtonClick = () => {
     setShowContentButtons(true);
     setShowPriceOptions(true); // Show price options when price button is clicked
     setShowTitleOptions(false); // Hide title options when price button is clicked
+    setShowFeaturesOptions(false);
+  };
+
+  const handleFeaturesButtonClick = () => {
+    setShowContentButtons(true);
+    setShowPriceOptions(false); // Show price options when price button is clicked
+    setShowTitleOptions(false); // Hide title options when price button is clicked
+    setShowFeaturesOptions(true);
   };
   
-
-
-  // Function to handle font size change
-  // Function to handle font size change
 // Function to handle font size change
 const handleFontSizeChange = (value) => {
   setFontSize(value);
@@ -193,7 +200,6 @@ const addNewTemplate = () => {
   }
 };
 
-
   return (
     <div>
       <header className="navbar">
@@ -214,10 +220,11 @@ const addNewTemplate = () => {
           <div className="subheader-options">
             <button className="content-button" onClick={handleTitleButtonClick}>Title</button>
             <button className="content-button"onClick={handlePriceButtonClick} >Price</button>
-            <button className="content-button">Features</button> <br/> <br/>
+            <button className="content-button"onClick={handleFeaturesButtonClick} >Features</button>
             {/* Render title options */}
             {showTitleOptions && (
               <div>
+                <h3>Customize your Title here:</h3>
                 <label htmlFor="fontSize">Font Size: </label>
                 <input 
                   type="range" 
@@ -259,6 +266,49 @@ const addNewTemplate = () => {
             
             {showPriceOptions && (
               <div>
+                <h3>Customize your Price here:</h3>
+                <label htmlFor="fontSize">Font Size: </label>
+                <input 
+                  type="range" 
+                  id="fontSize" 
+                  min="10" 
+                  max="40" 
+                  step="2" 
+                  value={fontSize.replace('px', '')} 
+                  onChange={(e) => handleFontSizeChange(e.target.value + 'px')} 
+                  style={{marginLeft:'16px'}}
+                />
+                <span>{fontSize}</span>
+                <br />
+                <label htmlFor="fontStyle">Font Style: </label>
+                <select id="fontStyle" value={fontStyle} onChange={handleFontStyleChange} style={{marginLeft:'12px'}}>
+                  <option value="normal">Normal</option>
+                  <option value="italic">Italic</option>
+                  <option value="oblique">Oblique</option>
+                </select>
+                <br />
+                <label htmlFor="fontColor">Font Color: </label>
+                <input 
+                  type="color" 
+                  id="fontColor" 
+                  value={fontColor} 
+                  onChange={handleFontColorChange} style={{marginLeft:'10px'}}
+                />
+                <br />
+                <label htmlFor="fontFamily">Font Family: </label>
+                <select id="fontFamily" value={fontFamily} onChange={handleFontFamilyChange} style={{marginLeft:'5px'}}>
+                  <option value="Arial, sans-serif">Arial</option>
+                  <option value="Times New Roman, serif">Times New Roman</option>
+                  <option value="Courier New, monospace">Courier New</option>
+                  <option value="Georgia, serif">Georgia</option>
+                  <option value="Verdana, sans-serif">Verdana</option>
+                </select>
+              </div>
+            )}
+
+            {showFeaturesOptions && (
+              <div>
+                <h3>Customize your Features here:</h3>
                 <label htmlFor="fontSize">Font Size: </label>
                 <input 
                   type="range" 
@@ -300,11 +350,6 @@ const addNewTemplate = () => {
           </div>
         )}
       </div>
-           
-
-      
-
-      
       <section>
         <div>
           <div className="container-fluid">
