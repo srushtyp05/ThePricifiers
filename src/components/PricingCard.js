@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/pricingCard.css';
 
-const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, titleFontFamily, updateCustomStyle, removeImage, imageUrl, templateSize, ...style }) => {
+const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, titleFontFamily, priceFontSize, priceFontColor, priceFontStyle, priceFontFamily, featuresFontSize, featuresFontColor, featuresFontStyle, featuresFontFamily, updateCustomStyle, removeImage, imageUrl, templateSize, ...style }) => {
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedPrice, setEditedPrice] = useState(price);
   const [editedFeatures, setEditedFeatures] = useState(features);
@@ -24,7 +24,7 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
     updateCustomStyle(id - 1, { price: newPrice });
   };
 
-  const handleFeatureChange = (e, index) => {
+  const handleFeaturesChange = (e, index) => {
     const updatedFeatures = [...editedFeatures];
     updatedFeatures[index] = e.target.value;
     setEditedFeatures(updatedFeatures);
@@ -89,15 +89,25 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
       <h2 style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor, fontStyle: titleFontStyle, fontFamily: titleFontFamily, marginTop: '2px' }}>
         <input type="text" value={editedTitle} style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor }} onChange={handleTitleChange} />
       </h2>
-      <h3>
+
+      <h2 style={{ textAlign: 'center', fontSize: priceFontSize, color: priceFontColor, fontStyle: priceFontStyle, fontFamily: priceFontFamily, marginTop: '2px' }}>
+        $<input type="text" value={editedPrice} style={{ textAlign: 'center', fontSize: priceFontSize, color: priceFontColor }} onChange={handlePriceChange} />
+      </h2>
+
+
+
+{/* <h3>
         $<input type="text" style={{ width: "20%", fontSize: "25px" }} value={editedPrice} onChange={handlePriceChange} /> /month
-      </h3>
+      </h3> */}
       <ul>
         {editedFeatures.map((feature, index) => (
           <li key={index}>
-            <input type="text" value={feature} onChange={(e) => handleFeatureChange(e, index)} />
+                  <h2 style={{ textAlign: 'center', fontSize: featuresFontSize, color: featuresFontColor, fontStyle: featuresFontStyle, fontFamily: featuresFontFamily, marginTop: '2px' }}>
+        <input type="text" value={editedFeatures} style={{ textAlign: 'center', fontSize: featuresFontSize, color: featuresFontColor }} onChange={handleFeaturesChange} />
+      </h2>
           </li>
         ))}
+
 
         <li>
           <button onClick={addNewFeature}>+</button>
@@ -105,7 +115,10 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
       </ul>
       <button onClick={handleSubmit}>Submit</button>
     </div>
+
+
+
   );
 };
 
-export default PricingCard;
+export default PricingCard;

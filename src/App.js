@@ -7,8 +7,8 @@ function App() {
   const [showContentButtons, setShowContentButtons] = useState(false);
   const [showContentButtons1, setShowContentButtons1] = useState(false);
   const [showTitleOptions, setShowTitleOptions] = useState(false); // State to track if title button is clicked
-  const [showPriceOptions, setShowPriceOptions] = useState(false);
-  const [showFeaturesOptions, setShowFeaturesOptions] = useState(false);
+  const [showPriceOptions, setShowPriceOptions] = useState(false); 
+  const [showFeaturesOptions, setShowFeaturesOptions] = useState(false);// State to track if price button is clicked  
   const [selectedOption, setSelectedOption] = useState(null);
   const [fontSize, setFontSize] = useState('16px'); // Default font size
   const [fontStyle, setFontStyle] = useState('normal'); // Default font style
@@ -58,6 +58,8 @@ function App() {
       imageUrl: 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?w=1060&t=st=1710317931~exp=1710318531~hmac=ab0111dadc71484ae748827ad12df06cc63f944c5583db11b001423b06ebac89'
     }
   ]);
+  
+  
 
   // Function to handle selection of an option
   const handleOptionSelect = (option) => {
@@ -65,7 +67,7 @@ function App() {
     setShowContentButtons(option !== 'Add New Template'); // Hide content buttons when 'Add New Template' is selected
     setShowContentButtons1(option !== 'Add New Template');
     setShowTitleOptions(option === 'Title'); // Show title options only when 'Title' is selected
-    setShowPriceOptions(option === 'Price');
+    setShowPriceOptions(option === 'Price'); 
     setShowFeaturesOptions(option === 'Features'); 
   };
 
@@ -73,50 +75,72 @@ function App() {
   const handleTitleButtonClick = () => {
     setShowContentButtons(true);
     setShowTitleOptions(true);
-    setShowPriceOptions(false); // Hide price options when title button is clicked
-    setShowFeaturesOptions(false);
+    setShowPriceOptions(false);
+    setShowFeaturesOptions(false); // Hide price options when title button is clicked
   };
 
-  const handlePriceButtonClick = () => {
-    setShowContentButtons(true);
-    setShowPriceOptions(true); // Show price options when price button is clicked
-    setShowTitleOptions(false); // Hide title options when price button is clicked
-    setShowFeaturesOptions(false);
-  };
+// Function to handle price button click
+// Function to handle price button click
+const handlePriceButtonClick = () => {
+  setShowContentButtons(true);
+  setShowPriceOptions(true); // Show price options when price button is clicked
+  setShowTitleOptions(false);
+  setShowFeaturesOptions(false); // Hide title options when price button is clicked
+};
 
-  const handleFeaturesButtonClick = () => {
-    setShowContentButtons(true);
-    setShowPriceOptions(false); // Show price options when price button is clicked
-    setShowTitleOptions(false); // Hide title options when price button is clicked
-    setShowFeaturesOptions(true);
-  };
-  
+
+const handleFeaturesButtonClick = () => {
+  setShowContentButtons(true);
+  setShowPriceOptions(false); // Show price options when price button is clicked
+  setShowTitleOptions(false);
+  setShowFeaturesOptions(true); // Hide title options when price button is clicked
+};
+
+
 // Function to handle font size change
 const handleFontSizeChange = (value) => {
   setFontSize(value);
-  updateCustomStyle(selectedOption === 'Basic' ? '1' : selectedOption === 'Advance' ? '2' : '3', { titleFontSize: value });
+  const styleToUpdate = {};
+  if (showTitleOptions) styleToUpdate.titleFontSize = value;
+  if (showPriceOptions) styleToUpdate.priceFontSize = value;
+  if (showFeaturesOptions) styleToUpdate.featuresFontSize = value;
+  updateCustomStyle(selectedOption === 'Basic' ? '1' : selectedOption === 'Advance' ? '2' : '3', styleToUpdate);
 };
+
 
 // Function to handle font style change
 const handleFontStyleChange = (e) => {
   const style = e.target.value;
   setFontStyle(style);
-  updateCustomStyle(selectedOption === 'Basic' ? '1' : selectedOption === 'Advance' ? '2' : '3', { titleFontStyle: style });
+  const styleToUpdate = {};
+  if (showTitleOptions) styleToUpdate.titleFontStyle = style;
+  if (showPriceOptions) styleToUpdate.priceFontStyle = style;
+  if (showFeaturesOptions) styleToUpdate.featuresFontStyle = style;
+  updateCustomStyle(selectedOption === 'Basic' ? '1' : selectedOption === 'Advance' ? '2' : '3', styleToUpdate);
 };
 
 // Function to handle font color change
 const handleFontColorChange = (e) => {
   const color = e.target.value;
   setFontColor(color);
-  updateCustomStyle(selectedOption === 'Basic' ? '1' : selectedOption === 'Advance' ? '2' : '3', { titleFontColor: color });
+  const styleToUpdate = {};
+  if (showTitleOptions) styleToUpdate.titleFontColor = color;
+  if (showPriceOptions) styleToUpdate.priceFontColor = color;
+  if (showFeaturesOptions) styleToUpdate.featuresFontColor = color;
+  updateCustomStyle(selectedOption === 'Basic' ? '1' : selectedOption === 'Advance' ? '2' : '3', styleToUpdate);
 };
 
 // Function to handle font family change
 const handleFontFamilyChange = (e) => {
   const family = e.target.value;
   setFontFamily(family);
-  updateCustomStyle(selectedOption === 'Basic' ? '1' : selectedOption === 'Advance' ? '2' : '3', { titleFontFamily: family });
+  const styleToUpdate = {};
+  if (showTitleOptions) styleToUpdate.titleFontFamily = family;
+  if (showPriceOptions) styleToUpdate.priceFontFamily = family;
+  if (showFeaturesOptions) styleToUpdate.featuresFontFamily = family;
+  updateCustomStyle(selectedOption === 'Basic' ? '1' : selectedOption === 'Advance' ? '2' : '3', styleToUpdate);
 };
+
 
   // Function to update custom style for a specific template
   const updateCustomStyle = (templateId, style) => {
@@ -200,6 +224,7 @@ const addNewTemplate = () => {
   }
 };
 
+
   return (
     <div>
       <header className="navbar">
@@ -221,10 +246,10 @@ const addNewTemplate = () => {
             <button className="content-button" onClick={handleTitleButtonClick}>Title</button>
             <button className="content-button"onClick={handlePriceButtonClick} >Price</button>
             <button className="content-button"onClick={handleFeaturesButtonClick} >Features</button>
+            {/* <button className="content-button">Features</button> <br/> <br/> */}
             {/* Render title options */}
             {showTitleOptions && (
               <div>
-                <h3>Customize your Title here:</h3>
                 <label htmlFor="fontSize">Font Size: </label>
                 <input 
                   type="range" 
@@ -266,7 +291,6 @@ const addNewTemplate = () => {
             
             {showPriceOptions && (
               <div>
-                <h3>Customize your Price here:</h3>
                 <label htmlFor="fontSize">Font Size: </label>
                 <input 
                   type="range" 
@@ -306,9 +330,10 @@ const addNewTemplate = () => {
               </div>
             )}
 
-            {showFeaturesOptions && (
+
+
+{showFeaturesOptions && (
               <div>
-                <h3>Customize your Features here:</h3>
                 <label htmlFor="fontSize">Font Size: </label>
                 <input 
                   type="range" 
@@ -347,9 +372,19 @@ const addNewTemplate = () => {
                 </select>
               </div>
             )}
+
+
+
+
+
           </div>
         )}
       </div>
+           
+
+      
+
+      
       <section>
         <div>
           <div className="container-fluid">
@@ -359,6 +394,7 @@ const addNewTemplate = () => {
                   {customStyles.map((style) => (
                     <PricingCard 
                       className="card" 
+                      
                       key={style.id}
                       {...style}
                       updateCustomStyle={(style) => updateCustomStyle(style.id, style)}
