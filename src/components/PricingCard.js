@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/pricingCard.css';
 
-const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, titleFontFamily, priceFontSize, priceFontColor, priceFontStyle, priceFontFamily, updateCustomStyle, removeImage, imageUrl, templateSize, ...style }) => {
+const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, titleFontFamily, updateCustomStyle, removeImage, imageUrl, templateSize, ...style }) => {
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedPrice, setEditedPrice] = useState(price);
-  const [editedCurrency, setEditedCurrency] = useState("CAD ");
-  const [editedMonth, setEditedMonth] = useState("month");
   const [editedFeatures, setEditedFeatures] = useState(features);
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
-  console.log(id);
+
   useEffect(() => {
     setEditedFeatures(features);
   }, [features]);
@@ -25,22 +23,6 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
     setEditedPrice(newPrice);
     updateCustomStyle(id - 1, { price: newPrice });
   };
-  
-
-  const handleCurrencyChange = (e) => {
-    const newCurrency = e.target.value;
-    setEditedCurrency(newCurrency);
-    updateCustomStyle(id - 1, { price: newCurrency });
-  };
-
-
-  
-  const handleMonthChange = (e) => {
-    const newMonth = e.target.value;
-    setEditedMonth(newMonth);
-    updateCustomStyle(id - 1, { price: newMonth });
-  };
-
 
   const handleFeatureChange = (e, index) => {
     const updatedFeatures = [...editedFeatures];
@@ -80,78 +62,50 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
   };
 
   return (
-    <div className="pricing-card" style={{ ...style, width: '300px' }}>
-
+    <div className="pricing-card" style={{ ...style, width: templateSize }}>
       {selectedImage && (
-        <div className="image-container" style={{ width: '250px', height: '300px', textAlign: 'left' }}>
-          <img src={selectedImage} alt="Selected Image" className="template-image" style={{ width: '100%', height: '50%' }} />
+        <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
+          <img src={selectedImage} alt="Selected Image" className="template-image" style={{ width: '88%', height: '85%' }} />
           <button onClick={handleRemoveImage} className="remove-image-button">Remove Image</button>
         </div>
       )}
 
-      {imageUrl && !selectedImage && (
-        <div className='d-flex flex-column position-relative'>
-          <div className="image-container" style={{ width: '250px', height: 'auto', textAlign: 'left'}}>
-            <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '100%', height: '50%' }} />
-            <button onClick={handleRemoveImage} className="remove-image-button mt-2" style={{width:'auto', marginRight:'10%', fontSize: '10px'}}>Remove Image</button>
+      {!selectedImage && imageUrl && (
+
+        <div className='d-flex flex-column'>
+          <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
+            <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '88%', height: '85%' }} />
+            <button onClick={handleRemoveImage} className="remove-image-button mt-2">Remove Image</button>
           </div>
-          <div style={{ position: 'absolute', top: '51.5%', left: '72%' }}>
+          <div style={{ position: 'absolute', top: '40%', right: '10px' }}>
             <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
-            <button className="add-image-button" onClick={handleAddImageButtonClick} style={{width:'auto', fontSize: '10px'}}>Add Image</button>
+            <button className="add-image-button" onClick={handleAddImageButtonClick}>Add Image</button>
           </div>
         </div>
+
+
       )}
 
-      <div className='' style={{fontSize: '10px'}}>
-        <h2 style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor, fontStyle: titleFontStyle, fontFamily: titleFontFamily, marginTop: '0px' }}>
-          <input type="text" value={editedTitle} style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor }} onChange={handleTitleChange} />
-        </h2>
-        <h3 style={{fontSize: titleFontSize, color: titleFontColor, fontStyle: titleFontStyle, fontFamily: titleFontFamily, marginTop: '0px'}}>
-          <input type="text" style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor }} value={editedCurrency} onChange={handleCurrencyChange} />
-          <input type="text" style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor }} value={editedPrice} onChange={handlePriceChange} />
-          <input type="text" style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor }} value={editedMonth} onChange={handleMonthChange} />
-        </h3>
-        <ul>
-          {editedFeatures.map((feature, index) => (
-            <li key={index}>
-              <input type="text" value={feature} onChange={(e) => handleFeatureChange(e, index)} />
-            </li>
-          ))}
-
-          <li>
-            <button onClick={addNewFeature}>+</button>
+      <h2 style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor, fontStyle: titleFontStyle, fontFamily: titleFontFamily, marginTop: '2px' }}>
+        <input type="text" value={editedTitle} style={{ textAlign: 'center', fontSize: titleFontSize, color: titleFontColor }} onChange={handleTitleChange} />
+      </h2>
+      <h3>
+        $<input type="text" style={{ width: "20%", fontSize: "25px" }} value={editedPrice} onChange={handlePriceChange} /> /month
+      </h3>
+      <ul>
+        {editedFeatures.map((feature, index) => (
+          <li key={index}>
+            <input type="text" value={feature} onChange={(e) => handleFeatureChange(e, index)} />
           </li>
-        </ul>
-        <button onClick={handleSubmit}>Submit</button>
-      </div>
+        ))}
 
-
-      <div className='1' style={{fontSize: '10px'}}>
-        <h2 style={{ textAlign: 'center', fontSize: priceFontSize, color: priceFontColor, fontStyle: priceFontStyle, fontFamily: priceFontFamily, marginTop: '0px' }}>
-          <input type="text" value={editedPrice} style={{ textAlign: 'center', fontSize: priceFontSize, color: priceFontColor }} onChange={handlePriceChange} />
-        </h2>
-        <h3 style={{fontSize: priceFontSize, color: priceFontColor, fontStyle: priceFontStyle, fontFamily: priceFontFamily, marginTop: '0px'}}>
-          <input type="text" style={{ textAlign: 'center', fontSize: priceFontSize, color: priceFontColor }} value={editedCurrency} onChange={handleCurrencyChange} />
-          <input type="text" style={{ textAlign: 'center', fontSize: priceFontSize, color: priceFontColor }} value={editedPrice} onChange={handlePriceChange} />
-          <input type="text" style={{ textAlign: 'center', fontSize: priceFontSize, color: priceFontColor }} value={editedMonth} onChange={handleMonthChange} />
-        </h3>
-        <ul>
-          {editedFeatures.map((feature, index) => (
-            <li key={index}>
-              <input type="text" value={feature} onChange={(e) => handleFeatureChange(e, index)} />
-            </li>
-          ))}
-
-          <li>
-            <button onClick={addNewFeature}>+</button>
-          </li>
-        </ul>
-        <button onClick={handleSubmit}>Submit</button>
-      </div>
-      
+        <li>
+          <button onClick={addNewFeature}>+</button>
+        </li>
+      </ul>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 };
 
-
-export default PricingCard;
+export default PricingCard;

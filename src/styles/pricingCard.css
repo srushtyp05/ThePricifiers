@@ -14,10 +14,6 @@
     flex-wrap: wrap;
 }
 
-ul, h2, h3 {
-    margin: 0;
-}
-
 
 /* Define styles for the pricing card when hovered over */
 .pricing-card:hover {
