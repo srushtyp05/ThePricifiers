@@ -20,17 +20,23 @@ function App() {
   const [templateColor, setTemplateColor] = useState('linear-gradient(-45deg,#35546d,#35546d)');
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
-  const [titleFontSize, setTitleFontSize] = useState('16px'); // Default title font size
-  const [titleFontColor, setTitleFontColor] = useState('#000000'); // Default title font color
-  const [titleFontStyle, setTitleFontStyle] = useState('normal'); // Default title font style
-  const [titleFontFamily, setTitleFontFamily] = useState('Arial, sans-serif'); // Default title font family
+  // const [titleFontSize, setTitleFontSize] = useState('16px'); // Default title font size
+  // const [titleFontColor, setTitleFontColor] = useState('#000000'); // Default title font color
+  // const [titleFontStyle, setTitleFontStyle] = useState('normal'); // Default title font style
+  // const [titleFontFamily, setTitleFontFamily] = useState('Arial, sans-serif'); // Default title font family
   const [editedTitle, setEditedTitle] = useState(''); // Default edited title
-  const [priceFontSize, setPriceFontSize] = useState('16px'); // Default title font size
-  const [priceFontColor, setPriceFontColor] = useState('#000000'); // Default title font color
-  const [priceFontStyle, setPriceFontStyle] = useState('normal'); // Default title font style
-  const [priceFontFamily, setPriceFontFamily] = useState('Arial, sans-serif'); // Default title font family
-  const [editedFeatures, setEditedFeatures] = useState([]); // Default edited features
+  // const [priceFontSize, setPriceFontSize] = useState('16px'); // Default title font size
+  // const [priceFontColor, setPriceFontColor] = useState('#000000'); // Default title font color
+  // const [priceFontStyle, setPriceFontStyle] = useState('normal'); // Default title font style
+  // const [priceFontFamily, setPriceFontFamily] = useState('Arial, sans-serif'); // Default title font family
   const [editedPrice, setEditedPrice] = useState(''); // Default edited title
+  // const [featuresFontSize, setFeatuesontSize] = useState('16px'); // Default title font size
+  // const [featuresFontColor, setFeaturesFontColor] = useState('#000000'); // Default title font color
+  // const [featuresFontStyle, setFeaturesFontStyle] = useState('normal'); // Default title font style
+  // const [featuresFontFamily, setFeaturesFontFamily] = useState('Arial, sans-serif'); // Default title font family
+  const [editedFeatures, setEditedFeatures] = useState('')
+
+
   const [customStyles, setCustomStyles] = useState([
     {
       id: '1',
@@ -39,7 +45,7 @@ function App() {
       fontStyle: 'normal',
       fontFamily: 'Arial, sans-serif',
       templateSize: '350px',
-      templateColor: 'linear-gradient(-45deg,#35546d,#35546d)',
+      templateColor: 'lightgray',
       iconClass: 'fa-paper-plane',
       title: 'BASIC',
       price: '25',
@@ -53,7 +59,7 @@ function App() {
       fontFamily: 'Arial, sans-serif',
       templateSize: '350px',
       fontStyle: 'normal',
-      templateColor: 'linear-gradient(-45deg,#773143,#773143)',
+      templateColor: 'lightgray',
       iconClass: 'fa-car',
       title: 'ADVANCE',
       price: '30',
@@ -67,7 +73,7 @@ function App() {
       fontFamily: 'Arial, sans-serif',
       templateSize: '350px',
       fontStyle: 'normal',
-      templateColor: 'linear-gradient(-45deg,#7b4874,#7b4874)',
+      templateColor: 'lightgray',
       iconClass: 'fa-bicycle',
       title: 'PREMIUM',
       price: '20',
@@ -264,6 +270,7 @@ const handleSubmit = () => {
 };
 
 
+// Function to generate embedded code
 const generateEmbeddedCode = () => {
   let code = '';
 
@@ -272,18 +279,18 @@ const generateEmbeddedCode = () => {
 
     // Add image if selected or use default imageUrl
     if (template.imageUrl) {
-      code += <img src="${template.imageUrl}" alt="Selected Image" class="template-image" style="width: 88%; height: 85%;" />;
+      code += `<img src="${template.imageUrl}" alt="Selected Image" class="template-image" style="width: 88%; height: 85%;" />`;
     }
 
     // Add title with styles
-    code += <h2 class="title" style="text-align: center; font-size: ${template.fontSize}; color: ${template.color}; font-style: ${template.fontStyle}; font-family: ${template.fontFamily}; margin-top: 2px;">${template.title}</h2>;
+    code += `<h2 class="title" style="text-align: center; font-size: ${template.titleFontSize}; color: ${template.titleFontColor}; font-style: ${template.titleFontStyle}; font-family: ${template.titleFontFamily}; margin-top: 2px;">${template.title}</h2>`;
 
     // Add price with styles
-    code += <h2 class="price" style="text-align: center; font-size: ${template.priceFontSize}; color: ${template.priceFontColor}; font-style: ${template.priceFontStyle}; font-family: ${template.priceFontFamily}; margin-top: 2px;">$${template.price}</h2>;
+    code += `<h2 class="price" style="text-align: center; font-size: ${template.priceFontSize}; color: ${template.priceFontColor}; font-style: ${template.priceFontStyle}; font-family: ${template.priceFontFamily}; margin-top: 2px;">$${template.price}</h2>`;
 
     // Add features with styles
     template.features.forEach((feature) => {
-      code += <h2 class="feature" style="text-align: center; font-size: ${template.featuresFontSize}; color: ${template.featuresFontColor}; font-style: ${template.featuresFontStyle}; font-family: ${template.featuresFontFamily}; margin-top: 2px;">${feature}</h2>;
+      code += `<h2 class="feature" style="text-align: center; font-size: ${template.featuresFontSize}; color: ${template.featuresFontColor}; font-style: ${template.featuresFontStyle}; font-family: ${template.featuresFontFamily}; margin-top: 2px;">${feature}</h2>`;
     });
 
     // Close the <div> tag for the current template
@@ -293,10 +300,35 @@ const generateEmbeddedCode = () => {
   return code;
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const handleSubmit = () => {
 //   console.log("Button clicked!"); // Add this line
 //   // Your existing code
 // };
+
+
+
+
+
+
+
 
 // const generateEmbeddedCode = () => {
 //   let code = '';
@@ -305,22 +337,22 @@ const generateEmbeddedCode = () => {
 //   const selectedTemplate = customStyles.find(template => template.id === selectedOption);
 
 //   if (selectedTemplate) {
-//     code = <div class="pricing-card" style="width: ${selectedTemplate.templateSize}; background: ${selectedTemplate.templateColor};">;
+//     code = `<div class="pricing-card" style="width: ${selectedTemplate.templateSize}; background: ${selectedTemplate.templateColor};">`;
 
 //     // Add image if selected or use default imageUrl
 //     if (selectedTemplate.imageUrl) {
-//       code += <img src="${selectedTemplate.imageUrl}" alt="Selected Image" class="template-image" style="width: 88%; height: 85%;" />;
+//       code += `<img src="${selectedTemplate.imageUrl}" alt="Selected Image" class="template-image" style="width: 88%; height: 85%;" />`;
 //     }
 
 //     // Add title with styles
-//     code += <h2 class="title" style="text-align: center; font-size: ${selectedTemplate.titleFontSize}; color: ${selectedTemplate.titleFontColor}; font-style: ${selectedTemplate.titleFontStyle}; font-family: ${selectedTemplate.titleFontFamily}; margin-top: 2px;">${selectedTemplate.title}</h2>;
+//     code += `<h2 class="title" style="text-align: center; font-size: ${selectedTemplate.titleFontSize}; color: ${selectedTemplate.titleFontColor}; font-style: ${selectedTemplate.titleFontStyle}; font-family: ${selectedTemplate.titleFontFamily}; margin-top: 2px;">${selectedTemplate.title}</h2>`;
 
 //     // Add price with styles
-//     code += <h2 class="price" style="text-align: center; font-size: ${selectedTemplate.priceFontSize}; color: ${selectedTemplate.priceFontColor}; font-style: ${selectedTemplate.priceFontStyle}; font-family: ${selectedTemplate.priceFontFamily}; margin-top: 2px;">$${selectedTemplate.price}</h2>;
+//     code += `<h2 class="price" style="text-align: center; font-size: ${selectedTemplate.priceFontSize}; color: ${selectedTemplate.priceFontColor}; font-style: ${selectedTemplate.priceFontStyle}; font-family: ${selectedTemplate.priceFontFamily}; margin-top: 2px;">$${selectedTemplate.price}</h2>`;
 
 //     // Add features with styles
 //     selectedTemplate.features.forEach((feature) => {
-//       code += <h2 class="feature" style="text-align: center; font-size: ${selectedTemplate.featuresFontSize}; color: ${selectedTemplate.featuresFontColor}; font-style: ${selectedTemplate.featuresFontStyle}; font-family: ${selectedTemplate.featuresFontFamily}; margin-top: 2px;">${feature}</h2>;
+//       code += `<h2 class="feature" style="text-align: center; font-size: ${selectedTemplate.featuresFontSize}; color: ${selectedTemplate.featuresFontColor}; font-style: ${selectedTemplate.featuresFontStyle}; font-family: ${selectedTemplate.featuresFontFamily}; margin-top: 2px;">${feature}</h2>`;
 //     });
 
 //     // Close the <div> tag
@@ -334,7 +366,7 @@ const generateEmbeddedCode = () => {
 
 
 return (
-  <div className="pricing-card" style={{ width: templateSize, background: templateColor }}>
+  <div style={{border: 'none', boxShadow: 'none'}}  >
     {selectedImage && (
       <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
         <img src={selectedImage} alt="Selected Image" className="template-image" style={{ width: '88%', height: '85%' }} />
@@ -347,7 +379,7 @@ return (
           <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '88%', height: '85%' }} />
           <button onClick={handleRemoveImage} className="remove-image-button mt-2">Remove Image</button>
         </div>
-        <div style={{ position: 'absolute', top: '40%', right: '10px' }}>
+        <div style={{ position: 'absolute', top: '40%', right: '20px' }}>
           <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
           <button className="add-image-button" onClick={handleAddImageButtonClick}>Add Image</button>
         </div>
@@ -421,15 +453,15 @@ return (
                 </select>
 
                 <label htmlFor="backgroundColor">Background Color: </label>
-<input 
-  type="color" 
-  id="backgroundColor" 
-  value={backgroundColor} 
-  onChange={(e) => {
-    setBackgroundColor(e.target.value);
-    updateBackgroundColor(e.target.value);
-  }} 
-/>
+                <input 
+                  type="color" 
+                  id="backgroundColor" 
+                  value={backgroundColor} 
+                  onChange={(e) => {
+                    setBackgroundColor(e.target.value);
+                    updateBackgroundColor(e.target.value);
+                  }} 
+                />
               </div>
             )}
 
@@ -473,15 +505,15 @@ return (
                   <option value="Verdana, sans-serif">Verdana</option>
                 </select>
                 <label htmlFor="backgroundColor">Background Color: </label>
-<input 
-  type="color" 
-  id="backgroundColor" 
-  value={backgroundColor} 
-  onChange={(e) => {
-    setBackgroundColor(e.target.value);
-    updateBackgroundColor(e.target.value);
-  }} 
-/>
+                <input 
+                  type="color" 
+                  id="backgroundColor" 
+                  value={backgroundColor} 
+                  onChange={(e) => {
+                    setBackgroundColor(e.target.value);
+                    updateBackgroundColor(e.target.value);
+                  }} 
+                />
               </div>
               
             )}
@@ -538,9 +570,21 @@ return (
 />
               </div>
             )}
+
+
+
+
+
           </div>
         )}
-      </div>      
+      </div>
+
+      
+           
+
+      
+
+      
       <section>
         <div>
           <div className="container-fluid">

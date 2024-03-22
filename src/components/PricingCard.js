@@ -115,24 +115,24 @@ const restoreCursorPosition = (element, cursorOffset) => {
 
 
 // const generateEmbeddedCode = () => {
-//   let code = <div class="pricing-card" style="width: ${templateSize}; background: ${templateColor};">;
+//   let code = `<div class="pricing-card" style="width: ${templateSize}; background: ${templateColor};">`;
 
 //   // Add image if selected or use default imageUrl
 //   if (selectedImage) {
-//     code += <img src="${selectedImage}" alt="Selected Image" class="template-image" style="width: 88%; height: 85%;" />;
+//     code += `<img src="${selectedImage}" alt="Selected Image" class="template-image" style="width: 88%; height: 85%;" />`;
 //   } else if (imageUrl) {
-//     code += <img src="${imageUrl}" alt="Template Image" class="template-image" style="width: 88%; height: 85%;" />;
+//     code += `<img src="${imageUrl}" alt="Template Image" class="template-image" style="width: 88%; height: 85%;" />`;
 //   }
 
 //   // Add title with styles
-//   code += <h2 class="title" style="text-align: center; font-size: ${titleFontSize}; color: ${titleFontColor}; font-style: ${titleFontStyle}; font-family: ${titleFontFamily}; margin-top: 2px;">${editedTitle}</h2>;
+//   code += `<h2 class="title" style="text-align: center; font-size: ${titleFontSize}; color: ${titleFontColor}; font-style: ${titleFontStyle}; font-family: ${titleFontFamily}; margin-top: 2px;">${editedTitle}</h2>`;
 
 //   // Add price with styles
-//   code += <h2 class="price" style="text-align: center; font-size: ${priceFontSize}; color: ${priceFontColor}; font-style: ${priceFontStyle}; font-family: ${priceFontFamily}; margin-top: 2px;">$${editedPrice}</h2>;
+//   code += `<h2 class="price" style="text-align: center; font-size: ${priceFontSize}; color: ${priceFontColor}; font-style: ${priceFontStyle}; font-family: ${priceFontFamily}; margin-top: 2px;">$${editedPrice}</h2>`;
 
 //   // Add features with styles
 //   editedFeatures.forEach((feature) => {
-//     code += <h2 class="feature" style="text-align: center; font-size: ${featuresFontSize}; color: ${featuresFontColor}; font-style: ${featuresFontStyle}; font-family: ${featuresFontFamily}; margin-top: 2px;">${feature}</h2>;
+//     code += `<h2 class="feature" style="text-align: center; font-size: ${featuresFontSize}; color: ${featuresFontColor}; font-style: ${featuresFontStyle}; font-family: ${featuresFontFamily}; margin-top: 2px;">${feature}</h2>`;
 //   });
 
 //   // Close the <div> tag
@@ -187,6 +187,9 @@ const restoreCursorPosition = (element, cursorOffset) => {
   // };
   
 
+
+  
+
 const removeFeature = (index) => {
   const updatedFeatures = [...editedFeatures];
   updatedFeatures.splice(index, 1);
@@ -210,8 +213,8 @@ const removeFeature = (index) => {
     <div className="pricing-card" style={{ ...style, width: templateSize, background: templateColor }}>
 
       {selectedImage && (
-        <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
-          <img src={selectedImage} alt="Selected Image" className="template-image" style={{ width: '88%', height: '85%' }} />
+        <div className="image-container" style={{ width: templateSize, textAlign: 'left' }}>
+          <img src={selectedImage} alt="Selected Image" className="template-image" style={{ width: '88%', height: 'auto' }} />
           <button onClick={handleRemoveImage} className="remove-image-button">Remove Image</button>
         </div>
       )}
@@ -219,11 +222,11 @@ const removeFeature = (index) => {
       {!selectedImage && imageUrl && (
 
         <div className='d-flex flex-column'>
-          <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
-            <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '88%', height: '85%' }} />
+          <div className="image-container" style={{ width: templateSize, textAlign: 'left' }}>
+            <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '88%', height: 'auto' }} />
             <button onClick={handleRemoveImage} className="remove-image-button mt-2">Remove Image</button>
           </div>
-          <div style={{ position: 'absolute', top: '40%', right: '10px' }}>
+          <div style={{ position: 'absolute', top: '29%', right: '20px' }}>
             <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
             <button className="add-image-button" onClick={handleAddImageButtonClick}>Add Image</button>
           </div>
@@ -260,7 +263,8 @@ const removeFeature = (index) => {
       </h3> */}
       <ul>
       {editedFeatures.map((feature, index) => (
-  <li key={index}>
+// d-flex gap gap-5 justify-between
+<li key={index} className=''>
     <div 
       contentEditable 
       onInput={(e) => handleFeatureChange(e, index)} // Updated event handler
@@ -300,4 +304,4 @@ const removeFeature = (index) => {
   );
 };
 
-export default PricingCard;
+export default PricingCard;
