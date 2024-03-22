@@ -20,20 +20,8 @@ function App() {
   const [templateColor, setTemplateColor] = useState('linear-gradient(-45deg,#35546d,#35546d)');
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
-  // const [titleFontSize, setTitleFontSize] = useState('16px'); // Default title font size
-  // const [titleFontColor, setTitleFontColor] = useState('#000000'); // Default title font color
-  // const [titleFontStyle, setTitleFontStyle] = useState('normal'); // Default title font style
-  // const [titleFontFamily, setTitleFontFamily] = useState('Arial, sans-serif'); // Default title font family
   const [editedTitle, setEditedTitle] = useState(''); // Default edited title
-  // const [priceFontSize, setPriceFontSize] = useState('16px'); // Default title font size
-  // const [priceFontColor, setPriceFontColor] = useState('#000000'); // Default title font color
-  // const [priceFontStyle, setPriceFontStyle] = useState('normal'); // Default title font style
-  // const [priceFontFamily, setPriceFontFamily] = useState('Arial, sans-serif'); // Default title font family
   const [editedPrice, setEditedPrice] = useState(''); // Default edited title
-  // const [featuresFontSize, setFeatuesontSize] = useState('16px'); // Default title font size
-  // const [featuresFontColor, setFeaturesFontColor] = useState('#000000'); // Default title font color
-  // const [featuresFontStyle, setFeaturesFontStyle] = useState('normal'); // Default title font style
-  // const [featuresFontFamily, setFeaturesFontFamily] = useState('Arial, sans-serif'); // Default title font family
   const [editedFeatures, setEditedFeatures] = useState('')
 
 
@@ -300,71 +288,6 @@ const generateEmbeddedCode = () => {
   return code;
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const handleSubmit = () => {
-//   console.log("Button clicked!"); // Add this line
-//   // Your existing code
-// };
-
-
-
-
-
-
-
-
-// const generateEmbeddedCode = () => {
-//   let code = '';
-
-//   // Assuming selectedOption is set properly elsewhere in your code
-//   const selectedTemplate = customStyles.find(template => template.id === selectedOption);
-
-//   if (selectedTemplate) {
-//     code = `<div class="pricing-card" style="width: ${selectedTemplate.templateSize}; background: ${selectedTemplate.templateColor};">`;
-
-//     // Add image if selected or use default imageUrl
-//     if (selectedTemplate.imageUrl) {
-//       code += `<img src="${selectedTemplate.imageUrl}" alt="Selected Image" class="template-image" style="width: 88%; height: 85%;" />`;
-//     }
-
-//     // Add title with styles
-//     code += `<h2 class="title" style="text-align: center; font-size: ${selectedTemplate.titleFontSize}; color: ${selectedTemplate.titleFontColor}; font-style: ${selectedTemplate.titleFontStyle}; font-family: ${selectedTemplate.titleFontFamily}; margin-top: 2px;">${selectedTemplate.title}</h2>`;
-
-//     // Add price with styles
-//     code += `<h2 class="price" style="text-align: center; font-size: ${selectedTemplate.priceFontSize}; color: ${selectedTemplate.priceFontColor}; font-style: ${selectedTemplate.priceFontStyle}; font-family: ${selectedTemplate.priceFontFamily}; margin-top: 2px;">$${selectedTemplate.price}</h2>`;
-
-//     // Add features with styles
-//     selectedTemplate.features.forEach((feature) => {
-//       code += `<h2 class="feature" style="text-align: center; font-size: ${selectedTemplate.featuresFontSize}; color: ${selectedTemplate.featuresFontColor}; font-style: ${selectedTemplate.featuresFontStyle}; font-family: ${selectedTemplate.featuresFontFamily}; margin-top: 2px;">${feature}</h2>`;
-//     });
-
-//     // Close the <div> tag
-//     code += '</div>';
-//   }
-
-//   return code;
-// };
-
-
-
-
 return (
   <div style={{border: 'none', boxShadow: 'none'}}  >
     {selectedImage && (
@@ -398,8 +321,6 @@ return (
             <li className="nav-item" onClick={addNewTemplate}>ADD TEMPLATE</li>
             <li className="nav-item" onClick={deleteLastTemplate}>DELETE TEMPLATE</li>
             <button onClick={handleSubmit}>Generate Embedded Code</button>
-
-
           </ul>
         </nav>
         
@@ -411,8 +332,7 @@ return (
             <button className="content-button" onClick={handleTitleButtonClick}>Title</button>
             <button className="content-button"onClick={handlePriceButtonClick} >Price</button>
             <button className="content-button"onClick={handleFeaturesButtonClick} >Features</button>
-            {/* <button className="content-button">Features</button> <br/> <br/> */}
-            {/* Render title options */}
+
             {showTitleOptions && (
               <div>
                 <label htmlFor="fontSize">Font Size: </label>
@@ -518,8 +438,6 @@ return (
               
             )}
 
-
-
 {showFeaturesOptions && (
               <div>
                 <label htmlFor="fontSize">Font Size: </label>
@@ -571,19 +489,9 @@ return (
               </div>
             )}
 
-
-
-
-
           </div>
         )}
       </div>
-
-      
-           
-
-      
-
       
       <section>
         <div>
