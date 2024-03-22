@@ -4,10 +4,6 @@ import '../styles/sidebar.css'
 const Sidebar = ({ handleTitleClick }) => {
   const [showOptions, setShowOptions] = useState(false);
 
-  const handleSubheaderClick = () => {
-    setShowOptions(!showOptions);
-  };
-
   const handleClick = (title) => {
     console.log('Clicked title:', title); // Log the clicked title
     handleTitleClick(title); // Call handleTitleClick with the title
@@ -39,5 +35,4 @@ const Sidebar = ({ handleTitleClick }) => {
     </div>
   );
 };
-
 export default Sidebar;
