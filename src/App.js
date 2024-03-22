@@ -15,6 +15,22 @@ function App() {
   const [fontColor, setFontColor] = useState('#000000'); // Default font color
   const [fontFamily, setFontFamily] = useState('Arial, sans-serif'); // Default font family
   const [backgroundColor, setBackgroundColor] = useState('#ffffff');
+  const [embeddedCode, setEmbeddedCode] = useState('');
+  const [templateSize, setTemplateSize] = useState('350px');
+  const [templateColor, setTemplateColor] = useState('linear-gradient(-45deg,#35546d,#35546d)');
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+  const [titleFontSize, setTitleFontSize] = useState('16px'); // Default title font size
+  const [titleFontColor, setTitleFontColor] = useState('#000000'); // Default title font color
+  const [titleFontStyle, setTitleFontStyle] = useState('normal'); // Default title font style
+  const [titleFontFamily, setTitleFontFamily] = useState('Arial, sans-serif'); // Default title font family
+  const [editedTitle, setEditedTitle] = useState(''); // Default edited title
+  const [priceFontSize, setPriceFontSize] = useState('16px'); // Default title font size
+  const [priceFontColor, setPriceFontColor] = useState('#000000'); // Default title font color
+  const [priceFontStyle, setPriceFontStyle] = useState('normal'); // Default title font style
+  const [priceFontFamily, setPriceFontFamily] = useState('Arial, sans-serif'); // Default title font family
+  const [editedFeatures, setEditedFeatures] = useState([]); // Default edited features
+  const [editedPrice, setEditedPrice] = useState(''); // Default edited title
   const [customStyles, setCustomStyles] = useState([
     {
       id: '1',
@@ -240,7 +256,105 @@ const addNewTemplate = () => {
 };
 
 
-  return (
+const handleSubmit = () => {
+  console.log("hello");
+  // Generate embedded code
+  const code = generateEmbeddedCode();
+  setEmbeddedCode(code);
+};
+
+
+const generateEmbeddedCode = () => {
+  let code = '';
+
+  customStyles.forEach(template => {
+    code += `<div class="pricing-card" style="width: ${template.templateSize}; background: ${template.templateColor};">`;
+
+    // Add image if selected or use default imageUrl
+    if (template.imageUrl) {
+      code += <img src="${template.imageUrl}" alt="Selected Image" class="template-image" style="width: 88%; height: 85%;" />;
+    }
+
+    // Add title with styles
+    code += <h2 class="title" style="text-align: center; font-size: ${template.fontSize}; color: ${template.color}; font-style: ${template.fontStyle}; font-family: ${template.fontFamily}; margin-top: 2px;">${template.title}</h2>;
+
+    // Add price with styles
+    code += <h2 class="price" style="text-align: center; font-size: ${template.priceFontSize}; color: ${template.priceFontColor}; font-style: ${template.priceFontStyle}; font-family: ${template.priceFontFamily}; margin-top: 2px;">$${template.price}</h2>;
+
+    // Add features with styles
+    template.features.forEach((feature) => {
+      code += <h2 class="feature" style="text-align: center; font-size: ${template.featuresFontSize}; color: ${template.featuresFontColor}; font-style: ${template.featuresFontStyle}; font-family: ${template.featuresFontFamily}; margin-top: 2px;">${feature}</h2>;
+    });
+
+    // Close the <div> tag for the current template
+    code += '</div>';
+  });
+
+  return code;
+};
+
+// const handleSubmit = () => {
+//   console.log("Button clicked!"); // Add this line
+//   // Your existing code
+// };
+
+// const generateEmbeddedCode = () => {
+//   let code = '';
+
+//   // Assuming selectedOption is set properly elsewhere in your code
+//   const selectedTemplate = customStyles.find(template => template.id === selectedOption);
+
+//   if (selectedTemplate) {
+//     code = <div class="pricing-card" style="width: ${selectedTemplate.templateSize}; background: ${selectedTemplate.templateColor};">;
+
+//     // Add image if selected or use default imageUrl
+//     if (selectedTemplate.imageUrl) {
+//       code += <img src="${selectedTemplate.imageUrl}" alt="Selected Image" class="template-image" style="width: 88%; height: 85%;" />;
+//     }
+
+//     // Add title with styles
+//     code += <h2 class="title" style="text-align: center; font-size: ${selectedTemplate.titleFontSize}; color: ${selectedTemplate.titleFontColor}; font-style: ${selectedTemplate.titleFontStyle}; font-family: ${selectedTemplate.titleFontFamily}; margin-top: 2px;">${selectedTemplate.title}</h2>;
+
+//     // Add price with styles
+//     code += <h2 class="price" style="text-align: center; font-size: ${selectedTemplate.priceFontSize}; color: ${selectedTemplate.priceFontColor}; font-style: ${selectedTemplate.priceFontStyle}; font-family: ${selectedTemplate.priceFontFamily}; margin-top: 2px;">$${selectedTemplate.price}</h2>;
+
+//     // Add features with styles
+//     selectedTemplate.features.forEach((feature) => {
+//       code += <h2 class="feature" style="text-align: center; font-size: ${selectedTemplate.featuresFontSize}; color: ${selectedTemplate.featuresFontColor}; font-style: ${selectedTemplate.featuresFontStyle}; font-family: ${selectedTemplate.featuresFontFamily}; margin-top: 2px;">${feature}</h2>;
+//     });
+
+//     // Close the <div> tag
+//     code += '</div>';
+//   }
+
+//   return code;
+// };
+
+
+
+
+return (
+  <div className="pricing-card" style={{ width: templateSize, background: templateColor }}>
+    {selectedImage && (
+      <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
+        <img src={selectedImage} alt="Selected Image" className="template-image" style={{ width: '88%', height: '85%' }} />
+        <button onClick={handleRemoveImage} className="remove-image-button">Remove Image</button>
+      </div>
+    )}
+    {!selectedImage && imageUrl && (
+      <div className='d-flex flex-column'>
+        <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
+          <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '88%', height: '85%' }} />
+          <button onClick={handleRemoveImage} className="remove-image-button mt-2">Remove Image</button>
+        </div>
+        <div style={{ position: 'absolute', top: '40%', right: '10px' }}>
+          <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
+          <button className="add-image-button" onClick={handleAddImageButtonClick}>Add Image</button>
+        </div>
+      </div>
+    )}
+
+
     <div>
       <header className="navbar">
         <h1 className="navbar-brand">Pricifiers</h1>
@@ -251,8 +365,12 @@ const addNewTemplate = () => {
             <li className="nav-item" onClick={() => handleOptionSelect('Premium')}>PREMIUM</li>
             <li className="nav-item" onClick={addNewTemplate}>ADD TEMPLATE</li>
             <li className="nav-item" onClick={deleteLastTemplate}>DELETE TEMPLATE</li>
+            <button onClick={handleSubmit}>Generate Embedded Code</button>
+
+
           </ul>
         </nav>
+        
       </header>
       <div className="subheader">
         {/* Render content buttons */}
@@ -301,11 +419,8 @@ const addNewTemplate = () => {
                   <option value="Georgia, serif">Georgia</option>
                   <option value="Verdana, sans-serif">Verdana</option>
                 </select>
-              </div>
-            )}
 
-
-<label htmlFor="backgroundColor">Background Color: </label>
+                <label htmlFor="backgroundColor">Background Color: </label>
 <input 
   type="color" 
   id="backgroundColor" 
@@ -315,6 +430,9 @@ const addNewTemplate = () => {
     updateBackgroundColor(e.target.value);
   }} 
 />
+              </div>
+            )}
+
             
             {showPriceOptions && (
               <div>
@@ -354,7 +472,18 @@ const addNewTemplate = () => {
                   <option value="Georgia, serif">Georgia</option>
                   <option value="Verdana, sans-serif">Verdana</option>
                 </select>
+                <label htmlFor="backgroundColor">Background Color: </label>
+<input 
+  type="color" 
+  id="backgroundColor" 
+  value={backgroundColor} 
+  onChange={(e) => {
+    setBackgroundColor(e.target.value);
+    updateBackgroundColor(e.target.value);
+  }} 
+/>
               </div>
+              
             )}
 
 
@@ -397,21 +526,21 @@ const addNewTemplate = () => {
                   <option value="Georgia, serif">Georgia</option>
                   <option value="Verdana, sans-serif">Verdana</option>
                 </select>
+                <label htmlFor="backgroundColor">Background Color: </label>
+<input 
+  type="color" 
+  id="backgroundColor" 
+  value={backgroundColor} 
+  onChange={(e) => {
+    setBackgroundColor(e.target.value);
+    updateBackgroundColor(e.target.value);
+  }} 
+/>
               </div>
             )}
-
-
-
-
-
           </div>
         )}
-      </div>
-           
-
-      
-
-      
+      </div>      
       <section>
         <div>
           <div className="container-fluid">
@@ -426,6 +555,7 @@ const addNewTemplate = () => {
                       {...style}
                       updateCustomStyle={(style) => updateCustomStyle(style.id, style)}
                       removeImage={() => removeImage(style.id)}
+                      
                     />
                   ))}
                 </div>
@@ -434,11 +564,18 @@ const addNewTemplate = () => {
           </div>
         </div>
       </section>
+      {embeddedCode && (
+      <div>
+        <h3>Embedded Code:</h3>
+        <textarea rows="5" cols="50" value={embeddedCode} readOnly />
+      </div>
+    )}
       <footer className="footer">
         {/* Add your footer content here */}
       </footer>
     </div>
+    </div>
   );
 }
 
-export default App;
+export default App;
