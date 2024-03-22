@@ -6,6 +6,7 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
   const [editedPrice, setEditedPrice] = useState(price);
   const [editedFeatures, setEditedFeatures] = useState(features);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [embeddedCode, setEmbeddedCode] = useState('');
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -47,10 +48,41 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
     }
   };
 
+  
+
+  // const handleSubmit = () => {
+  //   // Perform any actions needed when the submit button is clicked
+  //   console.log('Submit button clicked');
+  // };
+
+
+
+
   const handleSubmit = () => {
-    // Perform any actions needed when the submit button is clicked
-    console.log('Submit button clicked');
+    // Generate embedded code
+    const code = generateEmbeddedCode();
+    setEmbeddedCode(code);
   };
+
+  const generateEmbeddedCode = () => {
+    // Generate embedded code based on the edited template values
+    let code = `<div style="width: ${templateSize}; background: ${templateColor};"><h2 style="text-align: center; font-size: ${titleFontSize}; color: ${titleFontColor}; font-style: ${titleFontStyle}; font-family: ${titleFontFamily}; margin-top: 2px;">${editedTitle}</h2><h2 style="text-align: center; font-size: ${priceFontSize}; color: ${priceFontColor}; font-style: ${priceFontStyle}; font-family: ${priceFontFamily}; margin-top: 2px;">$${editedPrice}</h2>`;
+    // Add each feature to the embedded code
+    editedFeatures.forEach((feature) => {
+      code += <h2 style="text-align: center; font-size: ${featuresFontSize}; color: ${featuresFontColor}; font-style: ${featuresFontStyle}; font-family: ${featuresFontFamily}; margin-top: 2px;">${feature}</h2>;
+    });
+    // Close the <div> tag
+    code += '</div>';
+    return code;
+  };
+  
+  
+  
+  
+
+
+
+
 
   const handleRemoveImage = () => {
     removeImage(id);
@@ -62,7 +94,8 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
   };
 
   return (
-    <div className="pricing-card" style={{ ...style, width: templateSize, background: templateColor  }}>
+    <div className="pricing-card" style={{ ...style, width: templateSize, background: templateColor }}>
+
       {selectedImage && (
         <div className="image-container" style={{ width: templateSize, height: templateSize, textAlign: 'left' }}>
           <img src={selectedImage} alt="Selected Image" className="template-image" style={{ width: '88%', height: '85%' }} />
@@ -113,12 +146,15 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
           <button onClick={addNewFeature}>+</button>
         </li>
       </ul>
-      <button onClick={handleSubmit}>Submit</button>
+      <button onClick={handleSubmit}>Generate Embedded Code</button>
+      {embeddedCode && (
+        <div>
+          <h3>Embedded Code:</h3>
+          <textarea rows="5" cols="50" value={embeddedCode} readOnly />
+        </div>
+      )}
     </div>
-
-
-
   );
 };
 
-export default PricingCard;
+export default PricingCard;
