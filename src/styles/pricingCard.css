@@ -1,9 +1,9 @@
 .pricing-card {
     margin-right: 35px;
     border: 2px solid #fbfafa;
-    width: 300px;
+    width: auto;
     text-align: center;
-    align-items: center;
+    /* align-items: center; */
     transform: scale(1);
     transition: transform 0.6s;
     border-radius: 20px; /* Removed !important, avoid over-specifying */
@@ -23,12 +23,11 @@
     background-color: #f6f6f6;
     padding: 5px 10px; /* Add padding for better appearance */
     margin: 5px; /* Add margin for spacing */
-    border-radius: 5px; /* Add border-radius for consistency */
+   
 }
 
 .pricing-card input:focus {
-    /* Add focus styling */
-    border: 2px solid #f9fafb;
+    border: 2px solid #0000;
 }
 
 .feature-list {
@@ -76,5 +75,5 @@
     border: 1px solid #ccc; /* Add border for clarity */
     border-radius: 5px; /* Add border radius */
     resize: vertical; /* Allow vertical resizing */
-    color: white; /* Set text color to white */
+    color: white; /* Set text color to white */
 }

@@ -38,7 +38,13 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
     updateCustomStyle(id - 1, { features: updatedFeatures });
     restoreCursorPosition(e.target, cursorPosition);
   };
+  
+  
 
+
+
+
+// Get the cursor position within a contenteditable element
 const getCaretCharacterOffsetWithin = (element) => {
   let caretOffset = 0;
   const range = window.getSelection().getRangeAt(0);
@@ -61,6 +67,14 @@ const restoreCursorPosition = (element, cursorOffset) => {
   selection.addRange(range);
 };
 
+
+
+
+
+
+
+
+
   const addNewFeature = () => {
     setEditedFeatures([...editedFeatures, '']);
   };
@@ -76,13 +90,17 @@ const restoreCursorPosition = (element, cursorOffset) => {
       reader.readAsDataURL(file);
     }
   };
-
+ 
 
 const removeFeature = (index) => {
   const updatedFeatures = [...editedFeatures];
   updatedFeatures.splice(index, 1);
   setEditedFeatures(updatedFeatures);
 };
+
+
+
+
 
   const handleRemoveImage = () => {
     removeImage(id);
@@ -94,12 +112,12 @@ const removeFeature = (index) => {
   };
 
   return (
-    <div className="pricing-card" style={{ ...style, width: templateSize, background: templateColor }}>
+    <div className="pricing-card" style={{ ...style, width: templateSize, background: templateColor, margin: 0 }}>
 
       {selectedImage && (
         <div className="image-container" style={{ width: templateSize, textAlign: 'left' }}>
           <img src={selectedImage} alt="Selected Image" className="template-image" style={{ width: '88%', height: 'auto' }} />
-          <button onClick={handleRemoveImage} className="remove-image-button">Remove Image</button>
+          <button onClick={handleRemoveImage} className="remove-image-button" >Remove Image</button>
         </div>
       )}
 
@@ -107,64 +125,79 @@ const removeFeature = (index) => {
 
         <div className='d-flex flex-column'>
           <div className="image-container" style={{ width: templateSize, textAlign: 'left' }}>
-            <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '88%', height: 'auto' }} />
-            <button onClick={handleRemoveImage} className="remove-image-button mt-2">Remove Image</button>
+            <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '88%', height: '200px' }} />
+            <button onClick={handleRemoveImage} className="remove-image-button mt-2" style={{color:'black', backgroundColor:'white'}} >Remove Image</button>
           </div>
-          <div style={{ position: 'absolute', top: '29%', right: '20px' }}>
+          <div style={{ position: 'absolute', top: '42%', right: '18px', }}>
             <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
-            <button className="add-image-button" onClick={handleAddImageButtonClick}>Add Image</button>
+            <button className="add-image-button" onClick={handleAddImageButtonClick} style={{color:'black', backgroundColor:'white'}}>Add Image</button>
           </div>
         </div>
 
 
       )}
 
-<h2 
-  contentEditable 
-  onInput={(e) => handleTitleChange(e)} // Updated event handler
-  style={{ 
-    textAlign: 'center', 
-    fontSize: titleFontSize, 
-    color: titleFontColor, 
-    fontStyle: titleFontStyle, 
-    fontFamily: titleFontFamily, 
-    marginTop: '2px' 
-  }}
->
-  {editedTitle}
-</h2>
+        <h2 
+        contentEditable 
+        onInput={(e) => handleTitleChange(e)} // Updated event handler
+        style={{ 
+          textAlign: 'center', 
+          fontSize: titleFontSize, 
+          color: titleFontColor, 
+          fontStyle: titleFontStyle, 
+          fontFamily: titleFontFamily, 
+          marginTop: '30px',
+          width: '100%' 
+        }}
+      >
+        {editedTitle}
+      </h2>
 
-<h2 style={{ textAlign: 'center', fontSize: priceFontSize, color: priceFontColor, fontStyle: priceFontStyle, fontFamily: priceFontFamily, marginTop: '2px' }}>
-  <span>$</span><span contentEditable onInput={(e) => handlePriceChange(e)}>{editedPrice}</span>
-</h2>
+      <h2 style={{width: '100%', textAlign: 'center', fontSize: priceFontSize, color: priceFontColor, fontStyle: priceFontStyle, fontFamily: priceFontFamily, marginTop: '2px' }}>
+        <span>$</span><span contentEditable onInput={(e) => handlePriceChange(e)}>{editedPrice}</span>
+      </h2>
 
-      <ul>
-      {editedFeatures.map((feature, index) => (
 
-<li key={index} className=''>
-    <div 
-      contentEditable 
-      onInput={(e) => handleFeatureChange(e, index)} // Updated event handler
-      style={{ 
-        textAlign: 'center', 
-        fontSize: featuresFontSize, 
-        color: featuresFontColor, 
-        fontStyle: featuresFontStyle, 
-        fontFamily: featuresFontFamily, 
-        marginTop: '2px' 
-      }}
-    >
-      {feature}
-    </div>
-    <button onClick={() => removeFeature(index)}>-</button>
-  </li>
-))}
+
+
+
+{/* <h3>
+        $<input type="text" style={{ width: "20%", fontSize: "25px" }} value={editedPrice} onChange={handlePriceChange} /> /month
+      </h3> */}
+      <div style={{position: 'relative', padding: '0 25px 0 20px', marginRight: '20px'}}>
+        <ul>
+        {editedFeatures.map((feature, index) => (
+        <li key={index} className='features'>
+        <div contentEditable  onInput={(e) => handleFeatureChange(e, index)}
+        style={{ 
+          fontSize: featuresFontSize, 
+          color: featuresFontColor, 
+          fontStyle: featuresFontStyle, 
+          fontFamily: featuresFontFamily, 
+          width: '80%',
+          padding: '5px',
+          borderRadius: '20px',
+        }}
+      >
+        {feature}
+      </div>
+      <button onClick={() => removeFeature(index)} style={{color:'black', backgroundColor:'white'}}>-</button>
+    </li>
+  ))}
         <li>
-          <button onClick={addNewFeature}>+</button>
-        </li>        
-      </ul>
+            <button onClick={addNewFeature} style={{color:'black', backgroundColor:'white'}}>+</button>
+          </li>        
+        </ul>
+      </div>
+      {/* <button onClick={handleSubmit}>Generate Embedded Code</button>
+      {embeddedCode && (
+        <div>
+          <h3>Embedded Code:</h3>
+          <textarea rows="5" cols="50" value={embeddedCode} readOnly />
+        </div> */}
+      {/* )} */}
     </div>
   );
 };
 
-export default PricingCard;
+export default PricingCard;

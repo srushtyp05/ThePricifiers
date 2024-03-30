@@ -1,7 +1,9 @@
 .menu{
     margin-top: 20px;
+    margin-bottom: 16px;
 }
 
 .card{
     margin: 20px;
+    color: rgb(24, 89, 77);
 }
