@@ -63,7 +63,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/users", users);
 
-app.get("/", async (req, res) => {
+app.get("/users/dashboard", async (req, res) => {
   res.render("index");
 });
 
@@ -81,7 +81,7 @@ app.get("/register", async (req, res) => {
 
 app.get("/logout", (req, res) => {
   req.session.destroy((err) => {
-    res.redirect("/"); // will always fire after session is destroyed
+    res.redirect("users/dashboard"); // will always fire after session is destroyed
   });
 });
 

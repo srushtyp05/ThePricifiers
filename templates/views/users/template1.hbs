@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    {{!-- <link rel="stylesheet" href="../css/style.css"> --}}
+    {{!-- <link rel="stylesheet" href="../css/bootstrap.css"> --}}
+<title>Pricing Template</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    .navbar {
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .nav-links {
+        display: flex;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    .nav-links li {
+        margin-right: 20px;
+    }
+    .nav-links li a {
+        color: white;
+        text-decoration: none;
+    }
+    .container {
+        display: flex;
+        flex: 1;
+    }
+    .left-panel {
+        width: 250px;
+        background-color: #f0f0f0;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .options {
+        margin-bottom: 20px;
+    }
+    .option {
+        margin-bottom: 10px;
+    }
+    .right-panel {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+    .pricing-table {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        width: 230px;
+        margin: 0 10px;
+        height: 600px;
+    }
+    .pricing-table h2 {
+        color: #333;
+        cursor: pointer;
+    }
+    .pricing-table h2:hover {
+        text-decoration: underline;
+    }
+    .pricing-table img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+    .centered-button {
+        display: block;
+        margin: 20px auto;
+    }
+
+    .editable {
+        cursor: text;
+        border-bottom: 1px dashed #ccc; /* Add a dashed border to indicate the editable area */
+    }
+
+    .editable:hover {
+        background-color: #f9f9f9; /* Change background color on hover */
+    }
+
+    .icon-text-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #ccc; /* Add a dashed border to indicate the editable area */
+
+        }
+    .icon-text-icon i {
+            margin-right: 10px;
+        }
+
+        /* Dropdown Button */
+.dropbtn {
+  background-color: transparent;
+  color: inherit;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.btn-danger {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #e74c3c;
+  --bs-btn-border-color: #e74c3c;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #c44133;
+  --bs-btn-hover-border-color: #b93d30;
+  --bs-btn-focus-shadow-rgb: 235, 103, 89;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #b93d30;
+  --bs-btn-active-border-color: #ad392d;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #e74c3c;
+  --bs-btn-disabled-border-color: #e74c3c;
+}
+
+.btn-check[disabled] + .btn, .btn-check:disabled + .btn {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.65;
+}
+
+</style>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>Pricifiers</h1>
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropbtn">Templates</a>
+            <div class="dropdown-content">
+                <a href="http://localhost:9001">Premium</a>
+                <a href="#">Template 2</a>
+                <a href="#">Template 3</a>
+            </div>
+        </li>
+        <li>
+            <form action="/logout" class="d-flex" method="get">
+                <button class="btn btn-danger my-2 my-sm-0" type="submit">Log Out</button>
+            </form>
+        </li>
+    </ul>
+</div>
+
+
+<div class="container">
+    <div class="left-panel">
+        <div class="options">
+            <h3>Template 1</h3>
+            <div class="option">
+                <label for="color">Gradient Color 1:</label>
+                <input type="color" id="t1color1" value="#ff7f50">
+            </div>
+            <div class="option">
+                <label for="color">Gradient Color 2:</label>
+                <input type="color" id="t1color2" value="#ff7f50">
+            </div>
+            <div class="option">
+                <label for="heading">Heading:</label>
+                <input type="text" id="t1heading" value="Our Pricing">
+            </div>
+            <div class="option">
+                <label for="size">Size:</label>
+                <select id="t1size">
+                    <option value="small">Small</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="large">Large</option>
+                </select>
+            </div>
+            <div class="option">
+                <label for="photo">Photo URL:</label>
+                <input type="text" id="t1photo" value="https://via.placeholder.com/150">
+            </div>
+            <div class="option">
+                <label for="t1-button-text">Button Text:</label>
+                <input type="text" id="t1-button-text" value="Buy Now">
+            </div>
+            <div class="option">
+                <label for="t1-button-link">Button Link:</label>
+                <input type="text" id="t1-button-link" value="#">
+            </div>
+        </div>
+
+        <div class="options">
+            <h3>Template 2</h3>
+
+            <div class="option">
+                <label for="color">Gradient Color 1:</label>
+                <input type="color" id="t2color1" value="#ff7f50">
+            </div>
+            <div class="option">
+                <label for="color">Gradient Color 2:</label>
+                <input type="color" id="t2color2" value="#ff7f50">
+            </div>
+            <div class="option">
+                <label for="heading">Heading:</label>
+                <input type="text" id="t2heading" value="Our Pricing">
+            </div>
+            <div class="option">
+                <label for="size">Size:</label>
+                <select id="t2size">
+                    <option value="small">Small</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="large">Large</option>
+                </select>
+            </div>
+            <div class="option">
+                <label for="photo">Photo URL:</label>
+                <input type="text" id="t2photo" value="https://via.placeholder.com/150">
+            </div>
+        </div>
+
+        <div class="options">
+            <h3>Template 3</h3>
+
+            <div class="option">
+                <label for="color">Gradient Color 1:</label>
+                <input type="color" id="t3color1" value="#ff7f50">
+            </div>
+            <div class="option">
+                <label for="color">Gradient Color 2:</label>
+                <input type="color" id="t3color2" value="#ff7f50">
+            </div>
+            <div class="option">
+                <label for="heading">Heading:</label>
+                <input type="text" id="t3heading" value="Our Pricing">
+            </div>
+            <div class="option">
+                <label for="size">Size:</label>
+                <select id="t3size">
+                    <option value="small">Small</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="large">Large</option>
+                </select>
+            </div>
+            <div class="option">
+                <label for="photo">Photo URL:</label>
+                <input type="text" id="t3photo" value="https://via.placeholder.com/150">
+            </div>
+        </div>
+    </div>
+
+    <div class="right-panel">
+        <div class="pricing-table" id="pricing-table-1">
+            <img src="https://via.placeholder.com/150" alt="Product Image">
+            <h2>Our Pricing</h2>
+            <p>$30/month</p>
+            <div class="icon-text-icon">
+                <i class="fas fa-check-circle"></i>
+                <span contenteditable="true">Includes all features</span>
+                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+            </div>
+            <div class="icon-text-icon">
+                <i class="fas fa-check-circle"></i>
+                <span contenteditable="true">Includes all features</span>
+                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+            </div>
+            <div class="icon-text-icon">
+                <i class="fas fa-check-circle"></i>
+                <span contenteditable="true">Includes all features</span>
+                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+            </div>
+            <button class="add-feature">+</button> <!-- Button to add a new editable paragraph -->
+            <button class="centered-button">Buy Now</button>
+        </div>
+        <div class="pricing-table" id="pricing-table-2">
+            <img src="https://via.placeholder.com/150" alt="Product Image">
+            <h2>Our Pricing</h2>
+            <p>$20/month</p>
+            <div class="icon-text-icon">
+                <i class="fas fa-check-circle"></i>
+                <span contenteditable="true">Includes all features</span>
+                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+            </div>
+            <div class="icon-text-icon">
+                <i class="fas fa-check-circle"></i>
+                <span contenteditable="true">Includes all features</span>
+                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+            </div>
+            <div class="icon-text-icon">
+                <i class="fas fa-check-circle"></i>
+                <span contenteditable="true">Includes all features</span>
+                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+            </div>
+            <button class="add-feature">+</button> <!-- Button to add a new editable paragraph -->
+            <button class="centered-button">Buy Now</button>
+        </div>
+        
+        <div class="pricing-table" id="pricing-table-3">
+            <img src="https://via.placeholder.com/150" alt="Product Image">
+            <h2>Our Pricing</h2>
+            <p>$30/month</p>
+            <div class="icon-text-icon">
+                <i class="fas fa-check-circle"></i>
+                <span contenteditable="true">Includes all features</span>
+                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+            </div>
+            <div class="icon-text-icon">
+                <i class="fas fa-check-circle"></i>
+                <span contenteditable="true">Includes all features</span>
+                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+            </div>
+            <div class="icon-text-icon">
+                <i class="fas fa-check-circle"></i>
+                <span contenteditable="true">Includes all features</span>
+                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+            </div> 
+            <button class="add-feature">+</button> <!-- Button to add a new editable paragraph -->
+            <button class="centered-button">Buy Now</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const t1color1Input = document.getElementById('t1color1');
+    const t1color2Input = document.getElementById('t1color2');
+    const t1headingInput = document.getElementById('t1heading');
+    const t1sizeSelect = document.getElementById('t1size');
+    const t1photoInput = document.getElementById('t1photo');
+
+    const t2color1Input = document.getElementById('t2color1');
+    const t2color2Input = document.getElementById('t2color2');
+    const t2headingInput = document.getElementById('t2heading');
+    const t2sizeSelect = document.getElementById('t2size');
+    const t2photoInput = document.getElementById('t2photo');
+
+    const t3color1Input = document.getElementById('t3color1');
+    const t3color2Input = document.getElementById('t3color2');
+    const t3headingInput = document.getElementById('t3heading');
+    const t3sizeSelect = document.getElementById('t3size');
+    const t3photoInput = document.getElementById('t3photo');
+
+    const table1 = document.getElementById('pricing-table-1');
+    const table2 = document.getElementById('pricing-table-2');
+    const table3 = document.getElementById('pricing-table-3');
+
+    const pricingTables = document.querySelectorAll('.pricing-table');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const addButton = document.querySelector('.add-feature');
+        const pricingTable = document.getElementById('pricing-table-1');
+
+        addButton.addEventListener('click', function() {
+            // Create a new icon-text-icon div
+            const newIconTextIconDiv = document.createElement('div');
+            newIconTextIconDiv.classList.add('icon-text-icon');
+
+            // Create the check circle icon
+            const checkCircleIcon = document.createElement('i');
+            checkCircleIcon.classList.add('fas', 'fa-check-circle');
+
+            // Create the editable span
+            const editableSpan = document.createElement('span');
+            editableSpan.setAttribute('contenteditable', 'true');
+            editableSpan.textContent = 'Includes all features';
+
+            // Create the trash icon
+            const trashIcon = document.createElement('i');
+            trashIcon.classList.add('fas', 'fa-trash');
+            trashIcon.style.marginLeft = '10px';
+
+            // Append elements to the new icon-text-icon div
+            newIconTextIconDiv.appendChild(checkCircleIcon);
+            newIconTextIconDiv.appendChild(editableSpan);
+            newIconTextIconDiv.appendChild(trashIcon);
+
+            // Insert the new icon-text-icon div before the add button
+            pricingTable.insertBefore(newIconTextIconDiv, addButton);
+        });
+    });
+
+    // Function to generate gradient CSS property
+    function generateGradient(color1, color2) {
+        return `linear-gradient(to bottom right, ${color1}, ${color2})`;
+    }
+
+    t1color1Input.addEventListener('input', () => {
+        pricingTables.forEach(table => {
+            const color1 = t1color1Input.value;
+            const color2 = t1color2Input.value;
+            table1.style.background = generateGradient(color1, color2);
+        });
+    });
+
+    t1color2Input.addEventListener('input', () => {
+        pricingTables.forEach(table => {
+            const color1 = t1color1Input.value;
+            const color2 = t1color2Input.value;
+            table1.style.background = generateGradient(color1, color2);
+        });
+    });
+
+    t2color1Input.addEventListener('input', () => {
+        pricingTables.forEach(table => {
+            const color1 = t2color1Input.value;
+            const color2 = t2color2Input.value;
+            table2.style.background = generateGradient(color1, color2);
+        });
+    });
+
+    t2color2Input.addEventListener('input', () => {
+        pricingTables.forEach(table => {
+            const color1 = t2color1Input.value;
+            const color2 = t2color2Input.value;
+            table2.style.background = generateGradient(color1, color2);
+        });
+    });
+
+    t3color1Input.addEventListener('input', () => {
+        pricingTables.forEach(table => {
+            const color1 = t3color1Input.value;
+            const color2 = t3color2Input.value;
+            table3.style.background = generateGradient(color1, color2);
+        });
+    });
+
+    t3color2Input.addEventListener('input', () => {
+        pricingTables.forEach(table => {
+            const color1 = t3color1Input.value;
+            const color2 = t3color2Input.value;
+            table3.style.background = generateGradient(color1, color2);
+        });
+    });
+
+    t1headingInput.addEventListener('input', () => {
+        pricingTables.forEach(table => {
+            table1.querySelector('h2').innerText = t1headingInput.value;
+        });
+    });
+
+    t2headingInput.addEventListener('input', () => {
+        pricingTables.forEach(table => {
+            table2.querySelector('h2').innerText = t2headingInput.value;
+        });
+    });
+
+    t3headingInput.addEventListener('input', () => {
+        pricingTables.forEach(table => {
+            table3.querySelector('h2').innerText = t3headingInput.value;
+        });
+    });
+
+    t1ButtonTextInput.addEventListener('input', () => {
+        t1Button.innerText = t1ButtonTextInput.value;
+    });
+
+    t1ButtonLinkInput.addEventListener('input', () => {
+        t1Button.href = t1ButtonLinkInput.value;
+    });
+
+    t2ButtonTextInput.addEventListener('input', () => {
+        t2Button.innerText = t2ButtonTextInput.value;
+    });
+
+    t2ButtonLinkInput.addEventListener('input', () => {
+        t2Button.href = t2ButtonLinkInput.value;
+    });
+
+    t3ButtonTextInput.addEventListener('input', () => {
+        t3Button.innerText = t3ButtonTextInput.value;
+    });
+
+    t3ButtonLinkInput.addEventListener('input', () => {
+        t3Button.href = t3ButtonLinkInput.value;
+    });
+
+    sizeSelect.addEventListener('change', () => {
+        pricingTables.forEach(table => {
+            table.style.fontSize = sizeSelect.value;
+        });
+    });
+
+    photoInput.addEventListener('input', () => {
+        pricingTables.forEach(table => {
+            const image = table.querySelector('img');
+            image.src = photoInput.value;
+        });
+    });
+
+    window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.style.display === "block") {
+        openDropdown.style.display = "none";
+      }
+    }
+  }
+}
+
+</script>
+
+</body>
+</html>

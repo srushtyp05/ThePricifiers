@@ -22,7 +22,7 @@ const createUser = asyncWrapper(async (req, res) => {
     req.session.email = req.body.email;
     req.session.uname = req.body.pname;
 
-    res.render("users/dashboard", {
+    res.render("users/template1", {
       uname: req.session.uname,
       email: req.session.email,
       uid: req.session.userId,
@@ -58,7 +58,7 @@ const getUser = asyncWrapper(async (req, res) => {
         req.session.email = user.email;
         req.session.uname = user.uname;
 
-        res.render("users/dashboard", {
+        res.render("users/template1", {
           uname: req.session.uname,
           email: req.session.email,
           uid: req.session.userId,
