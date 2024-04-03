@@ -174,7 +174,7 @@ figure {
 p {
   margin-bottom: 0px;
   font-size: 15px;
-  color: #777; }
+  color: white; }
 
 h2 {
   line-height: 1.66;
@@ -186,7 +186,11 @@ h2 {
   font-size: 36px; }
 
 .main {
-  background: black;
+  margin-left: 50px;
+  height: 600px;
+  margin-right: 50px;
+  border-radius: 20px 20px 20px 20px;
+  background: #2C2C54;
   padding: 50px 0; }
 
 .clear {
@@ -196,7 +200,7 @@ body {
   font-size: 13px;
   line-height: 1.8;
   color: #222;
-  background: #f8f8f8;
+  background: white;
   font-weight: 400;
   font-family: Poppins; }
 
@@ -589,4 +593,4 @@ label.valid {
     margin-right: 0px;
     margin-bottom: 10px; } }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style.css.map */

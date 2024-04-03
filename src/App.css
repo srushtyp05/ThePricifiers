@@ -29,7 +29,7 @@ body {
   padding: 10px;
   font-size: 16px;
 
-  background-color: #AAABB8;
+  background-color: #a2a8d3;
   cursor: pointer; /* Add cursor pointer for better UX */
 }
 
@@ -93,7 +93,7 @@ body {
 /* CSS for content buttons */
 .content-button {
   font-weight: bold;
-  background-color: #AAABB8; /* Green background */
+  background-color: #a2a8d3; /* Green background */
   color: #2C2C54; /* White text */
   padding: 10px 15px; /* Padding */
   border: none; /* No border */

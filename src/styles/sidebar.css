@@ -52,7 +52,7 @@ body{
   }
   
   .nav-item:hover {
-    background-color: #ddd;
+    color: #ddd;
   }
   
   .options {
