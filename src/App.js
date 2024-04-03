@@ -44,7 +44,7 @@ function App() {
       featuresFontColor: '#000000', 
       price: '70',
       features: ['1 Bed', '1 Bathroom', 'No AC'],
-      imageUrl: 'https://i1.adis.ws/i/dreams/253-00157_main-shot_01_paige-bedframe-single.jpg?$tt_poi$&$plp-desktop$'
+      imageUrl: 'https://i.pinimg.com/236x/4c/fe/63/4cfe63bc2144516f913fcf9a94b0fc26.jpg'
        },
 
     
@@ -63,7 +63,7 @@ function App() {
       title: 'ADVANCE',
       price: '150',
       features: ['2 Beds', '1 Bathroom', 'Air Conditioner'],
-      imageUrl: 'https://i.pinimg.com/originals/77/4f/49/774f490c09df9df6b08aa21b1d51cb07.jpg'
+      imageUrl: 'https://i.pinimg.com/236x/4c/fe/63/4cfe63bc2144516f913fcf9a94b0fc26.jpg'
     },
     {
       id: '3',
@@ -81,7 +81,7 @@ function App() {
       title: 'PREMIUM',
       price: '200',
       features: ['King Size Bed', '2 Bathrooms', 'Personal Kitchen & AC'],
-      imageUrl: 'https://www.stoneridgeresort.ca/wp-content/uploads/2023/02/62BKK-1024x683.jpg'
+      imageUrl: 'https://i.pinimg.com/236x/4c/fe/63/4cfe63bc2144516f913fcf9a94b0fc26.jpg'
     }
   ]);
   
@@ -320,7 +320,7 @@ return (
           <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '88%', height: '85%' }} />
           <button onClick={handleRemoveImage} className="remove-image-button mt-2">Remove Image</button>
         </div>
-        <div style={{ position: 'absolute', top: '40%', right: '20px' }}>
+        <div style={{ position: 'absolute', top: '40%', right: '20px', }}>
           <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
           <button className="add-image-button" onClick={handleAddImageButtonClick} >Add Image</button>
         </div>
@@ -329,9 +329,9 @@ return (
 
     <div>
       <header className="navbar" style={{backgroundColor:'white', padding: '0px'}} >
-        <h1 className="navbar-brand p-3" style={{color: "#2C2C54", marginLeft:'30px', }}>Pricifiers</h1>
+        <h1 className="navbar-brand p-3" style={{color: "#2C2C54", marginLeft:'30px', fontWeight:'bold'}}>Pricifiers</h1>
         <nav style={{display: 'flex', justifyContent: 'space-between', gap: '250px', marginRight: '10px'}}>
-          <ul className='nav' style={{display: 'flex', justifyContent: 'space-between', gap: '5px', margin: '0 150px 0 0'}}>
+          <ul className='nav' style={{display: 'flex', justifyContent: 'space-between', gap: '5px', margin: '0 150px 0 0', fontWeight:'bold'}}>
             <li className="nav-item" style={{margin: '0 20px 0 0', fontSize: '20px'}} onClick={() => handleOptionSelect('Basic')}>Basic</li>
             <li className="nav-item" style={{margin: '0 20px 0 0', fontSize: '20px'}} onClick={() => handleOptionSelect('Advance')}>Advance</li>
             <li className="nav-item" style={{margin: '0 20px 0 0', fontSize: '20px'}} onClick={() => handleOptionSelect('Premium')}>Premium</li>
@@ -349,8 +349,9 @@ return (
         
       </header>
       
-      <div className='d-flex flex-row row' style={{marginLeft:'40px', marginBottom:'40px'}}>
+      <div className='d-flex flex-row row' style={{marginLeft:'40px', marginBottom:'40px', width:'1800px'}}>
       <div className="subheader col-sm-2">
+        <h4 class="customize">Customize Your Templates Here</h4>
         {/* Render content buttons */}
         {showContentButtons && (
           <div className="subheader-options" style={{ width: '274px'}}>
@@ -361,7 +362,7 @@ return (
             {/* Render title options */}
             {showTitleOptions && (
               <div style={{border:'none', borderRadius:'20px', marginTop: '20px', width: '280px'}}>
-                <label htmlFor="fontSize" style={{marginTop:'20px',marginLeft:'15px', color:'black' }}>Font Size  </label>
+                <label htmlFor="fontSize" style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', fontWeight:'bold' }}>Font Size  </label>
                 <input 
                   type="range" 
                   id="fontSize" 
@@ -371,27 +372,27 @@ return (
                   value={fontSize.replace('px', '')} 
                   onChange={(e) => handleFontSizeChange(e.target.value + 'px')} 
                   style={{marginLeft:'16px'}}
-                />.
+                />
 
                
                 
                 <span>{fontSize}</span>
                 <br />
-                <label htmlFor="fontStyle" style={{marginTop:'20px',marginLeft:'15px', color:'black' }}>Font Style </label>
+                <label htmlFor="fontStyle" style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', fontWeight:'bold' }}>Font Style </label>
                 <select id="fontStyle" value={fontStyle} onChange={handleFontStyleChange} style={{marginLeft:'16px', color:'black'}}>
                   <option value="normal">Normal</option>
                   <option value="italic">Italic</option>
                   <option value="oblique">Oblique</option>
                 </select>
                 <br />
-                <label htmlFor="fontColor"  style={{marginTop:'20px',marginLeft:'15px', color:'black' }}>Font Color  </label>
+                <label htmlFor="fontColor"  style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', fontWeight:'bold' }}>Font Color  </label>
                 <input 
                   type="color"  
                   id="fontColor" 
                   value={fontColor} 
                   onChange={handleFontColorChange} style={{marginLeft:'16px', color:'white'}}/>
                 <br />
-                <label htmlFor="fontFamily" style={{marginTop:'20px',marginLeft:'15px', color:'black' }}>Font Family  </label>
+                <label htmlFor="fontFamily" style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', fontWeight:'bold' }}>Font Family  </label>
                 <select id="fontFamily" value={fontFamily} onChange={handleFontFamilyChange} style={{marginLeft:'16px', color:'black'}}>
                   <option value="Arial, sans-serif" >Arial</option>
                   <option value="Times New Roman, serif">Times New Roman</option>
@@ -400,8 +401,9 @@ return (
                   <option value="Verdana, sans-serif">Verdana</option>
                 </select>
 
+                
                 <br/> 
-                <label htmlFor="backgroundColor" style={{marginTop:'20px',marginLeft:'15px', color:'black', marginBottom:'20px' }}> Background Color  </label>
+                <label htmlFor="backgroundColor" style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', marginBottom:'20px', fontWeight:'bold' }}> Background Color  </label>
                 <input 
                   type="color" 
                   id="backgroundColor" 
@@ -411,110 +413,123 @@ return (
                     updateBackgroundColor(e.target.value);
                   }} style={{marginLeft:'16px', color:'white'}}
                 />
+                
               </div>
             )}
 
             
             {showPriceOptions && (
-              <div style={{width:'280px', border:'none', color:'black', borderRadius:'20px', marginTop: '20px', marginRight:'50%'}}>
-                <label htmlFor="fontSize" >Font Size: </label>
-                <input 
-                  type="range" 
-                  id="fontSize" 
-                  min="10" 
-                  max="40" 
-                  step="2" 
-                  value={fontSize.replace('px', '')} 
-                  onChange={(e) => handleFontSizeChange(e.target.value + 'px')} 
-                  style={{marginLeft:'16px'}}
-                />
-                <span>{fontSize}</span>
-                <br />
-                <label htmlFor="fontStyle">Font Style: </label>
-                <select id="fontStyle" value={fontStyle} onChange={handleFontStyleChange} style={{marginLeft:'12px'}}>
-                  <option value="normal">Normal</option>
-                  <option value="italic">Italic</option>
-                  <option value="oblique">Oblique</option>
-                </select>
-                <br />
-                <label htmlFor="fontColor">Font Color: </label>
-                <input 
-                  type="color" 
-                  id="fontColor" 
-                  value={fontColor} 
-                  onChange={handleFontColorChange} style={{marginLeft:'10px'}}
-                />
-                <br />
-                <label htmlFor="fontFamily">Font Family: </label>
-                <select id="fontFamily" value={fontFamily} onChange={handleFontFamilyChange} style={{marginLeft:'5px'}}>
-                  <option value="Arial, sans-serif">Arial</option>
-                  <option value="Times New Roman, serif">Times New Roman</option>
-                  <option value="Courier New, monospace">Courier New</option>
-                  <option value="Georgia, serif">Georgia</option>
-                  <option value="Verdana, sans-serif">Verdana</option>
-                </select>
-                <label htmlFor="backgroundColor">Background Color: </label>
-                <input 
-                  type="color" 
-                  id="backgroundColor" 
-                  value={backgroundColor} 
-                  onChange={(e) => {
-                    setBackgroundColor(e.target.value);
-                    updateBackgroundColor(e.target.value);
-                  }} 
-                />
-              </div>
+              <div style={{border:'none', borderRadius:'20px', marginTop: '20px', width: '280px'}}>
+              <label htmlFor="fontSize" style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', fontWeight:'bold' }}>Font Size  </label>
+              <input 
+                type="range" 
+                id="fontSize" 
+                min="10" 
+                max="40" 
+                step="2" 
+                value={fontSize.replace('px', '')} 
+                onChange={(e) => handleFontSizeChange(e.target.value + 'px')} 
+                style={{marginLeft:'16px'}}
+              />
+
+             
+              
+              <span>{fontSize}</span>
+              <br />
+              <label htmlFor="fontStyle" style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', fontWeight:'bold' }}>Font Style </label>
+              <select id="fontStyle" value={fontStyle} onChange={handleFontStyleChange} style={{marginLeft:'16px', color:'black'}}>
+                <option value="normal">Normal</option>
+                <option value="italic">Italic</option>
+                <option value="oblique">Oblique</option>
+              </select>
+              <br />
+              <label htmlFor="fontColor"  style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', fontWeight:'bold' }}>Font Color  </label>
+              <input 
+                type="color"  
+                id="fontColor" 
+                value={fontColor} 
+                onChange={handleFontColorChange} style={{marginLeft:'16px', color:'white'}}/>
+              <br />
+              <label htmlFor="fontFamily" style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', fontWeight:'bold' }}>Font Family  </label>
+              <select id="fontFamily" value={fontFamily} onChange={handleFontFamilyChange} style={{marginLeft:'16px', color:'black'}}>
+                <option value="Arial, sans-serif" >Arial</option>
+                <option value="Times New Roman, serif">Times New Roman</option>
+                <option value="Courier New, monospace">Courier New</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="Verdana, sans-serif">Verdana</option>
+              </select>
+
+              
+              <br/> 
+              <label htmlFor="backgroundColor" style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', marginBottom:'20px', fontWeight:'bold' }}> Background Color  </label>
+              <input 
+                type="color" 
+                id="backgroundColor" 
+                value={backgroundColor} 
+                onChange={(e) => {
+                  setBackgroundColor(e.target.value);
+                  updateBackgroundColor(e.target.value);
+                }} style={{marginLeft:'16px', color:'white'}}
+              />
+              
+            </div>
               
             )}
             {showFeaturesOptions && (
-              <div style={{width:'280px', color:'black'}}>
-                <label htmlFor="fontSize" >Font Size: </label>
-                <input 
-                  type="range" 
-                  id="fontSize" 
-                  min="10" 
-                  max="40" 
-                  step="2" 
-                  value={fontSize.replace('px', '')} 
-                  onChange={(e) => handleFontSizeChange(e.target.value + 'px')} 
-                  style={{marginLeft:'16px'}}
-                />
-                <span>{fontSize}</span>
-                <br />
-                <label htmlFor="fontStyle">Font Style: </label>
-                <select id="fontStyle" value={fontStyle} onChange={handleFontStyleChange} style={{marginLeft:'12px'}}>
-                  <option value="normal">Normal</option>
-                  <option value="italic">Italic</option>
-                  <option value="oblique">Oblique</option>
-                </select>
-                <br />
-                <label htmlFor="fontColor">Font Color: </label>
-                <input 
-                  type="color" 
-                  id="fontColor" 
-                  value={fontColor} 
-                  onChange={handleFontColorChange} style={{marginLeft:'10px'}}
-                />
-                <br />
-                <label htmlFor="fontFamily">Font Family: </label>
-                <select id="fontFamily" value={fontFamily} onChange={handleFontFamilyChange} style={{marginLeft:'5px'}}>
-                  <option value="Arial, sans-serif">Arial</option>
-                  <option value="Times New Roman, serif">Times New Roman</option>
-                  <option value="Courier New, monospace">Courier New</option>
-                  <option value="Georgia, serif">Georgia</option>
-                  <option value="Verdana, sans-serif">Verdana</option>
-                </select>
-                <label htmlFor="backgroundColor">Background Color: </label>
-                <input 
-                  type="color" 
-                  id="backgroundColor" 
-                  value={backgroundColor} 
-                  onChange={(e) => {
-                    setBackgroundColor(e.target.value);
-                    updateBackgroundColor(e.target.value);
-                  }} 
-                />
-              </div>
+              <div style={{border:'none', borderRadius:'20px', marginTop: '20px', width: '280px'}}>
+              <label htmlFor="fontSize" style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', fontWeight:'bold' }}>Font Size  </label>
+              <input 
+                type="range" 
+                id="fontSize" 
+                min="10" 
+                max="40" 
+                step="2" 
+                value={fontSize.replace('px', '')} 
+                onChange={(e) => handleFontSizeChange(e.target.value + 'px')} 
+                style={{marginLeft:'16px'}}
+              />
+
+             
+              
+              <span>{fontSize}</span>
+              <br />
+              <label htmlFor="fontStyle" style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', fontWeight:'bold' }}>Font Style </label>
+              <select id="fontStyle" value={fontStyle} onChange={handleFontStyleChange} style={{marginLeft:'16px', color:'black'}}>
+                <option value="normal">Normal</option>
+                <option value="italic">Italic</option>
+                <option value="oblique">Oblique</option>
+              </select>
+              <br />
+              <label htmlFor="fontColor"  style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', fontWeight:'bold' }}>Font Color  </label>
+              <input 
+                type="color"  
+                id="fontColor" 
+                value={fontColor} 
+                onChange={handleFontColorChange} style={{marginLeft:'16px', color:'white'}}/>
+              <br />
+              <label htmlFor="fontFamily" style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', fontWeight:'bold' }}>Font Family  </label>
+              <select id="fontFamily" value={fontFamily} onChange={handleFontFamilyChange} style={{marginLeft:'16px', color:'black'}}>
+                <option value="Arial, sans-serif" >Arial</option>
+                <option value="Times New Roman, serif">Times New Roman</option>
+                <option value="Courier New, monospace">Courier New</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="Verdana, sans-serif">Verdana</option>
+              </select>
+
+              
+              <br/> 
+              <label htmlFor="backgroundColor" style={{marginTop:'20px',marginLeft:'15px', color:'#2C2C54', marginBottom:'20px', fontWeight:'bold' }}> Background Color  </label>
+              <input 
+                type="color" 
+                id="backgroundColor" 
+                value={backgroundColor} 
+                onChange={(e) => {
+                  setBackgroundColor(e.target.value);
+                  updateBackgroundColor(e.target.value);
+                }} style={{marginLeft:'16px', color:'white'}}
+              />
+              
+            </div>
             )}
           </div>
         )}
@@ -524,7 +539,7 @@ return (
           <div className="container-fluid">
             <div className="">
               <div className="row">
-                <div className='menu col-sm-12 d-flex flex-wrap justify-content-center' style={{gap: '15px'}}>
+                <div className='menu col-sm-12 d-flex flex-wrap justify-content-center' style={{gap: '15px',}}>
                   {customStyles.map((style) => (
                     <PricingCard 
                       className="card" 
@@ -566,5 +581,7 @@ return (
     </div>
   );
 }
+
+
 
 export default App;
