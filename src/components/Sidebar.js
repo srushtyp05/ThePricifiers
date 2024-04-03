@@ -11,6 +11,7 @@ const Sidebar = ({ handleTitleClick }) => {
   const handleClick = (title) => {
     console.log('Clicked title:', title); // Log the clicked title
     handleTitleClick(title); // Call handleTitleClick with the title
+    
   };
 
   return (

@@ -39,10 +39,6 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
     restoreCursorPosition(e.target, cursorPosition);
   };
   
-  
-
-
-
 
 // Get the cursor position within a contenteditable element
 const getCaretCharacterOffsetWithin = (element) => {
@@ -67,14 +63,6 @@ const restoreCursorPosition = (element, cursorOffset) => {
   selection.addRange(range);
 };
 
-
-
-
-
-
-
-
-
   const addNewFeature = () => {
     setEditedFeatures([...editedFeatures, '']);
   };
@@ -98,10 +86,6 @@ const removeFeature = (index) => {
   setEditedFeatures(updatedFeatures);
 };
 
-
-
-
-
   const handleRemoveImage = () => {
     removeImage(id);
     setSelectedImage(null);
@@ -112,7 +96,7 @@ const removeFeature = (index) => {
   };
 
   return (
-    <div className="pricing-card" style={{ ...style, width: templateSize, background: templateColor, margin: 0 }}>
+    <div className="pricing-card" style={{ ...style, width: templateSize, background: templateColor, marginTop: 50, marginBottom: 50 }}>
 
       {selectedImage && (
         <div className="image-container" style={{ width: templateSize, textAlign: 'left' }}>
@@ -126,11 +110,11 @@ const removeFeature = (index) => {
         <div className='d-flex flex-column'>
           <div className="image-container" style={{ width: templateSize, textAlign: 'left' }}>
             <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '88%', height: '200px' }} />
-            <button onClick={handleRemoveImage} className="remove-image-button mt-2" style={{color:'black', backgroundColor:'white'}} >Remove Image</button>
+            <button onClick={handleRemoveImage} className="remove-image-button mt-2" style={{color:'white', backgroundColor:'#2C2C54'}} >Remove Image</button>
           </div>
           <div style={{ position: 'absolute', top: '42%', right: '18px', }}>
             <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
-            <button className="add-image-button" onClick={handleAddImageButtonClick} style={{color:'black', backgroundColor:'white'}}>Add Image</button>
+            <button className="add-image-button" onClick={handleAddImageButtonClick} style={{color:'white', backgroundColor:'#2C2C54'}}>Add Image</button>
           </div>
         </div>
 
@@ -157,10 +141,6 @@ const removeFeature = (index) => {
         <span>$</span><span contentEditable onInput={(e) => handlePriceChange(e)}>{editedPrice}</span>
       </h2>
 
-
-
-
-
 {/* <h3>
         $<input type="text" style={{ width: "20%", fontSize: "25px" }} value={editedPrice} onChange={handlePriceChange} /> /month
       </h3> */}
@@ -181,11 +161,11 @@ const removeFeature = (index) => {
       >
         {feature}
       </div>
-      <button onClick={() => removeFeature(index)} style={{color:'black', backgroundColor:'white'}}>-</button>
+      <button onClick={() => removeFeature(index)} style={{color:'white', backgroundColor:'#2C2C54',}}>-</button>
     </li>
   ))}
         <li>
-            <button onClick={addNewFeature} style={{color:'black', backgroundColor:'white'}}>+</button>
+            <button onClick={addNewFeature} style={{color:'white', backgroundColor:'#2C2C54',}}>+</button>
           </li>        
         </ul>
       </div>

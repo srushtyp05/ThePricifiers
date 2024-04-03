@@ -12,81 +12,134 @@
 <title>Pricing Template</title>
 <style>
     body {
-        font-family: Arial, sans-serif;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         margin: 0;
         padding: 0;
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+        background-color: white;
     }
     .navbar {
-        background-color: black;
-        color: white;
+        background-color: rgb(255, 255, 255);
+        color: black;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-right: 30px;
     }
     .nav-links {
         display: flex;
         list-style-type: none;
         padding: 0;
         margin: 0;
+        color: black;
     }
     .nav-links li {
         margin-right: 20px;
+        color: black;
     }
-    .nav-links li a {
-        color: white;
+     .nav-links li a {
+        color: #2C2C54;
         text-decoration: none;
+        font-weight: 550;
+        padding-left: 20px;
     }
+
+    .nav-links li a:hover {
+        color: rgb(96, 96, 96);
+    }
+
     .container {
         display: flex;
         flex: 1;
+        margin-top: 0px;
+        margin-bottom: 40px;
+        margin-left: 40px;
+        margin-right: 40px;
+        border-radius: 20px 20px;
+        overflow: hidden;
     }
-    .left-panel {
-        width: 250px;
-        background-color: #f0f0f0;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    .options {
-        margin-bottom: 20px;
-    }
-    .option {
-        margin-bottom: 10px;
-    }
-    .right-panel {
+.left-panel {
+    width: 270px;
+    padding: 20px;
+    border-radius: 20px 0px 0px 20px;
+    background-color:  #AAABB8;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+}
+.left-panel h3{
+    color: black;
+    text-align: center;
+
+}
+
+.options {
+    margin-bottom: 20px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.option label {
+    width: 140px;
+    margin-right: 10px;
+    color: black;
+}
+
+.option input,
+.option select {
+    flex: 1;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.option:last-child {
+    margin-bottom: 0;
+}
+ .right-panel {
         flex: 1;
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 20px;
+        background-color: #2C2C54;
+        border-radius: 0px 20px 20px 0px;
     }
     .pricing-table {
-        border: 1px solid #ccc;
-        border-radius: 10px;
+        border: 1px solid #2C2C54;
+        border-radius: 20px;
         padding: 20px;
         text-align: center;
-        width: 230px;
-        margin: 0 10px;
-        height: 600px;
+        width: 270px;
+        height: 450px;
+        margin-top: -10%;
+        color: #2C2C54;
+        background-color: white;
+        margin-top: 5px;
+        margin-left: 30px;
     }
-    .pricing-table h2 {
-        color: #333;
-        cursor: pointer;
-    }
+
+
     .pricing-table h2:hover {
         text-decoration: underline;
     }
-    .pricing-table img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
+  .pricing-table img {
+        width: 150px;
+        height: 150px;
+        border-radius: 10px;
         margin-bottom: 10px;
     }
     .centered-button {
-        display: block;
         margin: 20px auto;
+        margin-right: 20px;
     }
 
     .editable {
@@ -107,7 +160,7 @@
             border-bottom: 1px dashed #ccc; /* Add a dashed border to indicate the editable area */
 
         }
-    .icon-text-icon i {
+  .icon-text-icon i {
             margin-right: 10px;
         }
 
@@ -125,23 +178,25 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: black;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  background-color: white;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+  border-radius: 10px;
   z-index: 1;
+  margin-top: 10px;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  color: black;
+  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-}
 
+}
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-  background-color: white;
+  background-color: rgb(218, 218, 218);
   color: black;
 }
 
@@ -172,13 +227,46 @@
   filter: none;
   opacity: 0.65;
 }
+.add-feature{
+    border:none; 
+    border-radius: 5px; 
+    color:white; 
+    background-color:#2C2C54;
+    width: 50px;
+    font-size: 20px;
+    height: 40px;
+    margin-right: 55px;
+}
+
+.centered-button{
+    border:none; 
+    border-radius: 5px; 
+    padding: 5px 5px 5px 5px; 
+    color:white; 
+    background-color:#2C2C54;
+    width: 100px;
+    height: 40px;
+    font-weight: bold;
+}
+.lbutton{
+    color: white; 
+    background-color:#2C2C54; 
+    border-radius: 5px; 
+    width:80px; 
+    height: 35px;
+    border: none;
+    font-weight: bold;
+}
+
 
 </style>
+
+
 </head>
 <body>
 
 <div class="navbar">
-    <h1>Pricifiers</h1>
+    <h1 style="color: #2C2C54; margin-left:60px;">Pricifiers</h1>
     <ul class="nav-links">
         <li><a href="#">Home</a></li>
         <li><a href="#">About</a></li>
@@ -186,14 +274,14 @@
         <li class="dropdown">
             <a href="#" class="dropbtn">Templates</a>
             <div class="dropdown-content">
-                <a href="http://localhost:9001">Premium</a>
+                <a href="http://localhost:9001">Template 1</a>
                 <a href="#">Template 2</a>
                 <a href="#">Template 3</a>
             </div>
         </li>
         <li>
             <form action="/logout" class="d-flex" method="get">
-                <button class="btn btn-danger my-2 my-sm-0" type="submit">Log Out</button>
+                <button class="lbutton" type="submit">Log Out</button>
             </form>
         </li>
     </ul>
@@ -203,21 +291,21 @@
 <div class="container">
     <div class="left-panel">
         <div class="options">
-            <h3>Template 1</h3>
+            <h3>BASIC</h3>
             <div class="option">
-                <label for="color">Gradient Color 1:</label>
-                <input type="color" id="t1color1" value="#ff7f50">
+                <label for="color">Color 1</label>
+                <input type="color" id="t1color1" value="#2C2C54">
             </div>
             <div class="option">
-                <label for="color">Gradient Color 2:</label>
-                <input type="color" id="t1color2" value="#ff7f50">
+                <label for="color">Color 2</label>
+                <input type="color" id="t1color2" value="#2C2C54">
             </div>
             <div class="option">
-                <label for="heading">Heading:</label>
-                <input type="text" id="t1heading" value="Our Pricing">
+                <label for="heading">Title</label>
+                <input type="text" id="t1heading" value="BASIC">
             </div>
             <div class="option">
-                <label for="size">Size:</label>
+                <label for="size">Font Size</label>
                 <select id="t1size">
                     <option value="small">Small</option>
                     <option value="medium" selected>Medium</option>
@@ -225,36 +313,36 @@
                 </select>
             </div>
             <div class="option">
-                <label for="photo">Photo URL:</label>
-                <input type="text" id="t1photo" value="https://via.placeholder.com/150">
+                <label for="photo">Image URL</label>
+                <input type="text" id="t1photo" value="https://i.pinimg.com/236x/4c/fe/63/4cfe63bc2144516f913fcf9a94b0fc26.jpg">
             </div>
-            <div class="option">
+            {{!-- <div class="option">
                 <label for="t1-button-text">Button Text:</label>
                 <input type="text" id="t1-button-text" value="Buy Now">
             </div>
             <div class="option">
                 <label for="t1-button-link">Button Link:</label>
                 <input type="text" id="t1-button-link" value="#">
-            </div>
+            </div> --}}
         </div>
 
         <div class="options">
-            <h3>Template 2</h3>
+            <h3>ADVANCE</h3>
 
             <div class="option">
-                <label for="color">Gradient Color 1:</label>
-                <input type="color" id="t2color1" value="#ff7f50">
+                <label for="color"> Color 1</label>
+                <input type="color" id="t2color1" value="#2C2C54">
             </div>
             <div class="option">
-                <label for="color">Gradient Color 2:</label>
-                <input type="color" id="t2color2" value="#ff7f50">
+                <label for="color"> Color 2</label>
+                <input type="color" id="t2color2" value="#2C2C54">
             </div>
             <div class="option">
-                <label for="heading">Heading:</label>
-                <input type="text" id="t2heading" value="Our Pricing">
+                <label for="heading">Title</label>
+                <input type="text" id="t2heading" value="ADVANCE">
             </div>
             <div class="option">
-                <label for="size">Size:</label>
+                <label for="size">Font Size</label>
                 <select id="t2size">
                     <option value="small">Small</option>
                     <option value="medium" selected>Medium</option>
@@ -262,28 +350,28 @@
                 </select>
             </div>
             <div class="option">
-                <label for="photo">Photo URL:</label>
-                <input type="text" id="t2photo" value="https://via.placeholder.com/150">
+                <label for="photo">Image URL</label>
+                <input type="text" id="t2photo" value="https://i.pinimg.com/236x/4c/fe/63/4cfe63bc2144516f913fcf9a94b0fc26.jpg">
             </div>
         </div>
 
         <div class="options">
-            <h3>Template 3</h3>
+            <h3>PREMIUM</h3>
 
             <div class="option">
-                <label for="color">Gradient Color 1:</label>
-                <input type="color" id="t3color1" value="#ff7f50">
+                <label for="color"> Color 1</label>
+                <input type="color" id="t3color1" value="#2C2C54">
             </div>
             <div class="option">
-                <label for="color">Gradient Color 2:</label>
-                <input type="color" id="t3color2" value="#ff7f50">
+                <label for="color"> Color 2</label>
+                <input type="color" id="t3color2" value="#2C2C54">
             </div>
             <div class="option">
-                <label for="heading">Heading:</label>
-                <input type="text" id="t3heading" value="Our Pricing">
+                <label for="heading">Title</label>
+                <input type="text" id="t3heading" value="PREMIUM">
             </div>
             <div class="option">
-                <label for="size">Size:</label>
+                <label for="size">Font Size</label>
                 <select id="t3size">
                     <option value="small">Small</option>
                     <option value="medium" selected>Medium</option>
@@ -291,76 +379,76 @@
                 </select>
             </div>
             <div class="option">
-                <label for="photo">Photo URL:</label>
-                <input type="text" id="t3photo" value="https://via.placeholder.com/150">
+                <label for="photo">Image URL</label>
+                <input type="text" id="t3photo" value="https://i.pinimg.com/236x/4c/fe/63/4cfe63bc2144516f913fcf9a94b0fc26.jpg">
             </div>
         </div>
     </div>
 
     <div class="right-panel">
         <div class="pricing-table" id="pricing-table-1">
-            <img src="https://via.placeholder.com/150" alt="Product Image">
-            <h2>Our Pricing</h2>
+            <img src="https://i.pinimg.com/236x/4c/fe/63/4cfe63bc2144516f913fcf9a94b0fc26.jpg" alt="Product Image">
+            <h2>BASIC</h2>
             <p>$30/month</p>
-            <div class="icon-text-icon">
-                <i class="fas fa-check-circle"></i>
+           <div class="icon-text-icon">
+                <i class="fas fa-check-circle" style="color: grey;"></i>
                 <span contenteditable="true">Includes all features</span>
-                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+                <i style="margin-left: 10px; color:#ad392d" class="fas fa-trash"></i>
+            </div>
+           <div class="icon-text-icon">
+                <i class="fas fa-check-circle" style="color: grey;"></i>
+                <span contenteditable="true">Includes all features</span>
+                <i style="margin-left: 10px; color:#ad392d" class="fas fa-trash"></i>
             </div>
             <div class="icon-text-icon">
-                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-check-circle" style="color: grey;"></i>
                 <span contenteditable="true">Includes all features</span>
-                <i style="margin-left: 10px;" class="fas fa-trash"></i>
-            </div>
-            <div class="icon-text-icon">
-                <i class="fas fa-check-circle"></i>
-                <span contenteditable="true">Includes all features</span>
-                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+                <i style="margin-left: 10px; color:#ad392d" class="fas fa-trash"></i>
             </div>
             <button class="add-feature">+</button> <!-- Button to add a new editable paragraph -->
             <button class="centered-button">Buy Now</button>
         </div>
         <div class="pricing-table" id="pricing-table-2">
-            <img src="https://via.placeholder.com/150" alt="Product Image">
-            <h2>Our Pricing</h2>
+            <img src="https://i.pinimg.com/236x/4c/fe/63/4cfe63bc2144516f913fcf9a94b0fc26.jpg" alt="Product Image">
+            <h2>ADVANCE</h2>
             <p>$20/month</p>
             <div class="icon-text-icon">
-                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-check-circle" style="color: grey;"></i>
                 <span contenteditable="true">Includes all features</span>
-                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+                <i style="margin-left: 10px; color:#ad392d" class="fas fa-trash"></i>
             </div>
             <div class="icon-text-icon">
-                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-check-circle" style="color: grey;"></i>
                 <span contenteditable="true">Includes all features</span>
-                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+                <i style="margin-left: 10px; color:#ad392d" class="fas fa-trash"></i>
             </div>
-            <div class="icon-text-icon">
-                <i class="fas fa-check-circle"></i>
+           <div class="icon-text-icon">
+                <i class="fas fa-check-circle" style="color: grey;"></i>
                 <span contenteditable="true">Includes all features</span>
-                <i style="margin-left: 10px;" class="fas fa-trash"></i>
-            </div>
+                <i style="margin-left: 10px; color:#ad392d" class="fas fa-trash"></i>
+            </div>  
             <button class="add-feature">+</button> <!-- Button to add a new editable paragraph -->
             <button class="centered-button">Buy Now</button>
         </div>
         
         <div class="pricing-table" id="pricing-table-3">
-            <img src="https://via.placeholder.com/150" alt="Product Image">
-            <h2>Our Pricing</h2>
+            <img src="https://i.pinimg.com/236x/4c/fe/63/4cfe63bc2144516f913fcf9a94b0fc26.jpg" alt="Product Image">
+            <h2>PREMIUM</h2>
             <p>$30/month</p>
-            <div class="icon-text-icon">
-                <i class="fas fa-check-circle"></i>
+           <div class="icon-text-icon">
+                <i class="fas fa-check-circle" style="color: grey;"></i>
                 <span contenteditable="true">Includes all features</span>
-                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+                <i style="margin-left: 10px; color:#ad392d" class="fas fa-trash"></i>
             </div>
-            <div class="icon-text-icon">
-                <i class="fas fa-check-circle"></i>
+           <div class="icon-text-icon">
+                <i class="fas fa-check-circle" style="color: grey;"></i>
                 <span contenteditable="true">Includes all features</span>
-                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+                <i style="margin-left: 10px; color:#ad392d" class="fas fa-trash"></i>
             </div>
-            <div class="icon-text-icon">
-                <i class="fas fa-check-circle"></i>
+           <div class="icon-text-icon">
+                <i class="fas fa-check-circle" style="color: grey;"></i>
                 <span contenteditable="true">Includes all features</span>
-                <i style="margin-left: 10px;" class="fas fa-trash"></i>
+                <i style="margin-left: 10px; color:#ad392d" class="fas fa-trash"></i>
             </div> 
             <button class="add-feature">+</button> <!-- Button to add a new editable paragraph -->
             <button class="centered-button">Buy Now</button>

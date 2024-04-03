@@ -31,33 +31,31 @@ function App() {
   const [customStyles, setCustomStyles] = useState([
     {
       id: '1',
-      fontSize: '18px',
+      fontSize: '16px',
       border:'none',
       color: '#ffffff',
       fontStyle: 'normal',
-      fontFamily: 'Arial, sans-serif',
       templateSize: '300px',
-      templateColor: 'linear-gradient(to top left, rgb(24, 89, 77), 60%, rgb(52, 236, 202))',
+      templateColor: 'white',
       iconClass: 'fa-paper-plane',
       title: 'BASIC',
       titleFontColor: '#000000', 
       priceFontColor: '#000000', 
       featuresFontColor: '#000000', 
       price: '70',
-      features: ['1 Bed', '1 Bathroom', 'No Air Conditioner'],
+      features: ['1 Bed', '1 Bathroom', 'No AC'],
       imageUrl: 'https://i1.adis.ws/i/dreams/253-00157_main-shot_01_paige-bedframe-single.jpg?$tt_poi$&$plp-desktop$'
        },
 
     
     {
       id: '2',
-      fontSize: '18px',
+      fontSize: '16px',
       border:'none',
       color: '#ffffff',
-      fontFamily: 'Arial, sans-serif',
       templateSize: '300px',
       fontStyle: 'normal',
-      templateColor: 'linear-gradient(to top left, rgb(0, 0, 0), 60%, rgb(100, 125, 194))',
+      templateColor: 'white',
       titleFontColor: '#000000', 
       priceFontColor: '#000000', 
       featuresFontColor: '#000000',
@@ -69,13 +67,12 @@ function App() {
     },
     {
       id: '3',
-      fontSize: '18px',
+      fontSize: '16px',
       border:'none',
       color: '#ffffff',
-      fontFamily: 'Arial, sans-serif',
       templateSize: '300px',
       fontStyle: 'normal',
-      templateColor: 'linear-gradient(to top left,  rgb(0, 0, 0), 50%,  rgb(127, 198, 97))',
+      templateColor: 'white',
      
       titleFontColor: '#000000', 
       priceFontColor: '#000000', 
@@ -253,7 +250,6 @@ const addNewTemplate = () => {
       fontSize: '16px',
       color: '#ffffff',
       fontStyle: 'normal',
-      fontFamily: 'Arial, sans-serif',
       templateSize: '300px',
       templateColor: 'white',
       iconClass: 'fa-new-template', // Change this to a suitable icon class
@@ -332,13 +328,13 @@ return (
     )}
 
     <div>
-      <header className="navbar" style={{backgroundColor:'black', padding: '0px'}} >
-        <h1 className="navbar-brand p-3" style={{color: "white", marginLeft:'30px', fontFamily:'serif'}}>Pricifiers</h1>
+      <header className="navbar" style={{backgroundColor:'white', padding: '0px'}} >
+        <h1 className="navbar-brand p-3" style={{color: "#2C2C54", marginLeft:'30px', }}>Pricifiers</h1>
         <nav style={{display: 'flex', justifyContent: 'space-between', gap: '250px', marginRight: '10px'}}>
           <ul className='nav' style={{display: 'flex', justifyContent: 'space-between', gap: '5px', margin: '0 150px 0 0'}}>
-            <li className="nav-item" style={{margin: '0 20px 0 0', fontSize: '20px'}} onClick={() => handleOptionSelect('Basic')}>BASIC</li>
-            <li className="nav-item" style={{margin: '0 20px 0 0', fontSize: '20px'}} onClick={() => handleOptionSelect('Advance')}>ADVANCE</li>
-            <li className="nav-item" style={{margin: '0 20px 0 0', fontSize: '20px'}} onClick={() => handleOptionSelect('Premium')}>PREMIUM</li>
+            <li className="nav-item" style={{margin: '0 20px 0 0', fontSize: '20px'}} onClick={() => handleOptionSelect('Basic')}>Basic</li>
+            <li className="nav-item" style={{margin: '0 20px 0 0', fontSize: '20px'}} onClick={() => handleOptionSelect('Advance')}>Advance</li>
+            <li className="nav-item" style={{margin: '0 20px 0 0', fontSize: '20px'}} onClick={() => handleOptionSelect('Premium')}>Premium</li>
           </ul>
           <ul className="nav" style={{ margin: '0 10px 0 0' }}>
   <li className="nav-item" style={{ margin: '0 20px 0 0', fontSize: '20px' }} onClick={addNewTemplate}>
@@ -352,23 +348,20 @@ return (
         </nav>
         
       </header>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000000" fill-opacity="1" d="M0,128L10.4,160C20.9,192,42,256,63,272C83.5,288,104,256,125,213.3C146.1,171,167,117,188,96C208.7,75,230,85,250,96C271.3,107,292,117,313,154.7C333.9,192,355,256,376,272C396.5,288,417,256,438,208C459.1,160,480,96,501,90.7C521.7,85,543,139,563,170.7C584.3,203,605,213,626,197.3C647,181,668,139,689,106.7C709.6,75,730,53,751,53.3C772.2,53,793,75,814,90.7C834.8,107,856,117,877,112C897.4,107,918,85,939,64C960,43,981,21,1002,48C1022.6,75,1043,149,1064,192C1085.2,235,1106,245,1127,213.3C1147.8,181,1169,107,1190,64C1210.4,21,1231,11,1252,32C1273,53,1294,107,1315,117.3C1335.7,128,1357,96,1377,117.3C1398.3,139,1419,213,1430,250.7L1440,288L1440,0L1429.6,0C1419.1,0,1398,0,1377,0C1356.5,0,1336,0,1315,0C1293.9,0,1273,0,1252,0C1231.3,0,1210,0,1190,0C1168.7,0,1148,0,1127,0C1106.1,0,1085,0,1064,0C1043.5,0,1023,0,1002,0C980.9,0,960,0,939,0C918.3,0,897,0,877,0C855.7,0,835,0,814,0C793,0,772,0,751,0C730.4,0,710,0,689,0C667.8,0,647,0,626,0C605.2,0,584,0,563,0C542.6,0,522,0,501,0C480,0,459,0,438,0C417.4,0,397,0,376,0C354.8,0,334,0,313,0C292.2,0,271,0,250,0C229.6,0,209,0,188,0C167,0,146,0,125,0C104.3,0,83,0,63,0C41.7,0,21,0,10,0L0,0Z"></path></svg>
-      <div className="customize-text">
-  <p className="animated-text">Customize Your Templates Here</p>
-</div>
-      <div className='d-flex flex-row row'>
+      
+      <div className='d-flex flex-row row' style={{marginLeft:'40px', marginBottom:'40px'}}>
       <div className="subheader col-sm-2">
         {/* Render content buttons */}
         {showContentButtons && (
-          <div className="subheader-options" style={{marginLeft:'30px', width: '300px'}}>
+          <div className="subheader-options" style={{ width: '274px'}}>
             <button className="content-button" onClick={handleTitleButtonClick}>Title</button>
             <button className="content-button"onClick={handlePriceButtonClick} >Price</button>
             <button className="content-button"onClick={handleFeaturesButtonClick} >Features</button>
             {/* <button className="content-button">Features</button> <br/> <br/> */}
             {/* Render title options */}
             {showTitleOptions && (
-              <div style={{border:'none', borderRadius:'20px', backgroundColor:'rgb(126, 195, 232)', marginTop: '20px', width: '300px'}}>
-                <label htmlFor="fontSize" style={{marginTop:'20px',marginLeft:'15px', color:'black' }}>Font Size ~ </label>
+              <div style={{border:'none', borderRadius:'20px', marginTop: '20px', width: '280px'}}>
+                <label htmlFor="fontSize" style={{marginTop:'20px',marginLeft:'15px', color:'black' }}>Font Size  </label>
                 <input 
                   type="range" 
                   id="fontSize" 
@@ -384,21 +377,21 @@ return (
                 
                 <span>{fontSize}</span>
                 <br />
-                <label htmlFor="fontStyle" style={{marginTop:'20px',marginLeft:'15px', color:'black' }}>Font Style ~ </label>
+                <label htmlFor="fontStyle" style={{marginTop:'20px',marginLeft:'15px', color:'black' }}>Font Style </label>
                 <select id="fontStyle" value={fontStyle} onChange={handleFontStyleChange} style={{marginLeft:'16px', color:'black'}}>
                   <option value="normal">Normal</option>
                   <option value="italic">Italic</option>
                   <option value="oblique">Oblique</option>
                 </select>
                 <br />
-                <label htmlFor="fontColor" style={{marginTop:'20px',marginLeft:'15px', color:'black' }}>Font Color ~ </label>
+                <label htmlFor="fontColor"  style={{marginTop:'20px',marginLeft:'15px', color:'black' }}>Font Color  </label>
                 <input 
                   type="color"  
                   id="fontColor" 
                   value={fontColor} 
                   onChange={handleFontColorChange} style={{marginLeft:'16px', color:'white'}}/>
                 <br />
-                <label htmlFor="fontFamily" style={{marginTop:'20px',marginLeft:'15px', color:'black' }}>Font Family ~ </label>
+                <label htmlFor="fontFamily" style={{marginTop:'20px',marginLeft:'15px', color:'black' }}>Font Family  </label>
                 <select id="fontFamily" value={fontFamily} onChange={handleFontFamilyChange} style={{marginLeft:'16px', color:'black'}}>
                   <option value="Arial, sans-serif" >Arial</option>
                   <option value="Times New Roman, serif">Times New Roman</option>
@@ -408,7 +401,7 @@ return (
                 </select>
 
                 <br/> 
-                <label htmlFor="backgroundColor" style={{marginTop:'20px',marginLeft:'15px', color:'black', marginBottom:'20px' }}> Background Color ~ </label>
+                <label htmlFor="backgroundColor" style={{marginTop:'20px',marginLeft:'15px', color:'black', marginBottom:'20px' }}> Background Color  </label>
                 <input 
                   type="color" 
                   id="backgroundColor" 
@@ -423,7 +416,7 @@ return (
 
             
             {showPriceOptions && (
-              <div style={{border:'none', borderRadius:'20px', backgroundColor:'rgb(191, 128, 255)', marginTop: '20px', marginRight:'50%'}}>
+              <div style={{width:'280px', border:'none', color:'black', borderRadius:'20px', marginTop: '20px', marginRight:'50%'}}>
                 <label htmlFor="fontSize" >Font Size: </label>
                 <input 
                   type="range" 
@@ -474,8 +467,8 @@ return (
               
             )}
             {showFeaturesOptions && (
-              <div>
-                <label htmlFor="fontSize">Font Size: </label>
+              <div style={{width:'280px', color:'black'}}>
+                <label htmlFor="fontSize" >Font Size: </label>
                 <input 
                   type="range" 
                   id="fontSize" 
