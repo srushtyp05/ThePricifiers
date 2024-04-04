@@ -1,5 +1,8 @@
 require("dotenv").config();
 require("express-async-errors");
+const stripe = require("stripe")(
+  "sk_test_51NWU4pFq9CntC2aZPxWW4edT70SaSRwx1M1YqN4bQuhh4luXO3nPRAoMiide9kFSyYIyC2NOuOLYRkvnOS6DzVkv00sTqFEZGr"
+);
 
 const express = require("express");
 const fs = require("fs");
@@ -31,6 +34,36 @@ const publicDirectoryPath = path.join(__dirname, "./public/");
 const viewPath = path.join(__dirname, "./templates/views"); //To customize path of view in hbs
 const partialsPath = path.join(__dirname, "./templates/partials");
 const sitemapPath = path.join(__dirname, "templates", "views", "sitemap.xml");
+app.get("/create-checkout-session/:amount", async (req, res) => {
+  var jsonData = {
+    items: [{ name: "BillShapers LLC", amount: req.params.amount }],
+  };
+
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      mode: "payment",
+      line_items: jsonData.items.map((item) => {
+        return {
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: item.name,
+              description: "Pricifiers",
+            },
+            unit_amount: item.amount * 100,
+          },
+          quantity: 1,
+        };
+      }),
+      success_url: "http://localhost:9000/success",
+      cancel_url: "http://localhost:9000/fail",
+    });
+    res.redirect(session.url);
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 app.use(express.static("public"));
 app.use(cors());
