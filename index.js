@@ -124,6 +124,10 @@ app.get("/users/pricing", async (req, res) => {
   res.render("users/pricing");
 });
 
+app.get("/users/template1", async (req, res) => {
+  res.render("users/template1");
+});
+
 app.get("/logout", (req, res) => {
   req.session.destroy((err) => {
     res.redirect("users/dashboard"); // will always fire after session is destroyed
