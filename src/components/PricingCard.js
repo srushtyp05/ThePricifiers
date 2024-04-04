@@ -166,8 +166,10 @@ const removeFeature = (index) => {
   ))}
         <li>
             <button onClick={addNewFeature} style={{color:'white', backgroundColor:'#2C2C54',}}>+</button>
-          </li>        
+          </li>   
+               
         </ul>
+        <button className="custom-button" style={{backgroundColor:'#2C2C54', color:'white'}} onClick={() => updateCustomStyle({ /* Update custom style */ })}>Customize</button>
       </div>
       {/* <button onClick={handleSubmit}>Generate Embedded Code</button>
       {embeddedCode && (
@@ -180,4 +182,4 @@ const removeFeature = (index) => {
   );
 };
 
-export default PricingCard;
+export default PricingCard;

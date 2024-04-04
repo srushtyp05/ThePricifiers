@@ -273,35 +273,41 @@ const handleSubmit = () => {
 
 
 // Function to generate embedded code
+// Function to generate embedded code
 const generateEmbeddedCode = () => {
-  let code = '';
+  let code = '<div  style="display: flex; gap: -80%; margin-top: 5%">';
+
+  // Sort the templates based on their index
+  const sortedTemplates = customStyles.slice().sort((a, b) => a.index - b.index);
 
   customStyles.forEach(template => {
-    code += `<div class="pricing-card" style="width: ${template.templateSize}; background: ${template.templateColor};">`;
+    code += `<div class="pricing-card" style="width: ${template.templateSize}; background: ${template.templateColor}; margin-right: 10px; flex-shrink: 0; margin-left: 10%; border-radius: 20px; gap:5px">`;
 
     // Add image if selected or use default imageUrl
     if (template.imageUrl) {
-      code += <img src="${template.imageUrl}" alt="Selected Image" class="template-image" style="width: 88%; height: 85%;" />;
+      code += `<img src="${template.imageUrl}" alt="Selected Image" class="template-image" style="display: block; width: 50%;  height: 24%; margin-top: 10%; margin-left: 25%; border-radius: 20px;" />`;
     }
 
     // Add title with styles
-    code += <h2 class="title" style="text-align: center; font-size: ${template.titleFontSize}; color: ${template.titleFontColor}; font-style: ${template.titleFontStyle}; font-family: ${template.titleFontFamily}; margin-top: 2px;">${template.title}</h2>;
+    code += `<h2 class="title" style="text-align: center; font-size: ${template.titleFontSize}; color: ${template.titleFontColor}; font-style: ${template.titleFontStyle}; font-family: ${template.titleFontFamily}; margin-top: 20px;">${template.title}</h2>`;
 
     // Add price with styles
-    code += <h2 class="price" style="text-align: center; font-size: ${template.priceFontSize}; color: ${template.priceFontColor}; font-style: ${template.priceFontStyle}; font-family: ${template.priceFontFamily}; margin-top: 2px;">$${template.price}</h2>;
+    code += `<h2 class="price" style="text-align: center; font-size: ${template.priceFontSize}; color: ${template.priceFontColor}; font-style: ${template.priceFontStyle}; font-family: ${template.priceFontFamily}; margin-top: 20px;">$${template.price}</h2>`;
 
     // Add features with styles
     template.features.forEach((feature) => {
-      code += <h2 class="feature" style="text-align: center; font-size: ${template.featuresFontSize}; color: ${template.featuresFontColor}; font-style: ${template.featuresFontStyle}; font-family: ${template.featuresFontFamily}; margin-top: 2px;">${feature}</h2>;
+      code += `<h2 class="feature" style="text-align: left; font-size: ${template.featuresFontSize}; color: ${template.featuresFontColor}; font-style: ${template.featuresFontStyle}; font-family: ${template.featuresFontFamily}; margin-top: 2px; margin-left: 35px;">${feature}</h2>`;
     });
 
     // Close the <div> tag for the current template
-    
-    code += '</div>';
+    code += `</div>`;
   });
-  return code;
 
+  code += '</div>';
+
+ return code;
 };
+
 
 
 
@@ -542,10 +548,12 @@ return (
                     <PricingCard 
                       className="card" 
                       
+                      
                       key={style.id}
                       {...style}
                       updateCustomStyle={(style) => updateCustomStyle(style.id, style)}
-                      removeImage={() => removeImage(style.id)}     
+                      removeImage={() => removeImage(style.id)} 
+                          
                     />
                   ))}
                 </div>

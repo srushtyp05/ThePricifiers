@@ -77,3 +77,10 @@
     resize: vertical; /* Allow vertical resizing */
     color: white; /* Set text color to white */
 }
+
+.custom-button{
+    color: white;
+    background-color: #2c2c54;
+    border-radius: 5px;
+    font-size: 35px;
+}
