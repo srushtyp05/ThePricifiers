@@ -79,6 +79,18 @@ app.get("/register", async (req, res) => {
   res.render("register", { message: req.flash("message") });
 });
 
+app.get("/users/features", async (req, res) => {
+  res.render("users/features");
+});
+
+app.get("/users/about", async (req, res) => {
+  res.render("users/about");
+});
+
+app.get("/users/pricing", async (req, res) => {
+  res.render("users/pricing");
+});
+
 app.get("/logout", (req, res) => {
   req.session.destroy((err) => {
     res.redirect("users/dashboard"); // will always fire after session is destroyed
