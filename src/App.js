@@ -299,6 +299,8 @@ const generateEmbeddedCode = () => {
       code += `<h2 class="feature" style="text-align: left; font-size: ${template.featuresFontSize}; color: ${template.featuresFontColor}; font-style: ${template.featuresFontStyle}; font-family: ${template.featuresFontFamily}; margin-top: 2px; margin-left: 35px;">${feature}</h2>`;
     });
 
+    code += `<button class="custom-button" style="background-color: #2C2C54; color: white; border-radius: 5px; width: 70px; height:30px; margin-left: 40%; border: none">Pay</button>`;
+    
     // Close the <div> tag for the current template
     code += `</div>`;
   });

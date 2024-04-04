@@ -169,7 +169,7 @@ const removeFeature = (index) => {
           </li>   
                
         </ul>
-        <button className="custom-button" style={{backgroundColor:'#2C2C54', color:'white'}} onClick={() => updateCustomStyle({ /* Update custom style */ })}>Customize</button>
+        <button className="custom-button" style={{backgroundColor:'#2C2C54', color:'white'}} onClick={() => updateCustomStyle({ /* Update custom style */ })}>Pay</button>
       </div>
       {/* <button onClick={handleSubmit}>Generate Embedded Code</button>
       {embeddedCode && (
