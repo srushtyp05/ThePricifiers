@@ -36,7 +36,7 @@ const partialsPath = path.join(__dirname, "./templates/partials");
 const sitemapPath = path.join(__dirname, "templates", "views", "sitemap.xml");
 app.get("/create-checkout-session/:amount", async (req, res) => {
   var jsonData = {
-    items: [{ name: "BillShapers LLC", amount: req.params.amount }],
+    items: [{ name: "The Pricifiers", amount: req.params.amount }],
   };
 
   try {
@@ -56,7 +56,7 @@ app.get("/create-checkout-session/:amount", async (req, res) => {
           quantity: 1,
         };
       }),
-      success_url: "http://localhost:9000/success",
+      success_url: "http://localhost:9000/users/dashboard",
       cancel_url: "http://localhost:9000/fail",
     });
     res.redirect(session.url);
