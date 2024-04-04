@@ -11,44 +11,383 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    {{!-- <link rel="stylesheet" href="../css/bootstrap.css"> --}}
+
+    <style>
+      .navbar {
+            background-color: white; /* Set background color to white */
+            color: #2C2C54; /* Set font color to #2C2C54 */
+            justify-content: flex-end; /* Align items to the right */
+            margin-right: 5px;
+            display: flex; /* Use flexbox */
+            font-size: 15px;
+            font-weight: bold;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+                .navbar-collapse {
+    margin-left: 50%;
+    font-weight: 550;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+}
+
+        .navbar-toggler {
+            order: -1; /* Move the toggler to the left side */
+        }
+
+        .navbar-nav {
+            display: flex; /* Use flexbox */
+            list-style: none; /* Remove default list styles */
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 15px; /* Add space between navigation items */
+        }
+
+        .navbar-nav .nav-link {
+            padding-right: 20px; /* Add right padding to each navigation link */
+            text-decoration: none;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            margin-left: 5%;
+            margin-right: auto;
+        }
+
+        .header h2 {
+            color: #2C2C54;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .main{
+          margin-top: 1%;
+          height: 50%;
+          width: 94%;
+        }
+
+
+
+
+
+
+
+        #home {
+    width: 100%;
+    padding: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.home-left {
+    height: 300px;
+    position: relative;
+}
+
+.home-left img {
+    height: 100%;
+    border-radius: 10px;
+}
+
+.home-right {
+    width: 50%;
+}
+
+.home-heading {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.home-para {
+    margin-bottom: 20px;
+}
+
+.btn {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    position: relative;
+    width: 30px;
+    background-color: #a2a8d3;
+    border-radius: 5px;
+}
+
+.btn:hover::after {
+    content: '';
+    height: 4px;
+    position: absolute;
+    background-color: white;
+    left: 0;
+    bottom: -10px;
+    animation: width;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    border-radius: 5px;
+}
+
+@keyframes width {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+#workFlow {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.heading {
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.para {
+    margin: 1rem auto;
+}
+
+.num-container {
+    width: 70%;
+    margin: 1rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.num-item {
+    font-size: 1.5rem;
+    line-height: 1.4rem;
+    color: #a2a8d3;
+}
+
+/* Our Goal */
+#goal {
+    width: 80%;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.goal-left {
+    width: 60%;
+    line-height: 2rem;
+}
+
+.goal-left h2 {
+    font-size: 2.4rem;
+}
+
+.goal-left p {
+    line-height: 1.5rem;
+    margin: 1rem 0;
+}
+
+.goal-left ul {
+    list-style: none;
+    margin-bottom: 1rem;
+}
+
+.goal-left ul li::before {
+    line-height: 1.5rem;
+    content: '✓';
+    color: #a2a8d3;
+}
+
+.goal-right {
+    position: relative;
+    width: 35%;
+}
+
+.goal-right img {
+    width: 100%;
+    cursor: pointer;
+    border-radius: 10px;
+    filter: drop-shadow(3px 4px 5px black);
+    transition: all 0.2s linear;
+}
+
+.goal-right img:hover {
+    transform: translateY(-5px);
+    filter: drop-shadow(5px 6px 7px black);
+}
+
+/* Our Team */
+#our-Team {
+    width: 80%;
+    margin: 4rem auto 1rem;
+}
+
+#our-Team h2 {
+    text-align: center;
+    margin: 1rem auto 4rem;
+    position: relative;
+}
+
+#our-Team h2::after {
+    content: '';
+    height: 4px;
+    margin: 0 auto;
+    text-align: center;
+    width: 15%;
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    border-radius: 5px;
+    transform: translate(-50%);
+}
+
+.teamContainer {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.team-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.team-item h5 {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+
+.team-item span {
+    margin-top: .4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+}
+
+.team-item img {
+    width: 80px;
+}
+
+    </style>
 
 </head>
 <body>
-        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/users/dashboard">The Pricifiers</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+ <div class="header">
+    <h2 style="font-size: 30px; margin-right:50px">The Pricifiers</h2>
     <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="/users/dashboard">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/users/template1">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/users/pricing">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/users/about">About
-          <span class="visually-hidden">(current)</span>
-          </a>
-        </li>
-       
-      </ul>
-      <form action="/logout" class="d-flex" method="get">
-        <button class="btn btn-danger my-2 my-sm-0" type="submit">Log Out</button>
-      </form>
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="/users/dashboard">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/users/template1">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/users/pricing">Plans</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/users/about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/register">Account</a>
+            </li>
+        </ul>
     </div>
-  </div>
-</nav>
+</div>
 
     <div class="main">
 
-        <h1> About Us Page coming Soon</h1>
+
+        <section id="home">
+        <div class="home-left">
+            <img src="https://imageio.forbes.com/specials-images/imageserve/6427135d73be3278358cd6f3/Business-Investment-analysis-Account-and-accounting-Concept-Business-Investment/960x0.jpg?height=474&width=711&fit=bounds" alt="">
+        </div>
+        <div class="home-right">
+            <h2 class="home-heading" style="color: #a2a8d3;"> Grow Up Your Workflow Speed </h2>
+            <p class="home-para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quibusdam blanditiis
+                quas assumenda nam error vel dolores suscipit ad, sapiente deleniti ipsum, obcaecati perspiciatis.</p>
+            <a href="" class="btn"> Our Work</a>
+        </div>
+    </section>
+    <!--================== Home Section Ends Here -->
+
+    <!--================== Workflow Section Starts from Here ==================-->
+    <section id="workFlow">
+        <h2 class="heading" style="color: #a2a8d3;"> Grow Up Your Workflow Speed. </h2>
+        <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, commodi sint. <br>Ipsam molestias
+            nemovel laboriosam consequatur, perferendis<br> minima soluta? Natus necessitatibus autem suscipit!</p>
+        <div class="num-container">
+            <div class="num-item"><span>27,882 <br>Customers</span></div>
+            <div class="num-item"><span>90% <br>Action Plans</span></div>
+            <div class="num-item"><span>70,592 <br>Downloads</span></div>
+        </div>
+    </section>
+    <!--================== Workflow Section Ends Here -->
+
+
+    <!--================== Goal Section Starts from Here ==================-->
+    <section id="goal">
+        <div class="goal-left">
+            <h2 style="color: #a2a8d3;">Our Goal</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore omnis obcaecati incidunt asperiores,
+                mollitia quibusdam velit at itaque sunt, culpa in pariatur quas, temporibus repellendus vitae! Vitae,
+                illum asperiores.</p>
+            <ul style="color: white;">
+                <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla, atque!</li>
+                <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla, atque!</li>
+                <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla, atque!</li>
+            </ul>
+            <a href="" class="btn"> Contact Us</a>
+        </div>
+        <div class="goal-right">
+            <img src="https://www.shipbob.com/wp-content/uploads/2020/06/iStock-636263490.jpg" alt="">
+        </div>
+    </section>
+    <!--================== Goal Section Ends Here -->
+
+    <!--================== Our Team Section Starts from Here ==================-->
+    <section id="our-Team">
+        <h2 style="color: #a2a8d3;">Our Member</h2>
+        <div class="teamContainer">
+            <div class="team-item">
+                <img src="./teamMember.png" alt="">
+                <h5 class="member-name" style="color: #a2a8d3;">John Smith</h5>
+                <span class="role">seo expert</span>
+            </div>
+            <div class="team-item">
+                <img src="./teamMember.png" alt="">
+                <h5 class="member-name" style="color: #a2a8d3;">John Smith</h5>
+                <span class="role">seo expert</span>
+            </div>
+            <div class="team-item">
+                <img src="./teamMember.png" alt="">
+                <h5 class="member-name" style="color: #a2a8d3;">John Smith</h5>
+                <span class="role">seo expert</span>
+            </div>
+            <div class="team-item">
+                <img src="./teamMember.png" alt="">
+                <h5 class="member-name" style="color: #a2a8d3;">John Smith</h5>
+                <span class="role">seo expert</span>
+            </div>
+            <div class="team-item">
+                <img src="./teamMember.png" alt="">
+                <h5 class="member-name" style="color: #a2a8d3;">John Smith</h5>
+                <span class="role">seo expert</span>
+            </div>
+        </div>
+    </section>
 
     </div>
 
