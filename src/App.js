@@ -44,7 +44,7 @@ function App() {
       featuresFontColor: '#000000', 
       price: '70',
       features: ['1 Bed', '1 Bathroom', 'No AC'],
-      imageUrl: 'https://i.pinimg.com/236x/4c/fe/63/4cfe63bc2144516f913fcf9a94b0fc26.jpg'
+      imageUrl: 'https://as1.ftcdn.net/v2/jpg/02/59/49/00/1000_F_259490093_wt2P7lVqDAW1IOvEbFpCmzNkro45aqwM.jpg'
        },
 
     
@@ -63,7 +63,7 @@ function App() {
       title: 'ADVANCE',
       price: '150',
       features: ['2 Beds', '1 Bathroom', 'Air Conditioner'],
-      imageUrl: 'https://i.pinimg.com/236x/4c/fe/63/4cfe63bc2144516f913fcf9a94b0fc26.jpg'
+      imageUrl: 'https://as1.ftcdn.net/v2/jpg/02/59/49/00/1000_F_259490093_wt2P7lVqDAW1IOvEbFpCmzNkro45aqwM.jpg'
     },
     {
       id: '3',
@@ -81,7 +81,7 @@ function App() {
       title: 'PREMIUM',
       price: '200',
       features: ['King Size Bed', '2 Bathrooms', 'Personal Kitchen & AC'],
-      imageUrl: 'https://i.pinimg.com/236x/4c/fe/63/4cfe63bc2144516f913fcf9a94b0fc26.jpg'
+      imageUrl: 'https://as1.ftcdn.net/v2/jpg/02/59/49/00/1000_F_259490093_wt2P7lVqDAW1IOvEbFpCmzNkro45aqwM.jpg'
     }
   ]);
   
