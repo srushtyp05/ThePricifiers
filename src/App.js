@@ -353,6 +353,7 @@ return (
   <span role="img" aria-label="delete">🗑</span> 
   </li>
   <button className='btns' style={{ margin: '0 20px 0 0', fontSize: '16px' }} onClick={handleSubmit}>Generate Code</button>
+  <button className='btns' style={{ margin: '0 20px 0 0', fontSize: '16px' }} onClick={()=>{window.location.href='http://localhost:9000/users/dashboard'}}>Log Out</button>
 </ul>
         </nav>
         
