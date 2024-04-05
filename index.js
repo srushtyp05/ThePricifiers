@@ -34,6 +34,7 @@ const publicDirectoryPath = path.join(__dirname, "./public/");
 const viewPath = path.join(__dirname, "./templates/views"); //To customize path of view in hbs
 const partialsPath = path.join(__dirname, "./templates/partials");
 const sitemapPath = path.join(__dirname, "templates", "views", "sitemap.xml");
+
 app.get("/create-checkout-session/:amount", async (req, res) => {
   var jsonData = {
     items: [{ name: "The Pricifiers", amount: req.params.amount }],
