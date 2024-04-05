@@ -129,7 +129,7 @@ const removeFeature = (index) => {
             <img src={imageUrl} alt="Template Image" className="template-image" style={{ width: '50%', height: '150px', borderRadius: "10px", position: "relative", left: "65px" }} />
             <button onClick={handleRemoveImage} className="remove-image-button mt-2" style={{color:'white', backgroundColor:'#2C2C54'}} >Remove Image</button>
           </div>
-          <div style={{ position: 'absolute', top: '34%', right: '-15px', }}>
+          <div style={{ position: 'absolute', top: '31%', right: '-15px', }}>
             <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
             <button className="add-image-button" onClick={handleAddImageButtonClick} style={{color:'white', backgroundColor:'#2C2C54'}}>Add Image</button>
           </div>
