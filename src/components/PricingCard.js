@@ -1,11 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/pricingCard.css';
 
-const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, titleFontFamily, priceFontSize, priceFontColor, priceFontStyle, priceFontFamily, featuresFontSize, featuresFontColor, featuresFontStyle, featuresFontFamily, templateSize, templateColor, updateCustomStyle, removeImage, imageUrl, ...style }) => {
+const PricingCard = ({ id, customStyles, setCustomStyles, title, price, features = [], titleFontSize, titleFontColor, titleFontStyle, titleFontFamily, priceFontSize, priceFontColor, priceFontStyle, priceFontFamily, featuresFontSize, featuresFontColor, featuresFontStyle, featuresFontFamily, templateSize, templateColor, updateCustomStyle, removeImage, imageUrl, ...style }) => {
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedPrice, setEditedPrice] = useState(price);
   const [editedFeatures, setEditedFeatures] = useState(features);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [editingFeatureIndex, setEditingFeatureIndex] = useState(null); // Track editing feature index
+
+  const handleFeatureClick = (index) => {
+    setEditingFeatureIndex(index);
+  };
+
+  const handleFeatureBlur = () => {
+    setEditingFeatureIndex(null);
+  };
   // const [embeddedCode, setEmbeddedCode] = useState('');
   const fileInputRef = useRef(null);
 
@@ -30,13 +39,21 @@ const PricingCard = ({ id, title, price, features = [], titleFontSize, titleFont
   };
   
   const handleFeatureChange = (e, index) => {
-    const newText = e.target.textContent;
+    const newText = e.target.value;
+    console.log("---newText",e.target);
     const cursorPosition = getCaretCharacterOffsetWithin(e.target);
     const updatedFeatures = [...editedFeatures];
     updatedFeatures[index] = newText;
+    
     setEditedFeatures(updatedFeatures);
+    setCustomStyles(prev => {
+      const findTemplate = prev.find(d => d.id === id)
+      const filteredTemplates = prev.filter(d => d.id !== id)
+      findTemplate.features = updatedFeatures
+      return [...filteredTemplates,findTemplate].sort((a,b)=>a.id-b.id)
+    })
     updateCustomStyle(id - 1, { features: updatedFeatures });
-    restoreCursorPosition(e.target, cursorPosition);
+    // restoreCursorPosition(e.target, cursorPosition);
   };
   
 
@@ -48,19 +65,19 @@ const getCaretCharacterOffsetWithin = (element) => {
   preCaretRange.selectNodeContents(element);
   preCaretRange.setEnd(range.endContainer, range.endOffset);
   caretOffset = preCaretRange.toString().length;
-  return caretOffset;
+  return 0;
 };
 
 const restoreCursorPosition = (element, cursorOffset) => {
-  const textNode = element.firstChild;
-  const length = textNode.textContent.length;
-  const adjustedOffset = Math.min(cursorOffset, length); // Ensure cursorOffset doesn't exceed text length
-  const range = document.createRange();
-  const selection = window.getSelection();
-  range.setStart(textNode, adjustedOffset);
-  range.collapse(true);
-  selection.removeAllRanges();
-  selection.addRange(range);
+  // const textNode = element.firstChild;
+  // const length = textNode.textContent.length;
+  // const adjustedOffset = Math.min(cursorOffset, length); // Ensure cursorOffset doesn't exceed text length
+  // const range = document.createRange();
+  // const selection = window.getSelection();
+  // range.setStart(textNode, adjustedOffset);
+  // range.collapse(true);
+  // selection.removeAllRanges();
+  // selection.addRange(range);
 };
 
   const addNewFeature = () => {
@@ -148,22 +165,42 @@ const removeFeature = (index) => {
         <ul>
         {editedFeatures.map((feature, index) => (
         <li key={index} className='features'>
-        <div contentEditable  onInput={(e) => handleFeatureChange(e, index)}
-        style={{ 
-          fontSize: featuresFontSize, 
-          color: featuresFontColor, 
-          fontStyle: featuresFontStyle, 
-          fontFamily: featuresFontFamily, 
-          width: '80%',
-          padding: '5px',
-          borderRadius: '20px',
-        }}
-      >
-        {feature}
-      </div>
-      <button onClick={() => removeFeature(index)} style={{color:'white', backgroundColor:'#2C2C54', position: "relative", left: "50px"}}>-</button>
-    </li>
-  ))}
+        {editingFeatureIndex === index ? (
+                <input
+                  type="text"
+                  value={feature}
+                  onChange={(e) => handleFeatureChange(e, index)}
+                  onBlur={handleFeatureBlur}
+                  style={{ 
+                    fontSize: featuresFontSize, 
+                    color: featuresFontColor, 
+                    fontStyle: featuresFontStyle, 
+                    fontFamily: featuresFontFamily, 
+                    width: '80%',
+                    padding: '5px',
+                    borderRadius: '20px',
+                  }}
+                />
+              ) : (
+                <div 
+                  onClick={() => handleFeatureClick(index)}
+                  style={{ 
+                    fontSize: featuresFontSize, 
+                    color: featuresFontColor, 
+                    fontStyle: featuresFontStyle, 
+                    fontFamily: featuresFontFamily, 
+                    width: '80%',
+                    padding: '5px',
+                    borderRadius: '20px',
+                  }}
+                >
+                  {feature}
+                </div>
+              )}
+              <button onClick={() => removeFeature(index)} style={{color:'white', backgroundColor:'#2C2C54', position: "relative", left: "50px"}}>-</button>
+            </li>
+          ))}
+     
         <li>
             <button onClick={addNewFeature} style={{color:'white', backgroundColor:'#2C2C54',}}>+</button>
           </li>   

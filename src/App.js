@@ -275,7 +275,7 @@ const handleSubmit = () => {
 // Function to generate embedded code
 // Function to generate embedded code
 const generateEmbeddedCode = () => {
-  let code = '<div  style="display: flex; gap: -80%; margin-top: 5%">';
+  let code = '<div style="display: flex; gap: -80%; margin-top: 5%">';
 
   // Sort the templates based on their index
   const sortedTemplates = customStyles.slice().sort((a, b) => a.index - b.index);
@@ -296,6 +296,7 @@ const generateEmbeddedCode = () => {
 
     // Add features with styles
     template.features.forEach((feature) => {
+      console.log("----------->",feature);
       code += `<h2 class="feature" style="text-align: left; font-size: ${template.featuresFontSize}; color: ${template.featuresFontColor}; font-style: ${template.featuresFontStyle}; font-family: ${template.featuresFontFamily}; margin-top: 2px; margin-left: 35px;">${feature}</h2>`;
     });
 
@@ -549,8 +550,8 @@ return (
                   {customStyles.map((style) => (
                     <PricingCard 
                       className="card" 
-                      
-                      
+                      customStyles={customStyles} 
+                      setCustomStyles={setCustomStyles}
                       key={style.id}
                       {...style}
                       updateCustomStyle={(style) => updateCustomStyle(style.id, style)}
